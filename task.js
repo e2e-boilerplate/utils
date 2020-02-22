@@ -12,33 +12,44 @@ async function clone(repo) {
     fs.mkdirSync(root);
   }
 
-  const { error } = await exec(`git clone git@github.com:e2e-boilerplates/${repo.name}.git`, { cwd: root });
-
-  if (error) {
-    logger.error(`error: ${error}`);
+  try {
+    const { error, stdout, stderr } = await exec(`git clone git@github.com:e2e-boilerplates/${repo.name}.git`, {
+      cwd: root
+    });
+    if (error) {
+      throw error;
+    }
+    logger.info(stdout);
+    logger.info(stderr);
+  } catch (error) {
+    logger.error(error);
   }
-
-  logger.info(`Cloning ${repo.name}`);
 }
 
 async function install(repo) {
-  const { error } = await exec(`npm install`, { cwd: `${root}/${repo.name}` });
-
-  if (error) {
-    logger.error(`error: ${error}`);
+  try {
+    const { error, stdout, stderr } = await exec(`npm install`, { cwd: `${root}/${repo.name}` });
+    if (error) {
+      throw error;
+    }
+    logger.info(stdout);
+    logger.info(stderr);
+  } catch (error) {
+    logger.error(error);
   }
-
-  logger.info(`Installing dependencies for ${repo.name}`);
 }
 
 async function pull(repo) {
-  const { error } = await exec(`git pull`, { cwd: `${root}/${repo.name}` });
-
-  if (error) {
-    logger.error(`error: ${error}`);
+  try {
+    const { error, stdout, stderr } = await exec(`git pull`, { cwd: `${root}/${repo.name}` });
+    if (error) {
+      throw error;
+    }
+    logger.info(stdout);
+    logger.info(stderr);
+  } catch (error) {
+    logger.error(error);
   }
-
-  logger.info(`Pulling latest for ${repo.name}`);
 }
 
 module.exports = {

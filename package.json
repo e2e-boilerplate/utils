@@ -1,8 +1,7 @@
 {
   "name": "utils",
   "version": "1.0.0",
-  "description": "Utils",
-  "main": "index.js",
+  "description": "Utils for automating the daily tasks of maintaining the e2e-boilerplate organization.",
   "scripts": {
     "lint": "npx eslint --ext .js ./ --fix",
     "clean": "npx rimraf repos/*.json",
@@ -45,7 +44,8 @@
   },
   "dependencies": {
     "minimist": "^1.2.0",
-    "rimraf": "^3.0.2",
-    "winston": "^3.2.1"
+    "pino": "^5.16.0",
+    "pino-pretty": "^3.6.0",
+    "rimraf": "^3.0.2"
   }
 }

@@ -1,6 +1,9 @@
 const fs = require("fs");
 const https = require("https");
 const argv = require("minimist")(process.argv.slice(2));
+const logger = require("pino")({
+  prettyPrint: { colorize: true }
+});
 
 const options = {
   host: "api.github.com",
@@ -10,6 +13,8 @@ const options = {
     "Content-Type": "application/json"
   }
 };
+
+logger.info("Getting repositories name ...");
 
 for (let i = 0; i < argv.pages; i += 1) {
   options.path = `/users/e2e-boilerplates/repos?page=${i + 1}&per_page=100`;

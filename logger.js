@@ -1,10 +1,5 @@
-const winston = require("winston");
-
-const consoleTransport = new winston.transports.Console();
-const myWinstonOptions = {
-  transports: [consoleTransport]
-};
-
-const logger = new winston.createLogger(myWinstonOptions);
+const logger = require("pino")({
+  prettyPrint: { colorize: true }
+});
 
 module.exports = logger;
