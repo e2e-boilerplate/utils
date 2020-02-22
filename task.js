@@ -7,14 +7,11 @@ const logger = require("./logger");
 
 const root = `/Users/${user}/Documents/e2e-boilerplates`;
 
-if (!fs.existsSync(root)) {
-  fs.mkdirSync(root);
-} else {
-  logger.info(`/Users/${user}/Documents/e2e-boilerplates already exists`);
-  process.exit();
-}
-
 async function clone(repo) {
+  if (!fs.existsSync(root)) {
+    fs.mkdirSync(root);
+  }
+
   const { error } = await exec(`git clone git@github.com:e2e-boilerplates/${repo.name}.git`, { cwd: root });
 
   if (error) {
