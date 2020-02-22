@@ -5,5 +5,10 @@
   "extends": [
     "airbnb-base",
     "plugin:prettier/recommended"
-  ]
+  ],
+  "rules": {
+    "import/no-dynamic-require": 0,
+    "global-require": 0,
+    "new-cap": 0
+  }
 }

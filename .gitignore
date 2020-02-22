@@ -65,4 +65,4 @@ typings/
 .DS_Store
 
 # generated repo list
-repos.json
+repos/*.json

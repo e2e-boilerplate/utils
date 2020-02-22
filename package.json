@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "lint": "npx eslint --ext .js ./ --fix",
-    "clean": "npx rimraf repos.json",
-    "repo": "node generate.js"
+    "clean": "npx rimraf repos/*.json",
+    "repos": "node generate.js --pages 2",
+    "clone": "node runner.js --task clone",
+    "install": "node runner.js --task install",
+    "pull": "node runner.js --task pull"
   },
   "repository": {
     "type": "git",
@@ -28,8 +31,7 @@
     "eslint-plugin-prettier": "3.1.2",
     "husky": "4.2.3",
     "lint-staged": "10.0.7",
-    "prettier": "1.19.1",
-    "rimraf": "3.0.2"
+    "prettier": "1.19.1"
   },
   "husky": {
     "hooks": {
@@ -40,5 +42,10 @@
     "*.js": [
       "eslint --fix"
     ]
+  },
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "rimraf": "^3.0.2",
+    "winston": "^3.2.1"
   }
 }
