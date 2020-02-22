@@ -12,7 +12,7 @@ async function runner() {
         const repos = require(`./repos/repo-${i}.json`);
         repos.forEach(repo => {
           switch (argv.task) {
-            case "cloe":
+            case "clone":
               clone(repo);
               break;
             case "install":
@@ -30,4 +30,4 @@ async function runner() {
   });
 }
 
-module.exports = runner;
+runner();
