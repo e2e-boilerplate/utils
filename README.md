@@ -13,10 +13,10 @@ Clone all repositories.
 
         npm run clone
         
-## Install 
+## Dependencies 
 Install npm dependencies for all repositories. This may take some time.
 
-        npm run install
+        npm run deps
         
 ## Pull
 Pull the latest changes for all repositories
