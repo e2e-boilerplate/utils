@@ -1,6 +1,6 @@
 const fs = require("fs");
 const user = require("os").userInfo().username;
-const logger = require("./logger");
+const logger = require("./common/logger");
 
 const rootDir = `/Users/${user}/Documents/e2e-boilerplates`;
 const dir = "./repos";
@@ -15,7 +15,7 @@ async function hasRootDir() {
   return hasDir;
 }
 
-async function hasRepoNameList() {
+async function hasRepositoriesList() {
   let hasList = false;
   try {
     const files = await fs.readdirSync(dir);
@@ -27,7 +27,7 @@ async function hasRepoNameList() {
   return hasList;
 }
 
-async function hasRepo(repoName) {
+async function hasRepository(repoName) {
   const repo = `${rootDir}/${repoName}`;
   let repoExist = false;
 
@@ -41,8 +41,13 @@ async function hasRepo(repoName) {
   return repoExist;
 }
 
+function isNumeric(value) {
+  return !Number.isNaN(Number(value));
+}
+
 module.exports = {
+  isNumeric,
   hasRootDir,
-  hasRepoNameList,
-  hasRepo
+  hasRepositoriesList,
+  hasRepository
 };

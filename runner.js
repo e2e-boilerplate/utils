@@ -1,13 +1,13 @@
 const fs = require("fs");
 const argv = require("minimist")(process.argv.slice(2));
-const { clone, installDeps, pull } = require("./src/task");
-const { checkRepoNameList, checkRootDir } = require("./src/checklist");
-const logger = require("./src/logger");
+const { clone, installDependencies, pull } = require("./src/task");
+const { checkRepositoriesList, checkRootDir } = require("./src/checklist");
+const logger = require("./src/common/logger");
 
 const dir = "./repos";
 
 async function runner() {
-  await checkRepoNameList();
+  await checkRepositoriesList();
   await checkRootDir();
 
   fs.readdir(dir, (error, files) => {
@@ -20,7 +20,7 @@ async function runner() {
               clone(repo);
               break;
             case "install":
-              installDeps(repo);
+              installDependencies(repo);
               break;
             case "pull":
               pull(repo);

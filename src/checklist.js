@@ -1,34 +1,39 @@
-const { hasRepoNameList, hasRepo, hasRootDir } = require("./validators");
-const { getRepNameList, getRepo, writeRootDir, clearRepList } = require("./exec");
+const { hasRepositoriesList, hasRepository, hasRootDir, isNumeric } = require("./validators");
+const { getRepository, getRepositoriesList, setRootDir, clearRepositoriesList } = require("./exec");
 
 async function checkRootDir() {
   const hasRoot = await hasRootDir();
   if (!hasRoot) {
-    await writeRootDir();
+    await setRootDir();
   }
 }
 
-async function checkRepoNameList(shouldExist = true) {
-  const hasList = await hasRepoNameList();
+async function checkRepositoriesList(listShouldExist = true) {
+  const hasRepoList = await hasRepositoriesList();
 
-  if (shouldExist && !hasList) {
-    await getRepNameList();
+  if (listShouldExist && !hasRepoList) {
+    await getRepositoriesList();
   }
 
-  if (!shouldExist && hasList) {
-    await clearRepList();
+  if (!listShouldExist && hasRepoList) {
+    await clearRepositoriesList();
   }
 }
 
-async function checkRepo(repo) {
-  const repoExist = await hasRepo(repo);
-  if (!repoExist) {
-    await getRepo(repo);
+async function checkRepository(repo) {
+  const hasRepo = await hasRepository(repo);
+  if (!hasRepo) {
+    await getRepository(repo);
   }
+}
+
+function checkIsNumeric(value) {
+  return isNumeric(value);
 }
 
 module.exports = {
   checkRootDir,
-  checkRepo,
-  checkRepoNameList
+  checkRepository,
+  checkRepositoriesList,
+  checkIsNumeric
 };
