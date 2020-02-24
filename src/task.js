@@ -1,6 +1,6 @@
 const { execute, getRepository } = require("./exec");
 const { hasRepository } = require("./validators");
-const { username, rootDir } = require("./common/constants");
+const { username, rootDir } = require("./constants");
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;

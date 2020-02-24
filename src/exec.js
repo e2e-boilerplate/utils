@@ -3,8 +3,7 @@ const exec = util.promisify(require("child_process").exec);
 const fs = require("fs");
 const rimraf = require("rimraf");
 const { getRepositories } = require("./repositories");
-const logger = require("./common/logger");
-const { username, rootDir } = require("./common/constants");
+const { username, rootDir, logger } = require("./constants");
 
 async function execute(cmd, cwd) {
   try {

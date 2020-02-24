@@ -2,11 +2,15 @@ const fs = require("fs");
 const { gitClone, gitPull, npmInstall } = require("./src/task");
 const { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } = require("./src/validators");
 const { getRepositoriesList, setRootDir, clearRepositoriesList } = require("./src/exec");
-const logger = require("./src/common/logger");
-const { task, reposDir } = require("./src/common/constants");
+const { task, reposDir, logger } = require("./src/constants");
 
 async function runner() {
   try {
+    const hasRootDir = await hasRootDirectory();
+    if (!hasRootDir) {
+      await setRootDir();
+    }
+
     const hasReposList = await hasRepositoriesList();
     if (!hasReposList) {
       await getRepositoriesList();
@@ -16,11 +20,6 @@ async function runner() {
     if (!hasMatchingReposList) {
       await clearRepositoriesList();
       await getRepositoriesList();
-    }
-
-    const hasRootDir = await hasRootDirectory();
-    if (!hasRootDir) {
-      await setRootDir();
     }
 
     const files = fs.readdirSync(reposDir);

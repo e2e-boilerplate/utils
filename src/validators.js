@@ -1,6 +1,5 @@
 const fs = require("fs");
-const logger = require("./common/logger");
-const { username, rootDir, reposDir } = require("./common/constants");
+const { username, rootDir, reposDir, logger } = require("./constants");
 
 async function hasRootDirectory() {
   let hasDir = false;

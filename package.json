@@ -4,9 +4,10 @@
   "description": "Utils for automating the daily tasks of maintaining the e2e-boilerplate organization.",
   "scripts": {
     "lint": "npx eslint --ext .js ./ --fix",
+    "test": "npx jest",
     "clean": "npx rimraf repos/*.json",
-    "repos": "node repositories.js --pages 9 --username e2e-boilerplates",
-    "clone": "node runner.js --task clone --username papakpmartin",
+    "repos": "node repositories.js --pages 2 --username e2e-boilerplates",
+    "clone": "node runner.js --task clone --username e2e-boilerplates",
     "deps": "node runner.js --task install --username e2e-boilerplates",
     "pull": "node runner.js --task pull --username e2e-boilerplates"
   },
@@ -28,6 +29,7 @@
     "eslint-plugin-import": "2.20.1",
     "eslint-plugin-prettier": "3.1.2",
     "husky": "4.2.3",
+    "jest": "^25.1.0",
     "lint-staged": "10.0.7",
     "prettier": "1.19.1"
   },

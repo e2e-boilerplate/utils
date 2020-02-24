@@ -2,8 +2,7 @@ const fs = require("fs");
 const https = require("https");
 const { hasRepositoriesList, isNumeric } = require("./validators");
 const { clearRepositoriesList } = require("./exec");
-const logger = require("./common/logger");
-const { username, pages } = require("./common/constants");
+const { username, pages, logger } = require("./constants");
 
 const options = {
   host: "api.github.com",
@@ -44,7 +43,8 @@ async function getRepositories() {
           const isOk = response.statusCode === 200;
           const content = isOk ? JSON.parse(JSON.stringify(body)) : "[]";
           if (isOk && content !== "[]") {
-            fs.writeFileSync(`repos/repo-${i + 1}.json`, content);
+            const data = fs.writeFileSync(`repos/repo-${i + 1}.json`, content);
+            logger.info(data);
             logger.info(`GET: ${path}.`);
           } else {
             logger.warn(`Not Found: ${path}.`);
