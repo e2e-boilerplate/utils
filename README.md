@@ -32,5 +32,5 @@ Pull the latest changes for all repositories
         npm run pull 
         npm run clone ---username=your_github_org_or_username
 
-## Warning :warning:
-Using this on a GitHub username or orgname that has large number of repositories could max out your disk space.
+## Warning 
+:warning: Using this on a GitHub username or orgname that has large number of repositories could max out your disk space.
