@@ -1,26 +1,33 @@
-const user = require("os").userInfo().username;
-const { execute } = require("./exec");
-const { checkRepository } = require("./checklist");
+const { execute, getRepository } = require("./exec");
+const { hasRepository } = require("./validators");
+const { username, rootDir } = require("./common/constants");
 
-const rootDir = `/Users/${user}/Documents/e2e-boilerplates`;
-
-async function clone(repo) {
-  const cmd = `git clone git@github.com:e2e-boilerplates/${repo.name}.git`;
+async function gitClone(repo) {
+  const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
   await execute(cmd, rootDir);
 }
 
-async function installDependencies(repo) {
-  await checkRepository(repo.name);
-  await execute(`npm install`, `${rootDir}/${repo.name}`);
+async function npmInstall(repo) {
+  const { name } = repo;
+  const hasRepo = await hasRepository(name);
+  if (!hasRepo) {
+    await getRepository(name);
+  }
+
+  await execute(`npm install`, `${rootDir}/${name}`);
 }
 
-async function pull(repo) {
-  await checkRepository(repo.name);
+async function gitPull(repo) {
+  const { name } = repo;
+  const hasRepo = await hasRepository(name);
+  if (!hasRepo) {
+    await getRepository(name);
+  }
   await execute(`git pull`, `${rootDir}/${repo.name}`);
 }
 
 module.exports = {
-  clone,
-  installDependencies,
-  pull
+  gitClone,
+  npmInstall,
+  gitPull
 };

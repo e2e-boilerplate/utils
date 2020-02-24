@@ -2,11 +2,9 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const fs = require("fs");
 const rimraf = require("rimraf");
-const user = require("os").userInfo().username;
 const { getRepositories } = require("./repositories");
 const logger = require("./common/logger");
-
-const rootDir = `/Users/${user}/Documents/e2e-boilerplates`;
+const { username, rootDir } = require("./common/constants");
 
 async function execute(cmd, cwd) {
   try {
@@ -31,11 +29,11 @@ async function getRepositoriesList() {
 
 async function clearRepositoriesList() {
   await rimraf.sync("repos/*.json");
-  logger.info("Clearing existing repository name list.");
+  logger.info("Clearing existing repositories.");
 }
 
 async function getRepository(repo) {
-  const cmd = `git clone git@github.com:e2e-boilerplates/${repo}.git`;
+  const cmd = `git clone git@github.com:${username}/${repo}.git`;
   await execute(cmd, rootDir);
 }
 

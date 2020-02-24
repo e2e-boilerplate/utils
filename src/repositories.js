@@ -1,8 +1,9 @@
 const fs = require("fs");
 const https = require("https");
-const { pages, username } = require("minimist")(process.argv.slice(2));
-const { checkRepositoriesList, checkIsNumeric } = require("./checklist");
+const { hasRepositoriesList, isNumeric } = require("./validators");
+const { clearRepositoriesList } = require("./exec");
 const logger = require("./common/logger");
+const { username, pages } = require("./common/constants");
 
 const options = {
   host: "api.github.com",
@@ -15,9 +16,13 @@ const options = {
 
 async function getRepositories() {
   try {
-    await checkRepositoriesList(false);
+    const hasReposList = await hasRepositoriesList();
 
-    if (!checkIsNumeric(pages || 2)) {
+    if (hasReposList) {
+      await clearRepositoriesList();
+    }
+
+    if (!isNumeric(pages || 2)) {
       throw new Error(`${pages} is not a valid page number.`);
     }
 
@@ -40,9 +45,9 @@ async function getRepositories() {
           const content = isOk ? JSON.parse(JSON.stringify(body)) : "[]";
           if (isOk && content !== "[]") {
             fs.writeFileSync(`repos/repo-${i + 1}.json`, content);
-            logger.info(`Repositories found: ${path}.`);
+            logger.info(`GET: ${path}.`);
           } else {
-            logger.warn(`Repositories not found: ${path}.`);
+            logger.warn(`Not Found: ${path}.`);
           }
         });
       });

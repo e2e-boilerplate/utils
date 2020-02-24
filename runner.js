@@ -1,39 +1,51 @@
 const fs = require("fs");
-const argv = require("minimist")(process.argv.slice(2));
-const { clone, installDependencies, pull } = require("./src/task");
-const { checkRepositoriesList, checkRootDir } = require("./src/checklist");
+const { gitClone, gitPull, npmInstall } = require("./src/task");
+const { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } = require("./src/validators");
+const { getRepositoriesList, setRootDir, clearRepositoriesList } = require("./src/exec");
 const logger = require("./src/common/logger");
-
-const dir = "./repos";
+const { task, reposDir } = require("./src/common/constants");
 
 async function runner() {
-  await checkRepositoriesList();
-  await checkRootDir();
-
-  fs.readdir(dir, (error, files) => {
-    if (!error) {
-      for (let i = 1; i < files.length; i += 1) {
-        const repos = require(`./repos/repo-${i}.json`);
-        repos.forEach(repo => {
-          switch (argv.task) {
-            case "clone":
-              clone(repo);
-              break;
-            case "install":
-              installDependencies(repo);
-              break;
-            case "pull":
-              pull(repo);
-              break;
-            default:
-              logger.warn("invalid task");
-          }
-        });
-      }
-    } else {
-      // TODO remove or use try catch
+  try {
+    const hasReposList = await hasRepositoriesList();
+    if (!hasReposList) {
+      await getRepositoriesList();
     }
-  });
+
+    const hasMatchingReposList = await hasMatchingRepositoriesList();
+    if (!hasMatchingReposList) {
+      await clearRepositoriesList();
+      await getRepositoriesList();
+    }
+
+    const hasRootDir = await hasRootDirectory();
+    if (!hasRootDir) {
+      await setRootDir();
+    }
+
+    const files = fs.readdirSync(reposDir);
+
+    for (let i = 1; i < files.length; i += 1) {
+      const repos = require(`./repos/repo-${i}.json`);
+      repos.forEach(repo => {
+        switch (task) {
+          case "clone":
+            gitClone(repo);
+            break;
+          case "install":
+            npmInstall(repo);
+            break;
+          case "pull":
+            gitPull(repo);
+            break;
+          default:
+            logger.warn(`Invalid task: ${task}`);
+        }
+      });
+    }
+  } catch (error) {
+    logger.error(error);
+  }
 }
 
 runner();

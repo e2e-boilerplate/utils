@@ -5,8 +5,8 @@
   "scripts": {
     "lint": "npx eslint --ext .js ./ --fix",
     "clean": "npx rimraf repos/*.json",
-    "repos": "node repositories.js --pages 9 --username xgirma",
-    "clone": "node runner.js --task clone --username e2e-boilerplates",
+    "repos": "node repositories.js --pages 9 --username e2e-boilerplates",
+    "clone": "node runner.js --task clone --username papakpmartin",
     "deps": "node runner.js --task install --username e2e-boilerplates",
     "pull": "node runner.js --task pull --username e2e-boilerplates"
   },
