@@ -9,7 +9,9 @@
     "repos": "node repositories.js --pages 2 --username e2e-boilerplates",
     "clone": "node runner.js --task clone --username e2e-boilerplates",
     "deps": "node runner.js --task install --username e2e-boilerplates",
-    "pull": "node runner.js --task pull --username e2e-boilerplates"
+    "pull": "node runner.js --task pull --username e2e-boilerplates",
+    "add": "node runner.js --task add --username e2e-boilerplates",
+    "commit": "node runner.js --task add --username e2e-boilerplates --message update"
   },
   "repository": {
     "type": "git",
