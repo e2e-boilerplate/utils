@@ -30,7 +30,7 @@ Install npm dependencies for all repositories. This may take some time.
 Pull the latest changes for all repositories
 
         npm run pull 
-        npm run clone ---username=your_github_org_or_username
+        npm run clone --username=your_github_org_or_username
 
 ## Warning 
 Using this on a GitHub username or org-name that has large (number of) repositories and dependencies could maxout your disk space.
