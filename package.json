@@ -11,7 +11,8 @@
     "deps": "node runner.js --task install --username e2e-boilerplates",
     "pull": "node runner.js --task pull --username e2e-boilerplates",
     "add": "node runner.js --task add --username e2e-boilerplates",
-    "commit": "node runner.js --task add --username e2e-boilerplates --message update"
+    "commit": "node runner.js --task add --username e2e-boilerplates --message update",
+    "push": "node runner.js --task push --username e2e-boilerplates"
   },
   "repository": {
     "type": "git",

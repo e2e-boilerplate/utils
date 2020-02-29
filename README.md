@@ -27,10 +27,25 @@ Install npm dependencies for all repositories. This may take some time.
         npm run deps -- --username=your_github_org_or_username 
         
 ## Pull
-Pull the latest changes for all repositories
+Pull the latest changes for all repositories.
 
         npm run pull 
         npm run clone --username=your_github_org_or_username
+
+## Add
+Add changes for all repositories.
+        
+        npm run add 
+        
+## Commit
+Commit changes for all repositories.
+        
+        npm run commit -- --message=your_commit_message
+        
+## Push
+Push changes for all repositories.
+        
+        npm run push        
 
 ## Warning 
 Using this on a GitHub username or org-name that has large (number of) repositories and dependencies could maxout your disk space.

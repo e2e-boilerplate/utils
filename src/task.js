@@ -36,7 +36,13 @@ async function gitAdd(repo) {
 async function gitCommit(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await execute(`git commit -m ${message}`, `${rootDir}/${name}`);
+  await execute(`git commit -m "${message}"`, `${rootDir}/${name}`);
+}
+
+async function gitPush(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await execute(`git push`, `${rootDir}/${name}`);
 }
 
 module.exports = {
@@ -44,5 +50,6 @@ module.exports = {
   gitClone,
   npmInstall,
   gitPull,
-  gitCommit
+  gitCommit,
+  gitPush
 };

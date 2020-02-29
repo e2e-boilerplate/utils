@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { gitAdd, gitClone, gitPull, npmInstall } = require("./src/task");
+const { gitAdd, gitClone, gitCommit, gitPush, gitPull, npmInstall } = require("./src/task");
 const { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } = require("./src/validators");
 const { getRepositoriesList, setRootDir, clearRepositoriesList } = require("./src/exec");
 const { task, reposDir, logger } = require("./src/constants");
@@ -39,6 +39,12 @@ async function runner() {
             break;
           case "add":
             gitAdd(repo);
+            break;
+          case "commit":
+            gitCommit(repo);
+            break;
+          case "push":
+            gitPush(repo);
             break;
           default:
             logger.warn(`Invalid task: ${task}`);
