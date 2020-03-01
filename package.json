@@ -1,35 +1,22 @@
 {
-  "name": "utils",
-  "version": "1.0.0",
-  "description": "Utils for automating the daily tasks of maintaining the e2e-boilerplate organization.",
-  "scripts": {
-    "lint": "npx eslint --ext .js ./ --fix",
-    "test": "npx jest",
-    "clean": "npx rimraf repos/*.json",
-    "repos": "node repositories.js --pages 2 --username e2e-boilerplates",
-    "clone": "node runner.js --task clone --username e2e-boilerplates",
-    "deps": "node runner.js --task install --username e2e-boilerplates",
-    "pull": "node runner.js --task pull --username e2e-boilerplates",
-    "add": "node runner.js --task add --username e2e-boilerplates",
-    "commit": "node runner.js --task add --username e2e-boilerplates --message update",
-    "push": "node runner.js --task push --username e2e-boilerplates"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/e2e-boilerplates/utils.git"
-  },
-  "keywords": [],
   "author": "Girma Nigusse <xgirma@gmail.com> (https://github.com/xgirma)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/e2e-boilerplates/utils/issues"
   },
+  "dependencies": {
+    "minimist": "1.2.0",
+    "pino": "5.16.0",
+    "pino-pretty": "3.6.0",
+    "rimraf": "3.0.2"
+  },
+  "description": "Utils for automating the daily tasks of maintaining the e2e-boilerplate organization.",
   "devDependencies": {
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.0.0",
     "eslint-config-prettier": "6.10.0",
     "eslint-plugin-cypress": "2.10.3",
     "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-json": "^2.1.0",
     "eslint-plugin-prettier": "3.1.2",
     "husky": "4.2.3",
     "jest": "25.1.0",
@@ -41,15 +28,38 @@
       "pre-commit": "lint-staged"
     }
   },
+  "keywords": [
+    "1234",
+    "abcd",
+    "bbbbb",
+    "boilerplate",
+    "e2e",
+    "e2e test",
+    "xyz"
+  ],
+  "license": "MIT",
   "lint-staged": {
     "*.js": [
       "eslint --fix"
     ]
   },
-  "dependencies": {
-    "minimist": "1.2.0",
-    "pino": "5.16.0",
-    "pino-pretty": "3.6.0",
-    "rimraf": "3.0.2"
-  }
+  "name": "abcd-xyz-1234-bbbbb",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e2e-boilerplates/utils.git"
+  },
+  "scripts": {
+    "lint": "npx eslint --ext .js ./ --fix",
+    "test": "npx jest",
+    "clean": "npx rimraf repos/*.json",
+    "repos": "node repositories.js --pages 2 --username e2e-boilerplates",
+    "clone": "node runner.js --task clone --username e2e-boilerplates",
+    "deps": "node runner.js --task install --username e2e-boilerplates",
+    "pull": "node runner.js --task pull --username e2e-boilerplates",
+    "add": "node runner.js --task add --username e2e-boilerplates",
+    "commit": "node runner.js --task add --username e2e-boilerplates --message update",
+    "push": "node runner.js --task push --username e2e-boilerplates",
+    "metadata": "node src/metadata.js"
+  },
+  "version": "1.0.0"
 }

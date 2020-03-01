@@ -1,6 +1,7 @@
 const { execute, getRepository } = require("./exec");
 const { hasRepository } = require("./validators");
 const { username, rootDir, message } = require("./constants");
+const { updateMeta } = require("./metadata");
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -45,11 +46,19 @@ async function gitPush(repo) {
   await execute(`git push`, `${rootDir}/${name}`);
 }
 
+async function updateMetadata(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  updateMeta(repo);
+  // await execute(`node ./src/metadata.json`, `${rootDir}/${name}`);
+}
+
 module.exports = {
   gitAdd,
   gitClone,
   npmInstall,
   gitPull,
   gitCommit,
-  gitPush
+  gitPush,
+  updateMetadata
 };

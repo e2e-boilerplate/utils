@@ -4,7 +4,8 @@
   },
   "extends": [
     "airbnb-base",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:json/recommended"
   ],
   "rules": {
     "import/no-dynamic-require": 0,
