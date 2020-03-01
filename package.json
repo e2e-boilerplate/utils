@@ -29,13 +29,12 @@
     }
   },
   "keywords": [
-    "1234",
-    "abcd",
-    "bbbbb",
     "boilerplate",
     "e2e",
-    "e2e test",
-    "xyz"
+    "e2e tests",
+    "example",
+    "integration test",
+    "utils"
   ],
   "license": "MIT",
   "lint-staged": {
@@ -43,7 +42,7 @@
       "eslint --fix"
     ]
   },
-  "name": "abcd-xyz-1234-bbbbb",
+  "name": "utils",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/e2e-boilerplates/utils.git"
