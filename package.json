@@ -57,9 +57,11 @@
     "deps": "node runner.js --task install --username e2e-boilerplates",
     "pull": "node runner.js --task pull --username e2e-boilerplates",
     "add": "node runner.js --task add --username e2e-boilerplates",
-    "commit": "node runner.js --task add --username e2e-boilerplates --message update",
+    "commit": "node runner.js --task commit --username e2e-boilerplates --message update",
     "push": "node runner.js --task push --username e2e-boilerplates",
-    "metadata": "node src/metadata.js"
+    "metadata": "node runner.js --task metadata --username e2e-boilerplates",
+    "command:execute": "node runner.js --task command --username e2e-boilerplates",
+    "lint:repos": "node runner.js --task lint --username e2e-boilerplates"
   },
   "version": "1.0.0"
 }

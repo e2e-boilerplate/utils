@@ -1,5 +1,5 @@
 const user = require("os").userInfo().username;
-const { task, username, pages, message } = require("minimist")(process.argv.slice(2));
+const { task, username, pages, message, command, keywords, author } = require("minimist")(process.argv.slice(2));
 
 const rootDir = `/Users/${user}/Documents/${username}`;
 const reposDir = "./repos";
@@ -16,5 +16,8 @@ module.exports = {
   pages,
   reposDir,
   logger,
-  message
+  message,
+  command,
+  keywords,
+  author
 };

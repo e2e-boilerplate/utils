@@ -1,6 +1,6 @@
 const { execute, getRepository } = require("./exec");
 const { hasRepository } = require("./validators");
-const { username, rootDir, message } = require("./constants");
+const { username, rootDir, message, command } = require("./constants");
 const { updateMeta } = require("./metadata");
 
 async function gitClone(repo) {
@@ -18,7 +18,6 @@ async function prepareRepo(name) {
 async function npmInstall(repo) {
   const { name } = repo;
   await prepareRepo(name);
-
   await execute(`npm install`, `${rootDir}/${name}`);
 }
 
@@ -37,7 +36,7 @@ async function gitAdd(repo) {
 async function gitCommit(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await execute(`git commit -m "${message}"`, `${rootDir}/${name}`);
+  await execute(`git commit -am "${message}"`, `${rootDir}/${name}`);
 }
 
 async function gitPush(repo) {
@@ -49,8 +48,19 @@ async function gitPush(repo) {
 async function updateMetadata(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  updateMeta(repo);
-  // await execute(`node ./src/metadata.json`, `${rootDir}/${name}`);
+  await updateMeta(repo);
+}
+
+async function executeArbitraryCommand(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await execute(command.toString(), `${rootDir}/${name}`);
+}
+
+async function lint(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await execute(`npm run lint`, `${rootDir}/${name}`);
 }
 
 module.exports = {
@@ -60,5 +70,7 @@ module.exports = {
   gitPull,
   gitCommit,
   gitPush,
-  updateMetadata
+  updateMetadata,
+  executeArbitraryCommand,
+  lint
 };

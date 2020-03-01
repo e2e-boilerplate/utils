@@ -43,8 +43,7 @@ async function getRepositories() {
           const isOk = response.statusCode === 200;
           const content = isOk ? JSON.parse(JSON.stringify(body)) : "[]";
           if (isOk && content !== "[]") {
-            const data = fs.writeFileSync(`repos/repo-${i + 1}.json`, content);
-            logger.info(data);
+            fs.writeFileSync(`repos/repo-${i + 1}.json`, content);
             logger.info(`GET: ${path}.`);
           } else {
             logger.warn(`Not Found: ${path}.`);

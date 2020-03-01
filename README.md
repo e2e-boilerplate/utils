@@ -47,5 +47,8 @@ Push changes for all repositories.
         
         npm run push        
 
+## Update package.json metadata
+
+        npm run metadata -- --keywords="e2e-e2e tests-boilerplate-example-integration test" --author="Girma Nigusse <xgirma@gmail.com> (https://github.com/xgirma)"
 ## Warning 
 Using this on a GitHub username or org-name that has large (number of) repositories and dependencies could maxout your disk space.
