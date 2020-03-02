@@ -21,11 +21,9 @@ async function getRepositories() {
       await clearRepositoriesList();
     }
 
-    if (!isNumeric(pages || 2)) {
-      throw new Error(`${pages} is not a valid page number.`);
-    }
+    const count = isNumeric(pages) ? pages : 2;
 
-    for (let i = 0; i < (pages || 2); i += 1) {
+    for (let i = 0; i < count; i += 1) {
       const path = `/users/${username}/repos?page=${i + 1}&per_page=100`;
       options.path = path;
 
