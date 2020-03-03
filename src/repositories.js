@@ -1,8 +1,8 @@
-const fs = require("fs");
-const https = require("https");
-const { hasRepositoriesList, isNumeric } = require("./validators");
-const { clearRepositoriesList } = require("./exec");
-const { username, pages, logger } = require("./constants");
+import fs from "fs";
+import https from "https";
+import { hasRepositoriesList, isNumeric } from "./validators";
+import { clearRepositoriesList } from "./exec";
+import { username, pages, logger } from "./constants";
 
 const options = {
   host: "api.github.com",
@@ -29,12 +29,12 @@ async function getRepositories() {
 
       const request = https.request(options, response => {
         let body = "";
-        response.on("data", chunk => {
-          body += chunk.toString("utf8");
-        });
-
         response.on("error", error => {
           throw error;
+        });
+
+        response.on("data", chunk => {
+          body += chunk.toString("utf8");
         });
 
         response.on("end", () => {
@@ -49,6 +49,10 @@ async function getRepositories() {
         });
       });
 
+      request.on("error", error => {
+        throw error;
+      });
+
       request.end();
     }
   } catch (error) {
@@ -56,6 +60,4 @@ async function getRepositories() {
   }
 }
 
-module.exports = {
-  getRepositories
-};
+export default getRepositories;

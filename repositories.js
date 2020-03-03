@@ -1,3 +1,3 @@
-const { getRepositories } = require("./src/repositories");
+import getRepositories from "./src/repositories";
 
 getRepositories().then(() => {});

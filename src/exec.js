@@ -11,9 +11,11 @@ async function execute(cmd, cwd) {
     if (error) {
       throw error;
     }
+    logger.info(cwd);
     logger.info(stdout);
     logger.info(stderr);
   } catch (error) {
+    logger.error(cwd);
     logger.error(error);
   }
 }

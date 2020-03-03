@@ -7,7 +7,7 @@ Could be used for any public GitHub `user` or `organization` by changing the `--
 Default page size is `2` aproximately enough for `200` repositories.
 
 ## Generate 
-Get all repositories name. If you have more repositories increase the `--pages` param.
+Get all repositories name. If you have more repositories increase the `--pages` param. e.g. 2 for (100 > repository < 200).
 
         npm run repos
         npm run repos -- --pages 3 --username=your_github_org_or_username
