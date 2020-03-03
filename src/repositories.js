@@ -1,5 +1,5 @@
-import fs from "fs";
-import https from "https";
+import { writeFileSync } from "fs";
+import { request } from "https";
 import { hasRepositoriesList, isNumeric } from "./validators";
 import { clearRepositoriesList } from "./exec";
 import { username, pages, logger } from "./constants";
@@ -27,7 +27,7 @@ async function getRepositories() {
       const path = `/users/${username}/repos?page=${i + 1}&per_page=100`;
       options.path = path;
 
-      const request = https.request(options, response => {
+      const req = request(options, response => {
         let body = "";
         response.on("error", error => {
           throw error;
@@ -41,7 +41,7 @@ async function getRepositories() {
           const isOk = response.statusCode === 200;
           const content = isOk ? JSON.parse(JSON.stringify(body)) : "[]";
           if (isOk && content !== "[]") {
-            fs.writeFileSync(`repos/repo-${i + 1}.json`, content);
+            writeFileSync(`repos/repo-${i + 1}.json`, content);
             logger.info(`GET: ${path}.`);
           } else {
             logger.warn(`Not Found: ${path}.`);
@@ -49,11 +49,11 @@ async function getRepositories() {
         });
       });
 
-      request.on("error", error => {
+      req.on("error", error => {
         throw error;
       });
 
-      request.end();
+      req.end();
     }
   } catch (error) {
     logger.error(error);
