@@ -18,7 +18,7 @@ Increase the pages number as needed.
 Clone all repositories.
 
         npm run clone
-        npm run clone ---username=your_github_org_or_username
+        npm run clone --username=your_github_org_or_username
         
 ## Dependencies 
 Install npm dependencies for all repositories. This may take some time.
