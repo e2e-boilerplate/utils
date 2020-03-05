@@ -46,15 +46,15 @@
     "lint": "npx eslint --ext .js ./ --fix",
     "clean:list": "npx rimraf repos/*.json",
     "get:repos": "node -r esm repositories.js --pages 2 --username davidsilva",
-    "git:clone": "node runner.js --task clone --username davidsilva",
-    "install:deps": "node runner.js --task install --username davidsilva",
-    "git:pull": "node runner.js --task pull --username davidsilva",
-    "lint:repos": "node runner.js --task lint --username davidsilva",
-    "git:add": "node runner.js --task add --username davidsilva",
-    "git:commit": "node runner.js --task commit --username davidsilva --message update",
-    "git:push": "node runner.js --task push --username davidsilva",
-    "set:metadata": "node runner.js --task metadata --username davidsilva",
-    "any:execute": "node runner.js --task command --username davidsilva"
+    "git:clone": "node -r esm runner.js --task clone --username davidsilva",
+    "install:deps": "node -r esm runner.js --task install --username davidsilva",
+    "git:pull": "node -r esm runner.js --task pull --username davidsilva",
+    "lint:repos": "node -r esm runner.js --task lint --username davidsilva",
+    "git:add": "node -r esm runner.js --task add --username davidsilva",
+    "git:commit": "node -r esm runner.js --task commit --username davidsilva --message update",
+    "git:push": "node -r esm runner.js --task push --username davidsilva",
+    "set:metadata": "node -r esm runner.js --task metadata --username davidsilva",
+    "any:execute": "node -r esm runner.js --task command --username davidsilva"
   },
   "version": "1.0.1"
 }
