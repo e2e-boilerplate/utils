@@ -44,18 +44,17 @@
   },
   "scripts": {
     "lint": "npx eslint --ext .js ./ --fix",
-    "test": "npx jest",
-    "clean": "npx rimraf repos/*.json",
-    "repos": "node -r esm repositories.js --pages 2 --username e2e-boilerplates",
-    "clone": "node runner.js --task clone --username e2e-boilerplates",
-    "deps": "node runner.js --task install --username e2e-boilerplates",
-    "pull": "node runner.js --task pull --username e2e-boilerplates",
-    "add": "node runner.js --task add --username e2e-boilerplates",
-    "commit": "node runner.js --task commit --username e2e-boilerplates --message update",
-    "push": "node runner.js --task push --username e2e-boilerplates",
-    "metadata": "node runner.js --task metadata --username e2e-boilerplates",
-    "command:execute": "node runner.js --task command --username e2e-boilerplates",
-    "lint:repos": "node runner.js --task lint --username e2e-boilerplates"
+    "clean:list": "npx rimraf repos/*.json",
+    "get:repos": "node -r esm repositories.js --pages 2 --username davidsilva",
+    "git:clone": "node runner.js --task clone --username davidsilva",
+    "install:deps": "node runner.js --task install --username davidsilva",
+    "git:pull": "node runner.js --task pull --username davidsilva",
+    "lint:repos": "node runner.js --task lint --username davidsilva",
+    "git:add": "node runner.js --task add --username davidsilva",
+    "git:commit": "node runner.js --task commit --username davidsilva --message update",
+    "git:push": "node runner.js --task push --username davidsilva",
+    "set:metadata": "node runner.js --task metadata --username davidsilva",
+    "any:execute": "node runner.js --task command --username davidsilva"
   },
   "version": "1.0.1"
 }
