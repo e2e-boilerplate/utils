@@ -11,11 +11,6 @@
   },
   "description": "Utils for automating the daily tasks of maintaining the e2e-boilerplate organization.",
   "devDependencies": {
-    "@babel/core": "7.8.6",
-    "@babel/plugin-transform-runtime": "7.8.3",
-    "@babel/preset-env": "7.8.6",
-    "@babel/runtime": "7.8.4",
-    "babel-jest": "25.1.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.0.0",
     "eslint-config-prettier": "6.10.0",
@@ -25,10 +20,8 @@
     "eslint-plugin-prettier": "3.1.2",
     "esm": "^3.2.25",
     "husky": "4.2.3",
-    "jest": "25.1.0",
     "lint-staged": "10.0.8",
-    "prettier": "1.19.1",
-    "ts-jest": "^25.2.1"
+    "prettier": "1.19.1"
   },
   "husky": {
     "hooks": {
@@ -36,11 +29,6 @@
     }
   },
   "keywords": [
-    "boilerplate",
-    "e2e",
-    "e2e tests",
-    "example",
-    "integration test",
     "utils"
   ],
   "license": "MIT",
@@ -69,5 +57,5 @@
     "command:execute": "node runner.js --task command --username e2e-boilerplates",
     "lint:repos": "node runner.js --task lint --username e2e-boilerplates"
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

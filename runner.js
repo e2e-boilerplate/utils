@@ -1,5 +1,5 @@
-const fs = require("fs");
-const {
+import { readdirSync } from "fs";
+import {
   executeArbitraryCommand,
   gitAdd,
   gitClone,
@@ -9,10 +9,12 @@ const {
   npmInstall,
   updateMetadata,
   lint
-} = require("./src/task");
-const { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } = require("./src/validators");
-const { getRepositoriesList, setRootDir, clearRepositoriesList } = require("./src/exec");
-const { task, reposDir, logger } = require("./src/constants");
+} from "./src/task";
+
+import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
+import { getRepositoriesList, setRootDir } from "./src/exec";
+import { task, reposDir, logger } from "./src/constants";
+import { clearReposList } from "./src/repositories";
 
 async function runner() {
   try {
@@ -28,11 +30,11 @@ async function runner() {
 
     const hasMatchingReposList = await hasMatchingRepositoriesList();
     if (!hasMatchingReposList) {
-      await clearRepositoriesList();
+      await clearReposList();
       await getRepositoriesList();
     }
 
-    const files = fs.readdirSync(reposDir);
+    const files = readdirSync(reposDir);
 
     for (let i = 1; i < files.length; i += 1) {
       const repos = require(`./repos/repo-${i}.json`);

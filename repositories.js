@@ -1,3 +1,3 @@
-import getRepositories from "./src/repositories";
+import { getReposList } from "./src/repositories";
 
-getRepositories().then(() => {});
+getReposList().then(() => {});

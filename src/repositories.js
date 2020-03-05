@@ -1,24 +1,29 @@
 import { writeFileSync } from "fs";
 import { request } from "https";
+import * as rimraf from "rimraf";
 import { hasRepositoriesList, isNumeric } from "./validators";
-import { clearRepositoriesList } from "./exec";
 import { username, pages, logger } from "./constants";
 
-const options = {
-  host: "api.github.com",
-  method: "GET",
-  headers: {
-    "user-agent": "node.js",
-    "Content-Type": "application/json"
-  }
-};
+async function clearReposList() {
+  await rimraf.sync("repos/*.json");
+  logger.info("Clearing existing repositories.");
+}
 
-async function getRepositories() {
+async function getReposList() {
+  const options = {
+    host: "api.github.com",
+    method: "GET",
+    headers: {
+      "user-agent": "node.js",
+      "Content-Type": "application/json"
+    }
+  };
+
   try {
     const hasReposList = await hasRepositoriesList();
 
     if (hasReposList) {
-      await clearRepositoriesList();
+      await clearReposList();
     }
 
     const count = isNumeric(pages) ? pages : 2;
@@ -60,4 +65,4 @@ async function getRepositories() {
   }
 }
 
-export default getRepositories;
+export { getReposList, clearReposList };

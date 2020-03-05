@@ -1,9 +1,9 @@
-const util = require("util");
+import * as util from "util";
+import { mkdirSync } from "fs";
+import { getReposList } from "./repositories";
+import { username, rootDir, logger } from "./constants";
+
 const exec = util.promisify(require("child_process").exec);
-const fs = require("fs");
-const rimraf = require("rimraf");
-const { getRepositories } = require("./repositories");
-const { username, rootDir, logger } = require("./constants");
 
 async function execute(cmd, cwd) {
   try {
@@ -22,15 +22,10 @@ async function execute(cmd, cwd) {
 
 async function getRepositoriesList() {
   try {
-    await getRepositories();
+    await getReposList();
   } catch (error) {
     logger.error(error);
   }
-}
-
-async function clearRepositoriesList() {
-  await rimraf.sync("repos/*.json");
-  logger.info("Clearing existing repositories.");
 }
 
 async function getRepository(repo) {
@@ -40,17 +35,11 @@ async function getRepository(repo) {
 
 async function setRootDir() {
   try {
-    await fs.mkdirSync(rootDir);
+    await mkdirSync(rootDir);
     logger.info("Writing root directory.");
   } catch (error) {
     logger.error(error);
   }
 }
 
-module.exports = {
-  execute,
-  getRepositoriesList,
-  clearRepositoriesList,
-  getRepository,
-  setRootDir
-};
+export { execute, getRepositoriesList, getRepository, setRootDir };

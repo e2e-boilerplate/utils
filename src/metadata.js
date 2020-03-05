@@ -1,5 +1,5 @@
-const fs = require("fs");
-const { logger, keywords, rootDir, author } = require("./constants");
+import { writeFileSync, readFileSync } from "fs";
+import { logger, keywords, rootDir, author } from "./constants";
 
 function sortObject(obj) {
   const keys = Object.keys(obj).sort();
@@ -30,7 +30,7 @@ function buildKeywords(name) {
 
 async function writeChanges(name, data) {
   try {
-    fs.writeFileSync(`${rootDir}/${name}/package.json`, data);
+    writeFileSync(`${rootDir}/${name}/package.json`, data);
     logger.info(`Update metadata for ${name}`);
   } catch (error) {
     logger.error(error);
@@ -41,7 +41,7 @@ async function updateMeta(repo) {
   const { name } = repo;
 
   try {
-    const data = fs.readFileSync(`${rootDir}/${name}/package.json`);
+    const data = readFileSync(`${rootDir}/${name}/package.json`);
     const pkgJson = JSON.parse(data);
 
     pkgJson.keywords = buildKeywords(name);
@@ -58,6 +58,4 @@ async function updateMeta(repo) {
   }
 }
 
-module.exports = {
-  updateMeta
-};
+export default updateMeta;

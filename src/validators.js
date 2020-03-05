@@ -1,10 +1,10 @@
-const fs = require("fs");
-const { username, rootDir, reposDir, logger } = require("./constants");
+import { existsSync, readdirSync } from "fs";
+import { username, rootDir, reposDir, logger } from "./constants";
 
 async function hasRootDirectory() {
   let hasDir = false;
   try {
-    hasDir = await fs.existsSync(rootDir);
+    hasDir = await existsSync(rootDir);
   } catch (error) {
     logger.error(error);
   }
@@ -14,7 +14,7 @@ async function hasRootDirectory() {
 async function hasRepositoriesList() {
   let hasList = false;
   try {
-    const files = await fs.readdirSync(reposDir);
+    const files = await readdirSync(reposDir);
     hasList = files.length > 1;
   } catch (error) {
     logger.error(error);
@@ -28,7 +28,7 @@ async function hasMatchingRepositoriesList() {
   try {
     const hasList = await hasRepositoriesList();
     if (hasList) {
-      const files = fs.readdirSync(reposDir);
+      const files = readdirSync(reposDir);
 
       for (let i = 1; i < files.length; i += 1) {
         const repos = require(`../repos/repo-${i}.json`);
@@ -51,7 +51,7 @@ async function hasRepository(repoName) {
   let repoExist = false;
 
   try {
-    const files = await fs.readdirSync(repo);
+    const files = await readdirSync(repo);
     repoExist = files.length > 1;
   } catch (error) {
     logger.error(error);
@@ -64,10 +64,4 @@ function isNumeric(value) {
   return !Number.isNaN(Number(value));
 }
 
-module.exports = {
-  isNumeric,
-  hasRootDirectory,
-  hasRepositoriesList,
-  hasRepository,
-  hasMatchingRepositoriesList
-};
+export { isNumeric, hasRootDirectory, hasRepositoriesList, hasRepository, hasMatchingRepositoriesList };

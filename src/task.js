@@ -1,7 +1,7 @@
-const { execute, getRepository } = require("./exec");
-const { hasRepository } = require("./validators");
-const { username, rootDir, message, command } = require("./constants");
-const { updateMeta } = require("./metadata");
+import { execute, getRepository } from "./exec";
+import { hasRepository } from "./validators";
+import { username, rootDir, message, command } from "./constants";
+import updateMeta from "./metadata";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -63,14 +63,4 @@ async function lint(repo) {
   await execute(`npm run lint`, `${rootDir}/${name}`);
 }
 
-module.exports = {
-  gitAdd,
-  gitClone,
-  npmInstall,
-  gitPull,
-  gitCommit,
-  gitPush,
-  updateMetadata,
-  executeArbitraryCommand,
-  lint
-};
+export { gitAdd, gitClone, npmInstall, gitPull, gitCommit, gitPush, updateMetadata, executeArbitraryCommand, lint };
