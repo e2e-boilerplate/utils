@@ -4,7 +4,7 @@
     "url": "https://github.com/e2e-boilerplates/utils/issues"
   },
   "dependencies": {
-    "js-yaml": "^3.13.1",
+    "js-yaml": "3.13.1",
     "minimist": "1.2.0",
     "pino": "5.17.0",
     "pino-pretty": "3.6.1",
