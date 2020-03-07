@@ -1,13 +1,14 @@
 import { writeFileSync, readFileSync } from "fs";
-import { logger, keywords, rootDir, author } from "./constants";
+import { logger, rootDir, author, keywords } from "./constants";
+import { sortObject } from "./common";
 
-function sortObject(obj) {
-  const keys = Object.keys(obj).sort();
-  const newObj = {};
-  keys.forEach(key => {
-    newObj[key] = obj[key];
-  });
-  return newObj;
+async function writeChanges(name, data) {
+  try {
+    writeFileSync(`${rootDir}/${name}/package.json`, data);
+    logger.info(`Update metadata for ${name}`);
+  } catch (error) {
+    logger.error(error);
+  }
 }
 
 function buildKeywords(name) {
@@ -19,22 +20,18 @@ function buildKeywords(name) {
   if (keysFromRepoName.includes("selenium" && "webdriver")) {
     keysFromRepoName.push("selenium-webdriver");
   }
+  if (keysFromRepoName.includes("es6")) {
+    keysFromRepoName.push("es modules");
+  }
 
-  const keys = keysFromRepoName.filter(word => word !== "modules" && word !== "ts" && word !== "node");
+  const keys = keysFromRepoName.filter(
+    word => word !== "modules" && word !== "ts" && word !== "node" && word !== "es6"
+  );
   let keysFromArgs = [];
   if (keywords) {
     keysFromArgs = keywords.toLowerCase().split("-");
   }
   return keys.concat(keysFromArgs).sort();
-}
-
-async function writeChanges(name, data) {
-  try {
-    writeFileSync(`${rootDir}/${name}/package.json`, data);
-    logger.info(`Update metadata for ${name}`);
-  } catch (error) {
-    logger.error(error);
-  }
 }
 
 async function updateMeta(repo) {
@@ -43,6 +40,7 @@ async function updateMeta(repo) {
   try {
     const data = readFileSync(`${rootDir}/${name}/package.json`);
     const pkgJson = JSON.parse(data);
+    const script = pkgJson.scripts;
 
     pkgJson.keywords = buildKeywords(name);
     pkgJson.name = name;
@@ -51,6 +49,7 @@ async function updateMeta(repo) {
       url: `git+https://github.com/e2e-boilerplates/${name}.git`
     };
     pkgJson.author = author || "";
+    pkgJson.scripts = sortObject(script);
 
     await writeChanges(name, JSON.stringify(sortObject(pkgJson)));
   } catch (error) {

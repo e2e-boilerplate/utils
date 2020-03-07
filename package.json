@@ -4,6 +4,7 @@
     "url": "https://github.com/e2e-boilerplates/utils/issues"
   },
   "dependencies": {
+    "js-yaml": "^3.13.1",
     "minimist": "1.2.0",
     "pino": "5.17.0",
     "pino-pretty": "3.6.1",
@@ -54,6 +55,7 @@
     "git:commit": "node -r esm runner.js --task commit --username e2e-boilerplates --message update",
     "git:push": "node -r esm runner.js --task push --username e2e-boilerplates",
     "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplates",
+    "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplates",
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplates"
   },
   "version": "1.0.1"

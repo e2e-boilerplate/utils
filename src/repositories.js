@@ -1,13 +1,8 @@
 import { writeFileSync } from "fs";
 import { request } from "https";
-import * as rimraf from "rimraf";
 import { hasRepositoriesList, isNumeric } from "./validators";
 import { username, pages, logger } from "./constants";
-
-async function clearReposList() {
-  await rimraf.sync("repos/*.json");
-  logger.info("Clearing existing repositories.");
-}
+import { clearReposList } from "./common";
 
 async function getReposList() {
   const options = {

@@ -2,6 +2,7 @@ import { execute, getRepository } from "./exec";
 import { hasRepository } from "./validators";
 import { username, rootDir, message, command } from "./constants";
 import updateMeta from "./metadata";
+import workflow from "./workflow";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -51,6 +52,12 @@ async function updateMetadata(repo) {
   await updateMeta(repo);
 }
 
+async function generateWorkflow(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await workflow(repo);
+}
+
 async function executeArbitraryCommand(repo) {
   const { name } = repo;
   await prepareRepo(name);
@@ -63,4 +70,15 @@ async function lint(repo) {
   await execute(`npm run lint`, `${rootDir}/${name}`);
 }
 
-export { gitAdd, gitClone, npmInstall, gitPull, gitCommit, gitPush, updateMetadata, executeArbitraryCommand, lint };
+export {
+  gitAdd,
+  gitClone,
+  npmInstall,
+  generateWorkflow,
+  gitPull,
+  gitCommit,
+  gitPush,
+  updateMetadata,
+  executeArbitraryCommand,
+  lint
+};

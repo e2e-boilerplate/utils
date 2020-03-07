@@ -1,6 +1,7 @@
 import { readdirSync } from "fs";
 import {
   executeArbitraryCommand,
+  generateWorkflow,
   gitAdd,
   gitClone,
   gitCommit,
@@ -14,7 +15,7 @@ import {
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
 import { getRepositoriesList, setRootDir } from "./src/exec";
 import { task, reposDir, logger } from "./src/constants";
-import { clearReposList } from "./src/repositories";
+import { clearReposList } from "./src/common";
 
 async function runner() {
   try {
@@ -60,6 +61,9 @@ async function runner() {
             break;
           case "metadata":
             updateMetadata(repo);
+            break;
+          case "workflow":
+            generateWorkflow(repo);
             break;
           case "command":
             executeArbitraryCommand(repo);
