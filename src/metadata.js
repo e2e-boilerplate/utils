@@ -1,6 +1,6 @@
 import { writeFileSync, readFileSync } from "fs";
 import { logger, rootDir, author, keywords } from "./constants";
-import { getFrameworkName, sortObject } from "./common";
+import { getFrameworkName, getTech, sortObject } from "./common";
 
 async function writeChanges(name, data) {
   try {
@@ -36,7 +36,8 @@ function buildKeywords(name) {
 
 function buildDescription(name) {
   const framework = getFrameworkName(name);
-  return `${framework} end-to-end test automation boilerplate.`;
+  const tech = getTech(name);
+  return `${framework} end-to-end test automation boilerplate. using ${tech}`;
 }
 
 async function updateMeta(repo) {

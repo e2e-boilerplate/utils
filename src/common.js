@@ -2,6 +2,9 @@ import * as rimraf from "rimraf";
 import { existsSync, mkdirSync } from "fs";
 import { logger } from "./constants";
 
+const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd"];
+const others = ["actions", "sandbox", "utils"];
+
 async function clear(path) {
   try {
     await rimraf.sync(path);
@@ -45,23 +48,79 @@ function sortObject(obj) {
   return newObj;
 }
 
+function capitalize(word) {
+  return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
+}
+
+function getTech(name) {
+  let techs = [];
+  const format = [];
+
+  try {
+    if (!others.includes(name)) {
+      const parts = name.split("-");
+      if (frameworks.includes(parts[0])) {
+        techs = parts.slice(1);
+      } else {
+        techs = parts.slice(2);
+      }
+
+      techs.forEach(tech => {
+        switch (tech) {
+          case "es":
+            format.push("ES Modules");
+            break;
+          case "modules":
+            break;
+          case "ts":
+            format.push("ts-node");
+            break;
+          case "node":
+            break;
+          case "esm":
+            format.push("esm");
+            break;
+          case "typescript":
+            format.push("TypeScript");
+            break;
+          default:
+            format.push(capitalize(tech));
+        }
+      });
+
+      const first = format.slice(0, -1);
+      const last = format.slice(-1);
+
+      return `Using ${first.join(", ")} and ${last}.`;
+    }
+  } catch (error) {
+    logger.error(error);
+  }
+
+  return [];
+}
+
 function getFrameworkName(name) {
   let frameworkName = "";
 
-  if (name !== "actions" || name !== "util" || name)
+  if (others.includes(name)) {
+    frameworkName = capitalize(name);
+  } else {
     try {
       const parts = name.split("-");
-      const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd"];
       if (frameworks.includes(parts[0])) {
-        // eslint-disable-next-line prefer-destructuring
-        frameworkName = parts[0];
+        if (parts[0] === "wd") {
+          frameworkName = parts[0].toUpperCase();
+        } else {
+          frameworkName = capitalize(parts[0]);
+        }
+      } else {
+        frameworkName = `${capitalize(parts[0])}-${capitalize(parts[1])}`;
       }
-      frameworkName = `${parts[0].charAt(0).toUpperCase()}${parts[0].slice(1)}-${parts[1]
-        .charAt(0)
-        .toUpperCase()}${parts[1].slice(1)}`;
     } catch (error) {
       logger.error(`Get framework name: ${name} ${error}`);
     }
+  }
 
   return frameworkName;
 }
@@ -84,4 +143,4 @@ function getRandomCron() {
   return crons[Math.floor(Math.random() * crons.length)];
 }
 
-export { clear, clearReposList, createPath, getFrameworkName, getRandomCron, hasPath, sortObject };
+export { clear, clearReposList, createPath, getTech, getFrameworkName, getRandomCron, hasPath, sortObject };
