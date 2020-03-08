@@ -84,7 +84,7 @@ async function workflow(repo) {
     logger.info(`Generates: ${yml}`);
     await writeFileSync(yml, yamlStr, "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`Workflow: ${rootDir}/${name}/package.json ${error}`);
   }
 }
 
