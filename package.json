@@ -1,5 +1,5 @@
 {
-  "author": "",
+  "author": "Girma Nigusse <xgirma@gmail.com> (https://github.com/xgirma)",
   "bugs": {
     "url": "https://github.com/e2e-boilerplates/utils/issues"
   },
@@ -10,7 +10,7 @@
     "pino-pretty": "3.6.1",
     "rimraf": "3.0.2"
   },
-  "description": "Utils for automating the daily tasks of maintaining the e2e-boilerplate organization.",
+  "description": "utils undefined end-to-end test automation boilerplate.",
   "devDependencies": {
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.0.0",
@@ -30,6 +30,11 @@
     }
   },
   "keywords": [
+    "boilerplate",
+    "e2e",
+    "e2e tests",
+    "example",
+    "integration test",
     "utils"
   ],
   "license": "MIT",
@@ -52,11 +57,12 @@
     "git:commit": "node -r esm runner.js --task commit --username e2e-boilerplates --message update",
     "git:pull": "node -r esm runner.js --task pull --username e2e-boilerplates",
     "git:push": "node -r esm runner.js --task push --username e2e-boilerplates",
-    "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplates",
-    "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplates",
     "install:deps": "node -r esm runner.js --task install --username e2e-boilerplates",
     "lint": "npx eslint --ext .js ./ --fix",
-    "lint:repos": "node -r esm runner.js --task lint --username e2e-boilerplates"
+    "lint:repos": "node -r esm runner.js --task lint --username e2e-boilerplates",
+    "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplates",
+    "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplates"
   },
   "version": "1.0.1"
 }
+
