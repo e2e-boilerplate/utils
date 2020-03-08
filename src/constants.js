@@ -5,8 +5,24 @@ const { task, username, pages, message, command, keywords, author } = minimist(p
 const user = userInfo().username;
 const rootDir = `/Users/${user}/Documents/${username}`;
 const reposDir = "./repos";
+const miscRepos = ["actions", "sandbox", "utils", "resources"];
+const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd"];
 const logger = require("pino")({
   prettyPrint: { colorize: true }
 });
 
-export { rootDir, user, username, task, pages, reposDir, logger, message, command, keywords, author };
+export {
+  frameworks,
+  rootDir,
+  user,
+  username,
+  task,
+  pages,
+  reposDir,
+  logger,
+  message,
+  miscRepos,
+  command,
+  keywords,
+  author
+};

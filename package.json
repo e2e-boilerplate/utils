@@ -49,20 +49,20 @@
     "url": "git+https://github.com/e2e-boilerplates/utils.git"
   },
   "scripts": {
-    "any:execute": "node -r esm runner.js --task command --username e2e-boilerplates",
+    "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
     "clean:list": "npx rimraf repos/*.json",
-    "get:repos": "node -r esm repositories.js --pages 2 --username e2e-boilerplates",
-    "git:add": "node -r esm runner.js --task add --username e2e-boilerplates",
-    "git:clone": "node -r esm runner.js --task clone --username e2e-boilerplates",
-    "git:commit": "node -r esm runner.js --task commit --username e2e-boilerplates --message update",
-    "git:pull": "node -r esm runner.js --task pull --username e2e-boilerplates",
-    "git:push": "node -r esm runner.js --task push --username e2e-boilerplates",
-    "install:deps": "node -r esm runner.js --task install --username e2e-boilerplates",
+    "get:repos": "node -r esm repositories.js --pages 2 --username e2e-boilerplate",
+    "git:add": "node -r esm runner.js --task add --username e2e-boilerplate",
+    "git:clone": "node -r esm runner.js --task clone --username e2e-boilerplate",
+    "git:commit": "node -r esm runner.js --task commit --username e2e-boilerplate --message update",
+    "git:pull": "node -r esm runner.js --task pull --username e2e-boilerplate",
+    "git:push": "node -r esm runner.js --task push --username e2e-boilerplate",
+    "install:deps": "node -r esm runner.js --task install --username e2e-boilerplate",
     "lint": "npx eslint --ext .js ./ --fix",
-    "lint:repos": "node -r esm runner.js --task lint --username e2e-boilerplates",
-    "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplates",
-    "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplates",
-    "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplates"
+    "lint:repos": "node -r esm runner.js --task lint --username e2e-boilerplate",
+    "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplate",
+    "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplate",
+    "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate"
   },
   "version": "1.0.1"
 }
