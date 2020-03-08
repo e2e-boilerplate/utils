@@ -1,6 +1,6 @@
 import { writeFileSync, readFileSync } from "fs";
 import { logger, rootDir, author, keywords } from "./constants";
-import { sortObject } from "./common";
+import { getFrameworkName, sortObject } from "./common";
 
 async function writeChanges(name, data) {
   try {
@@ -34,6 +34,11 @@ function buildKeywords(name) {
   return keys.concat(keysFromArgs).sort();
 }
 
+function buildDescription(name) {
+  const framework = getFrameworkName(name);
+  return `${framework} end-to-end test automation boilerplate.`;
+}
+
 async function updateMeta(repo) {
   const { name } = repo;
 
@@ -43,6 +48,7 @@ async function updateMeta(repo) {
     const script = pkgJson.scripts;
 
     pkgJson.keywords = buildKeywords(name);
+    pkgJson.description = buildDescription(name);
     pkgJson.name = name;
     pkgJson.repository = {
       type: "git",

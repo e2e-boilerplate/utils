@@ -49,7 +49,7 @@ Push changes for all repositories.
 ## Update package.json metadata
 Can update a package.json metadata for all repositories. Example, updating the keyword and author fields for all repositories. 
 
-        npm run metadata -- --keywords="e2e-e2e tests-boilerplate-example-integration test" --author="Girma Nigusse <xgirma@gmail.com> (https://github.com/xgirma)"
+        npm run set:metadata -- --keywords="e2e-e2e tests-boilerplate-example-integration test" --author="Girma Nigusse <xgirma@gmail.com> (https://github.com/xgirma)"
 
 ### Warning 
 Using this on a GitHub username or org-name that has large (number of) repositories and dependencies could maxout your disk space.

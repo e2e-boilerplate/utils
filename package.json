@@ -55,6 +55,7 @@
     "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplates",
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplates",
     "install:deps": "node -r esm runner.js --task install --username e2e-boilerplates",
+    "lint": "npx eslint --ext .js ./ --fix",
     "lint:repos": "node -r esm runner.js --task lint --username e2e-boilerplates"
   },
   "version": "1.0.1"
