@@ -46,10 +46,7 @@ async function workflow(repo) {
     nodejs.jobs.build.steps.push(lint);
     nodejs.jobs.build.steps.push(build);
 
-    if (keys.includes("update-webdriver:ci")) {
-      const update = { name: "Updating webdriver", run: "npm run update-webdriver:ci" };
-      nodejs.jobs.build.steps.push(update);
-    } else if (keys.includes("update-webdriver")) {
+    if (keys.includes("update-webdriver")) {
       const update = { name: "Updating webdriver", run: "npm run update-webdriver" };
       nodejs.jobs.build.steps.push(update);
     }
