@@ -1,6 +1,6 @@
 import { writeFileSync, readFileSync } from "fs";
-import { logger, rootDir, author, keywords } from "./constants";
-import { getFrameworkName, sortObject } from "./common";
+import { logger, rootDir, author, keywords, username } from "./constants";
+import { getFrameworkName, getTech, sortObject } from "./common";
 
 async function writeChanges(name, data) {
   try {
@@ -17,16 +17,23 @@ function buildKeywords(name) {
   if (keysFromRepoName.includes("ts" && "node")) {
     keysFromRepoName.push("ts-node");
   }
+
   if (keysFromRepoName.includes("selenium" && "webdriver")) {
     keysFromRepoName.push("selenium-webdriver");
   }
-  if (keysFromRepoName.includes("es6")) {
+
+  if (keysFromRepoName.includes("es && modules")) {
     keysFromRepoName.push("es modules");
   }
 
-  const keys = keysFromRepoName.filter(
-    word => word !== "modules" && word !== "ts" && word !== "node" && word !== "es6"
-  );
+  if (keysFromRepoName.includes("webdriver" && "manager")) {
+    keysFromRepoName.push("webdriver manager");
+  }
+
+  const escapeDouble = ["modules", "ts", "node", "es", "webdriver", "manager"];
+
+  const keys = keysFromRepoName.filter(word => !escapeDouble.includes(word));
+
   let keysFromArgs = [];
   if (keywords) {
     keysFromArgs = keywords.toLowerCase().split("-");
@@ -36,7 +43,8 @@ function buildKeywords(name) {
 
 function buildDescription(name) {
   const framework = getFrameworkName(name);
-  return `${framework} end-to-end test automation boilerplate.`;
+  const tech = getTech(name);
+  return `${framework} end-to-end test automation boilerplate. using ${tech}`;
 }
 
 async function updateMeta(repo) {
@@ -50,12 +58,19 @@ async function updateMeta(repo) {
     pkgJson.keywords = buildKeywords(name);
     pkgJson.description = buildDescription(name);
     pkgJson.name = name;
+    pkgJson.homepage = `https://github.com/${username}/${name}#readme`;
     pkgJson.repository = {
       type: "git",
-      url: `git+https://github.com/e2e-boilerplates/${name}.git`
+      url: `git+https://github.com/${username}/${name}.git`
+    };
+    pkgJson.bugs = {
+      url: `https://github.com/${username}/${name}/issues`
     };
     pkgJson.author = author || "";
     pkgJson.scripts = sortObject(script);
+    if (pkgJson.main) {
+      delete pkgJson.main;
+    }
 
     await writeChanges(name, JSON.stringify(sortObject(pkgJson)));
   } catch (error) {
