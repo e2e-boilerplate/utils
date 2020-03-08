@@ -46,12 +46,24 @@ function sortObject(obj) {
 }
 
 function getFrameworkName(name) {
-  const parts = name.split("-");
-  const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd"];
-  if (frameworks.includes(parts[0])) {
-    return parts[0];
-  }
-  return `${parts[0]} ${parts[1]}`;
+  let frameworkName = "";
+
+  if (name !== "actions" || name !== "util" || name)
+    try {
+      const parts = name.split("-");
+      const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd"];
+      if (frameworks.includes(parts[0])) {
+        // eslint-disable-next-line prefer-destructuring
+        frameworkName = parts[0];
+      }
+      frameworkName = `${parts[0].charAt(0).toUpperCase()}${parts[0].slice(1)}-${parts[1]
+        .charAt(0)
+        .toUpperCase()}${parts[1].slice(1)}`;
+    } catch (error) {
+      logger.error(`Get framework name: ${name} ${error}`);
+    }
+
+  return frameworkName;
 }
 
 function getRandomCron() {

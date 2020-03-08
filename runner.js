@@ -2,6 +2,7 @@ import { readdirSync } from "fs";
 import {
   executeArbitraryCommand,
   generateWorkflow,
+  generateReadme,
   gitAdd,
   gitClone,
   gitCommit,
@@ -64,6 +65,9 @@ async function runner() {
             break;
           case "workflow":
             generateWorkflow(repo);
+            break;
+          case "readme":
+            generateReadme(repo);
             break;
           case "command":
             executeArbitraryCommand(repo);

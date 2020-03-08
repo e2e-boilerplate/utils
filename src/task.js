@@ -3,6 +3,7 @@ import { hasRepository } from "./validators";
 import { username, rootDir, message, command } from "./constants";
 import updateMeta from "./metadata";
 import workflow from "./workflow";
+import readme from "./readme";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -58,6 +59,12 @@ async function generateWorkflow(repo) {
   await workflow(repo);
 }
 
+async function generateReadme(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await readme(repo);
+}
+
 async function executeArbitraryCommand(repo) {
   const { name } = repo;
   await prepareRepo(name);
@@ -75,6 +82,7 @@ export {
   gitClone,
   npmInstall,
   generateWorkflow,
+  generateReadme,
   gitPull,
   gitCommit,
   gitPush,
