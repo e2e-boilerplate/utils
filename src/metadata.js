@@ -44,7 +44,7 @@ function buildKeywords(name) {
 function buildDescription(name) {
   const framework = getFrameworkName(name);
   const tech = getTech(name);
-  return `${framework} end-to-end test automation boilerplate. using ${tech}`;
+  return `${framework} end-to-end test automation boilerplate. Using ${tech}`;
 }
 
 async function updateMeta(repo) {
@@ -71,6 +71,7 @@ async function updateMeta(repo) {
     if (pkgJson.main) {
       delete pkgJson.main;
     }
+    pkgJson.license = "MIT";
 
     await writeChanges(name, JSON.stringify(sortObject(pkgJson)));
   } catch (error) {
