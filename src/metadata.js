@@ -14,8 +14,22 @@ async function writeChanges(name, data) {
 function buildKeywords(name) {
   const keysFromRepoName = name.toLowerCase().split("-");
 
+  let jestCount = 0;
+
+  keysFromRepoName.forEach(part => {
+    if (part === "jest") {
+      jestCount += 1;
+    }
+  });
+
+  const hasTwoJest = jestCount === 2;
+
   if (keysFromRepoName.includes("ts" && "node")) {
     keysFromRepoName.push("ts-node");
+  }
+
+  if (hasTwoJest && keysFromRepoName.includes("ts" && "jest")) {
+    keysFromRepoName.push("ts-jest");
   }
 
   if (keysFromRepoName.includes("selenium" && "webdriver")) {
@@ -30,9 +44,15 @@ function buildKeywords(name) {
     keysFromRepoName.push("webdriver manager");
   }
 
-  const escapeDouble = ["modules", "ts", "node", "es", "webdriver", "manager"];
+  const escapeDouble = hasTwoJest
+    ? ["modules", "ts", "node", "es", "webdriver", "manager", "jest"]
+    : ["modules", "ts", "node", "es", "webdriver", "manager"];
 
   const keys = keysFromRepoName.filter(word => !escapeDouble.includes(word));
+
+  if (hasTwoJest) {
+    keys.push("jest");
+  }
 
   let keysFromArgs = [];
   if (keywords) {
@@ -44,7 +64,7 @@ function buildKeywords(name) {
 function buildDescription(name) {
   const framework = getFrameworkName(name);
   const tech = getTech(name);
-  return `${framework} end-to-end test automation boilerplate. Using ${tech}`;
+  return `${framework} end-to-end test automation boilerplate. ${tech}`;
 }
 
 async function updateMeta(repo) {
