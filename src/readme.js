@@ -8,32 +8,17 @@ function actionsStatus(repo) {
   return `[![GitHub Actions status | ${username}/${name}](https://github.com/${username}/${name}/workflows/${name}/badge.svg)](https://github.com/${username}/${name}/actions?workflow=${name})`;
 }
 
-function getScripts(repo) {
+function getScriptsCombo(repo) {
   const { name } = repo;
-  const commands = [];
+  const commands = {};
 
   try {
     const data = readFileSync(`${rootDir}/${name}/package.json`);
     const pkgJson = JSON.parse(data);
     const { scripts } = pkgJson;
-
-    const hasBuildProperty = {}.hasOwnProperty.call(scripts, "build");
-    const hasUpdateWebDriverProperty = {}.hasOwnProperty.call(scripts, "update-webdriver");
-    const hasTestProperty = {}.hasOwnProperty.call(scripts, "test");
-
-    commands.push(`git clone git@github.com:${username}/${name}.git`);
-    commands.push(`cd ${name}`);
-    commands.push(`npm install`);
-
-    if (hasBuildProperty) {
-      commands.push("npm run build");
-    }
-    if (hasUpdateWebDriverProperty) {
-      commands.push("npm run update-webdriver");
-    }
-    if (hasTestProperty) {
-      commands.push("npm run test");
-    }
+    commands.hasBuildProperty = {}.hasOwnProperty.call(scripts, "build");
+    commands.hasUpdateWebDriverProperty = {}.hasOwnProperty.call(scripts, "update-webdriver");
+    commands.hasTestProperty = {}.hasOwnProperty.call(scripts, "test");
   } catch (error) {
     logger.error(`readme: get scripts: ${name} ${error}`);
   }
@@ -45,25 +30,75 @@ async function readme(repo) {
   const { name } = repo;
   const frameworkName = getFrameworkName(name);
   const tech = getTech(name);
-  const commands = getScripts(repo);
+  const commands = getScriptsCombo(repo);
   const path = `${rootDir}/${name}/README.md`;
-
   const badge = `${actionsStatus(repo)}`;
   const title = `# ${frameworkName} Boilerplate`;
   const description = miscRepos.includes(name)
     ? `${name}.`
     : `${frameworkName} end-to-end test automation boilerplate, ${tech}`;
   const subTitle = "## Getting Started";
-  let steps = "";
-  commands.forEach(command => {
-    steps += `\t ${command} \n`;
-  });
+  const clone = `git clone git@github.com:${username}/${name}.git`;
+  const cd = `cd ${name}`;
+  const install = `npm install`;
+  const build = "npm run build";
+  const updateWebDriver = "npm run update-webdriver";
+  const test = "npm run test";
 
-  const data = `${badge}
-  ${title}
-  ${description}
-  ${subTitle}
-  ${steps}`;
+  const { hasBuildProperty, hasUpdateWebDriverProperty, hasTestProperty } = commands;
+  logger.error(commands);
+
+  let data;
+
+  if (hasBuildProperty && hasUpdateWebDriverProperty && hasTestProperty) {
+    data = `${badge}
+    \n${title}
+    \n${description}
+    \n${subTitle}
+    \t${clone}
+    \t${cd}
+    \t${install}
+    \t${build}
+    \t${updateWebDriver}
+    \t${test}`;
+  } else if (hasUpdateWebDriverProperty && hasTestProperty) {
+    data = `${badge}
+    \n${title}
+    \n${description}
+    \n${subTitle}
+    \t${clone}
+    \t${cd}
+    \t${install}
+    \t${updateWebDriver}
+    \t${test}`;
+  } else if (hasBuildProperty && hasTestProperty) {
+    data = `${badge}
+    \n${title}
+    \n${description}
+    \n${subTitle}
+    \t${clone}
+    \t${cd}
+    \t${install}
+    \t${build}
+    \t${test}`;
+  } else if (hasTestProperty) {
+    data = `${badge}
+    \n${title}
+    \n${description}
+    \n${subTitle}
+    \t${clone}
+    \t${cd}
+    \t${install}
+    \t${test}`;
+  } else {
+    data = `${badge}
+    \n${title}
+    \n${description}
+    \n${subTitle}
+    \t${clone}
+    \t${cd}
+    \t${install}`;
+  }
 
   try {
     await write(path, data, "utf8");
