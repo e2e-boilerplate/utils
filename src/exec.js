@@ -1,5 +1,5 @@
 import * as util from "util";
-import { mkdirSync } from "fs";
+import { mkdirSync, writeFileSync } from "fs";
 import { getReposList } from "./repositories";
 import { username, rootDir, logger } from "./constants";
 
@@ -42,4 +42,13 @@ async function setRootDir() {
   }
 }
 
-export { execute, getRepositoriesList, getRepository, setRootDir };
+async function write(path, data, opt) {
+  try {
+    writeFileSync(path, data, opt);
+    logger.info(`Write ${path}`);
+  } catch (error) {
+    logger.error(`exec: write: ${path} ${error}`);
+  }
+}
+
+export { execute, getRepositoriesList, getRepository, setRootDir, write };
