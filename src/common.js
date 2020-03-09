@@ -65,6 +65,16 @@ function getTech(name) {
         techs = parts.slice(2);
       }
 
+      let jestCount = 0;
+
+      techs.forEach(tech => {
+        if (tech === "jest") {
+          jestCount += 1;
+        }
+      });
+
+      const hasTwoJest = jestCount === 2;
+
       techs.forEach(tech => {
         switch (tech) {
           case "es":
@@ -73,9 +83,15 @@ function getTech(name) {
           case "modules":
             break;
           case "ts":
-            format.push("ts-node");
+            // eslint-disable-next-line no-unused-expressions
+            hasTwoJest ? format.push("ts-jest") : format.push("ts-node");
             break;
           case "node":
+            break;
+          case "jest":
+            if (!hasTwoJest) {
+              format.push("Jest");
+            }
             break;
           case "esm":
             format.push("esm");
@@ -97,9 +113,12 @@ function getTech(name) {
       });
 
       const first = format.slice(0, -1);
+      if (hasTwoJest) {
+        first.push("Jest");
+      }
       const last = format.slice(-1);
 
-      return `Using ${first.join(", ")} and ${last}.`;
+      return `using ${first.join(", ")} and ${last}.`;
     }
   } catch (error) {
     logger.error(`Get tech: ${name} ${error}`);
