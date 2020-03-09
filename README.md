@@ -2,6 +2,7 @@
   # Utils Boilerplate
   utils.
   ## Getting Started
-  	 git clone git@github.com:e2e-boilerplate/utils.git 
-	 cd utils 
-	 npm install 
+  	 git clone git@github.com:e2e-boilerplate/utils.git
+    	 cd utils
+    	 npm install
+    
