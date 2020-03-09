@@ -1,15 +1,7 @@
-import { writeFileSync, readFileSync } from "fs";
+import { readFileSync } from "fs";
 import { logger, rootDir, author, keywords, username } from "./constants";
 import { getFrameworkName, getTech, sortObject } from "./common";
-
-async function writeChanges(name, data) {
-  try {
-    writeFileSync(`${rootDir}/${name}/package.json`, data);
-    logger.info(`Update metadata for ${name}`);
-  } catch (error) {
-    logger.error(error);
-  }
-}
+import { write } from "./exec";
 
 function buildKeywords(name) {
   const keysFromRepoName = name.toLowerCase().split("-");
@@ -74,6 +66,7 @@ async function updateMeta(repo) {
     const data = readFileSync(`${rootDir}/${name}/package.json`);
     const pkgJson = JSON.parse(data);
     const script = pkgJson.scripts;
+    const path = `${rootDir}/${name}/package.json`;
 
     pkgJson.keywords = buildKeywords(name);
     pkgJson.description = buildDescription(name);
@@ -93,7 +86,8 @@ async function updateMeta(repo) {
     }
     pkgJson.license = "MIT";
 
-    await writeChanges(name, JSON.stringify(sortObject(pkgJson)));
+    const update = JSON.stringify(sortObject(pkgJson));
+    await write(path, update, "utf8");
   } catch (error) {
     logger.error(error);
   }

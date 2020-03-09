@@ -33,7 +33,7 @@ async function readme(repo) {
   const commands = getScriptsCombo(repo);
   const path = `${rootDir}/${name}/README.md`;
   const badge = `${actionsStatus(repo)}`;
-  const title = `# ${frameworkName} Boilerplate`;
+  const title = miscRepos.includes(name) ? `# ${frameworkName}` : `# ${frameworkName} Boilerplate`;
   const description = miscRepos.includes(name)
     ? `${name}.`
     : `${frameworkName} end-to-end test automation boilerplate, ${tech}`;
@@ -46,7 +46,6 @@ async function readme(repo) {
   const test = "npm run test";
 
   const { hasBuildProperty, hasUpdateWebDriverProperty, hasTestProperty } = commands;
-  logger.error(commands);
 
   let data;
 
@@ -55,32 +54,32 @@ async function readme(repo) {
     \n${title}
     \n${description}
     \n${subTitle}
-    \t${clone}
-    \t${cd}
-    \t${install}
-    \t${build}
-    \t${updateWebDriver}
-    \t${test}`;
+    \n${clone}
+    \n${cd}
+    \n${install}
+    \n${build}
+    \n${updateWebDriver}
+    \n${test}`;
   } else if (hasUpdateWebDriverProperty && hasTestProperty) {
     data = `${badge}
     \n${title}
     \n${description}
     \n${subTitle}
-    \t${clone}
-    \t${cd}
-    \t${install}
-    \t${updateWebDriver}
-    \t${test}`;
+    \n${clone}
+    \n${cd}
+    \n${install}
+    \n${updateWebDriver}
+    \n${test}`;
   } else if (hasBuildProperty && hasTestProperty) {
     data = `${badge}
     \n${title}
     \n${description}
     \n${subTitle}
-    \t${clone}
-    \t${cd}
-    \t${install}
-    \t${build}
-    \t${test}`;
+    \n${clone}
+    \n${cd}
+    \n${install}
+    \n${build}
+    \n${test}`;
   } else if (hasTestProperty) {
     data = `${badge}
     \n${title}
@@ -95,9 +94,9 @@ async function readme(repo) {
     \n${title}
     \n${description}
     \n${subTitle}
-    \t${clone}
-    \t${cd}
-    \t${install}`;
+    \n${clone}
+    \n${cd}
+    \n${install}`;
   }
 
   try {
