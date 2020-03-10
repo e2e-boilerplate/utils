@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "js-yaml": "3.13.1",
-    "minimist": "1.2.0",
+    "minimist": "1.2.3",
     "pino": "5.17.0",
     "pino-pretty": "3.6.1",
     "rimraf": "3.0.2"
