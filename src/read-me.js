@@ -33,7 +33,7 @@ async function readme(repo) {
   const commands = getScriptsCombo(repo);
   const path = `${rootDir}/${name}/README.md`;
   const badge = `${actionsStatus(repo)}`;
-  const title = `# ${frameworkName} Boilerplate`;
+  const title = miscRepos.includes(name) ? `# ${frameworkName}` : `# ${frameworkName} Boilerplate`;
   const description = miscRepos.includes(name)
     ? `${name}.`
     : `${frameworkName} end-to-end test automation boilerplate, ${tech}`;
@@ -46,7 +46,6 @@ async function readme(repo) {
   const test = "npm run test";
 
   const { hasBuildProperty, hasUpdateWebDriverProperty, hasTestProperty } = commands;
-  logger.error(commands);
 
   let data;
 
@@ -55,49 +54,49 @@ async function readme(repo) {
     \n${title}
     \n${description}
     \n${subTitle}
-    \t${clone}
-    \t${cd}
-    \t${install}
-    \t${build}
-    \t${updateWebDriver}
-    \t${test}`;
+    \n1. ${clone}
+    \n2. ${cd}
+    \n3. ${install}
+    \n4. ${build}
+    \n5. ${updateWebDriver}
+    \n6. ${test}`;
   } else if (hasUpdateWebDriverProperty && hasTestProperty) {
     data = `${badge}
     \n${title}
     \n${description}
     \n${subTitle}
-    \t${clone}
-    \t${cd}
-    \t${install}
-    \t${updateWebDriver}
-    \t${test}`;
+    \n1. ${clone}
+    \n2. ${cd}
+    \n3. ${install}
+    \n4. ${updateWebDriver}
+    \n5. ${test}`;
   } else if (hasBuildProperty && hasTestProperty) {
     data = `${badge}
     \n${title}
     \n${description}
     \n${subTitle}
-    \t${clone}
-    \t${cd}
-    \t${install}
-    \t${build}
-    \t${test}`;
+    \n1. ${clone}
+    \n2. ${cd}
+    \n3. ${install}
+    \n4. ${build}
+    \n5. ${test}`;
   } else if (hasTestProperty) {
     data = `${badge}
     \n${title}
     \n${description}
     \n${subTitle}
-    \t${clone}
-    \t${cd}
-    \t${install}
-    \t${test}`;
+    \t1. ${clone}
+    \t2. ${cd}
+    \t3. ${install}
+    \t4. ${test}`;
   } else {
     data = `${badge}
     \n${title}
     \n${description}
     \n${subTitle}
-    \t${clone}
-    \t${cd}
-    \t${install}`;
+    \n1. ${clone}
+    \n2. ${cd}
+    \n3. ${install}`;
   }
 
   try {

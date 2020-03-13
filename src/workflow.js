@@ -1,7 +1,8 @@
 import { safeDump } from "js-yaml";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync } from "fs";
 import { logger, rootDir } from "./constants";
 import { clear, createPath, getFrameworkName, getRandomCron, hasPath } from "./common";
+import { write } from "./exec";
 
 async function workflow(repo) {
   const { name } = repo;
@@ -79,7 +80,7 @@ async function workflow(repo) {
 
     const yamlStr = safeDump(nodejs);
     logger.info(`Generates: ${yml}`);
-    await writeFileSync(yml, yamlStr, "utf8");
+    await write(yml, yamlStr, "utf8");
   } catch (error) {
     logger.error(`Workflow: ${rootDir}/${name}/package.json ${error}`);
   }
