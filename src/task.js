@@ -3,7 +3,7 @@ import { hasRepository } from "./validators";
 import { username, rootDir, message, command } from "./constants";
 import updateMeta from "./metadata";
 import workflow from "./workflow";
-import readme from "./readme";
+import readme from "./read-me";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
