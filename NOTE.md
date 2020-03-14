@@ -44,7 +44,12 @@ Commit changes for all repositories.
 ## Push
 Push changes for all repositories.
         
-        npm run git:push        
+        npm run git:push   
+        
+## Run command on a specific module
+Push changes for cypress repositories only.
+        
+        npm run git:push  --module=cypress      
 
 ## Update package.json metadata
 Can update a package.json metadata for all repositories. Example, updating the keyword and author fields for all repositories. 

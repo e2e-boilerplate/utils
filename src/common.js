@@ -127,6 +127,26 @@ function getTech(name) {
   return [];
 }
 
+function getName(name) {
+  let frameworkName = "";
+
+  if (!miscRepos.includes(name)) {
+    try {
+      const parts = name.split("-");
+      if (frameworks.includes(parts[0])) {
+        frameworkName = `${parts[0]}`;
+      } else {
+        frameworkName = `${parts[0]}-${parts[1]}`;
+      }
+    } catch (error) {
+      logger.error(error);
+    }
+  }
+
+  return frameworkName;
+}
+
+// formatted name
 function getFrameworkName(name) {
   let frameworkName = "";
 
@@ -172,4 +192,4 @@ function getRandomCron() {
   return cron[Math.floor(Math.random() * cron.length)];
 }
 
-export { clear, clearReposList, createPath, getTech, getFrameworkName, getRandomCron, hasPath, sortObject };
+export { clear, clearReposList, createPath, getTech, getFrameworkName, getRandomCron, getName, hasPath, sortObject };

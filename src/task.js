@@ -77,7 +77,14 @@ async function lint(repo) {
   await execute(`npm run lint`, `${rootDir}/${name}`);
 }
 
+async function audit(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await execute(`npm audit fix`, `${rootDir}/${name}`);
+}
+
 export {
+  audit,
   gitAdd,
   gitClone,
   npmInstall,

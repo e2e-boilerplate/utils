@@ -1,5 +1,6 @@
 import { readdirSync } from "fs";
 import {
+  audit,
   executeArbitraryCommand,
   generateWorkflow,
   generateReadme,
@@ -15,8 +16,51 @@ import {
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
 import { getRepositoriesList, setRootDir } from "./src/exec";
-import { task, reposDir, logger } from "./src/constants";
-import { clearReposList } from "./src/common";
+import { task, reposDir, logger, module } from "./src/constants";
+import { clearReposList, getName } from "./src/common";
+
+async function taskPicker(repo) {
+  switch (task) {
+    case "clone":
+      await gitClone(repo);
+      break;
+    case "install":
+      await npmInstall(repo);
+      break;
+    case "pull":
+      await gitPull(repo);
+      break;
+    case "add":
+      await gitAdd(repo);
+      break;
+    case "commit":
+      await gitCommit(repo);
+      break;
+    case "push":
+      await gitPush(repo);
+      break;
+    case "metadata":
+      await updateMetadata(repo);
+      break;
+    case "workflow":
+      await generateWorkflow(repo);
+      break;
+    case "readme":
+      await generateReadme(repo);
+      break;
+    case "command":
+      await executeArbitraryCommand(repo);
+      break;
+    case "lint":
+      await lint(repo);
+      break;
+    case "audit":
+      await audit(repo);
+      break;
+    default:
+      logger.warn(`Invalid task: ${task}`);
+  }
+}
 
 async function runner() {
   try {
@@ -41,42 +85,14 @@ async function runner() {
     for (let i = 1; i < files.length; i += 1) {
       const repos = require(`./repos/repo-${i}.json`);
       repos.forEach(repo => {
-        switch (task) {
-          case "clone":
-            gitClone(repo);
-            break;
-          case "install":
-            npmInstall(repo);
-            break;
-          case "pull":
-            gitPull(repo);
-            break;
-          case "add":
-            gitAdd(repo);
-            break;
-          case "commit":
-            gitCommit(repo);
-            break;
-          case "push":
-            gitPush(repo);
-            break;
-          case "metadata":
-            updateMetadata(repo);
-            break;
-          case "workflow":
-            generateWorkflow(repo);
-            break;
-          case "readme":
-            generateReadme(repo);
-            break;
-          case "command":
-            executeArbitraryCommand(repo);
-            break;
-          case "lint":
-            lint(repo);
-            break;
-          default:
-            logger.warn(`Invalid task: ${task}`);
+        const name = getName(repo.name);
+
+        if (module) {
+          if (module === name) {
+            taskPicker(repo);
+          }
+        } else {
+          taskPicker(repo);
         }
       });
     }
