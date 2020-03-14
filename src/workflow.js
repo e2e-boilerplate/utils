@@ -31,7 +31,7 @@ async function workflow(repo) {
     const { scripts } = pkgJson;
     const keys = Object.keys(scripts).sort();
 
-    if (getFrameworkName(name) === "playwright") {
+    if (getFrameworkName(name) === "Playwright") {
       const aptGet = {
         name: "Installing linux packages",
         run:
