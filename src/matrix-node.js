@@ -152,7 +152,7 @@ async function matrix() {
   const notContentImplemented = [];
 
   content.push(["No", "Repository", "Status"]);
-  contentImplemented.push(["No", "Status", "Name"]);
+  contentImplemented.push(["No", "Status"]);
   notContentImplemented.push(["No", "Repository", "Status"]);
 
   list.reverse().forEach((l, index) => {
@@ -163,11 +163,9 @@ async function matrix() {
     }
   });
 
-  // I am in <span style="font-family:Papyrus; font-size:4em;">LOVE!</span>
   implementedList.sort().forEach((i, index) => {
     if (implemented(i)) {
-      // contentImplemented.push([`${index + 1}`, `${actionsStatus(i)}`, `\<span font-size:2em;"\>${i}\</span>`]);
-      contentImplemented.push([`${index + 1}`, `${actionsStatus(i)}`, `<span font-size="1">${i} </span>`]);
+      contentImplemented.push([`${index + 1}`, `${actionsStatus(i)}`]);
     }
   });
 
@@ -178,9 +176,9 @@ async function matrix() {
   });
 
   try {
-    const path = `${rootDir}/utils/List.md`;
-    const pathImplemented = `${rootDir}/utils/ListImplemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/ListNotImplemented.md`;
+    const path = `${rootDir}/utils/docs/list.md`;
+    const pathImplemented = `${rootDir}/utils/docs/list-implemented.md`;
+    const pathNotImplemented = `${rootDir}/utils/docs/list-not-implemented.md`;
     await write(path, table(content, { align: "l" }), "utf8");
     await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
