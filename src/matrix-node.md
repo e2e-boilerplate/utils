@@ -1,0 +1,3 @@
+```mmd
+return scripts.table()
+```

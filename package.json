@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "js-yaml": "3.13.1",
+    "markdown-table": "^2.0.0",
     "minimist": "1.2.5",
     "pino": "5.17.0",
     "pino-pretty": "3.6.1",
@@ -62,7 +63,7 @@
     "install:deps": "node -r esm runner.js --task install --username e2e-boilerplate",
     "lint": "npx eslint --ext .js ./ --fix",
     "lint:repos": "node -r esm runner.js --task lint --username e2e-boilerplate",
-    "matrix": "node -r esm ./src/matrix-node.js",
+    "matrix": "node -r esm ./src/matrix-node.js --username e2e-boilerplate",
     "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplate",
     "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplate",
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate"
