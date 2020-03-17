@@ -1,3 +1,0 @@
-```mmd
-return scripts.table()
-```
