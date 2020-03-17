@@ -12,7 +12,6 @@ const typescript = {};
 const esModule = {};
 const javascript = {};
 const module = {};
-const platform = {};
 const framework = {};
 
 const chaiAssertionTypes = ["expect", "should", "assert"];
@@ -22,7 +21,6 @@ const typescriptTranspiler = ["tsc", "ts-node", "ts-jest", "none"];
 const esModuleTranspiler = ["babel", "esm", "none"];
 const javascriptType = ["non-typescript", "typescript"];
 const moduleType = ["commonjs", "es-modules"];
-const platformType = ["node", "browser"];
 
 function buildList() {
   chaiAssertionTypes.forEach(c => {
@@ -51,10 +49,6 @@ function buildList() {
 
   moduleType.forEach(m => {
     module[m] = m === "commonjs" ? runner : javascript;
-  });
-
-  platformType.forEach(p => {
-    platform[p] = module;
   });
 
   frameworks.forEach(f => {
