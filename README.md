@@ -1,4 +1,4 @@
-[![GitHub Actions status | e2e-boilerplate/utils](https://github.com/e2e-boilerplate/utils/workflows/utils/badge.svg)](https://github.com/e2e-boilerplate/utils/actions?workflow=utils)
+[![GitHub Actions status | e2e-boilerplate/utils](https://github.com/e2e-boilerplate/utils/workflows/utils/badge.svg)](https://github.com/e2e-boilerplate/utils/actions?workflow=utils) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
     
 # Utils
     
