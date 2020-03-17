@@ -3,6 +3,9 @@ import { getFrameworkName, getTech } from "./common";
 import { logger, rootDir, username, miscRepos } from "./constants";
 import { write } from "./exec";
 
+const mit =
+  "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+
 function actionsStatus(repo) {
   const { name } = repo;
   return `[![GitHub Actions status | ${username}/${name}](https://github.com/${username}/${name}/workflows/${name}/badge.svg)](https://github.com/${username}/${name}/actions?workflow=${name})`;
@@ -50,7 +53,7 @@ async function readme(repo) {
   let data;
 
   if (hasBuildProperty && hasUpdateWebDriverProperty && hasTestProperty) {
-    data = `${badge}
+    data = `${badge} ${mit}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -61,7 +64,7 @@ async function readme(repo) {
     \n5. ${updateWebDriver}
     \n6. ${test}`;
   } else if (hasUpdateWebDriverProperty && hasTestProperty) {
-    data = `${badge}
+    data = `${badge} ${mit}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -71,7 +74,7 @@ async function readme(repo) {
     \n4. ${updateWebDriver}
     \n5. ${test}`;
   } else if (hasBuildProperty && hasTestProperty) {
-    data = `${badge}
+    data = `${badge} ${mit}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -81,7 +84,7 @@ async function readme(repo) {
     \n4. ${build}
     \n5. ${test}`;
   } else if (hasTestProperty) {
-    data = `${badge}
+    data = `${badge} ${mit}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -90,7 +93,7 @@ async function readme(repo) {
     \t3. ${install}
     \t4. ${test}`;
   } else {
-    data = `${badge}
+    data = `${badge} ${mit}
     \n${title}
     \n${description}
     \n${subTitle}
