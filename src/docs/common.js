@@ -4,6 +4,7 @@ import { logger, reposDir, username } from "../constants";
 export const chaiAssertionTypes = ["expect", "should", "assert"];
 export const assertionType = ["assert", "expect", "chai", "none"];
 export const runnerType = ["jasmine", "mocha", "jest", "ava", "tape", "cucumber", "none"];
+export const bundlerType = ["webpack", "browserify", "none"];
 export const typescriptTranspiler = ["tsc", "ts-node", "ts-jest", "none"];
 export const esModuleTranspiler = ["babel", "esm", "none"];
 export const javascriptType = ["non-typescript", "typescript"];

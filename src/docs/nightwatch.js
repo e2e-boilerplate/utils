@@ -1,7 +1,20 @@
 import table from "markdown-table";
 import { logger, rootDir } from "../constants";
 import { write } from "../exec";
-import { all, getPaths, implemented, implementedOnly, notImplementedOnly } from "./common";
+
+import {
+  all,
+  getPaths,
+  implemented,
+  implementedOnly,
+  notImplementedOnly,
+  chaiAssertionTypes,
+  assertionType,
+  typescriptTranspiler,
+  esModuleTranspiler,
+  javascriptType,
+  moduleType
+} from "./common";
 
 // built-in test runner
 const frameworks = ["nightwatch"];
@@ -13,13 +26,6 @@ const esModule = {};
 const javascript = {};
 const module = {};
 const framework = {};
-
-const chaiAssertionTypes = ["expect", "should", "assert"];
-const assertionType = ["assert", "expect", "chai", "none"];
-const typescriptTranspiler = ["tsc", "ts-node", "none"];
-const esModuleTranspiler = ["babel", "esm", "none"];
-const javascriptType = ["non-typescript", "typescript"];
-const moduleType = ["commonjs", "es-modules"];
 
 function buildList() {
   chaiAssertionTypes.forEach(c => {
