@@ -54,6 +54,7 @@
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
     "audit:fix": "node -r esm runner.js --task audit --username e2e-boilerplate --module playwright",
     "clean:list": "npx rimraf repos/*.json",
+    "cypress:doc": "node -r esm ./src/docs/cypress.js --username e2e-boilerplate",
     "get:repos": "node -r esm repositories.js --pages 2 --username e2e-boilerplate",
     "git:add": "node -r esm runner.js --task add --username e2e-boilerplate",
     "git:clone": "node -r esm runner.js --task clone --username e2e-boilerplate",
