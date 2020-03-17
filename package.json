@@ -66,9 +66,14 @@
     "lint:repos": "node -r esm runner.js --task lint --username e2e-boilerplate",
     "matrix": "node -r esm ./src/matrix-node.js --username e2e-boilerplate",
     "nightwatch:doc": "node -r esm ./src/docs/nightwatch.js --username e2e-boilerplate",
+    "playwright:doc": "node -r esm ./src/docs/playwright.js --username e2e-boilerplate",
+    "puppeteer:doc": "node -r esm ./src/docs/puppeteer.js --username e2e-boilerplate",
+    "protractor:doc": "node -r esm ./src/docs/protractor.js --username e2e-boilerplate",
+    "selenium-webdriver:doc": "node -r esm ./src/docs/selenium-webdriver.js --username e2e-boilerplate",
     "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplate",
     "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplate",
-    "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate"
+    "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate",
+    "webdriverio:doc": "node -r esm ./src/docs/webdriverio.js --username e2e-boilerplate"
   },
   "version": "1.0.1"
 }
