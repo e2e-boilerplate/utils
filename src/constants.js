@@ -5,7 +5,7 @@ const { task, username, pages, message, command, keywords, author, module } = mi
 const user = userInfo().username;
 const rootDir = `/Users/${user}/Documents/${username}`;
 const reposDir = "./repos";
-const miscRepos = ["sandbox", "utils", "resources"];
+const miscRepos = ["sandbox", "utils", "resources", "e2e-boilerplate"];
 const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd"];
 const logger = require("pino")({
   prettyPrint: { colorize: true }
