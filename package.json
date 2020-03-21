@@ -52,7 +52,7 @@
   },
   "scripts": {
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
-    "audit:fix": "node -r esm runner.js --task audit --username e2e-boilerplate --module playwright",
+    "audit:fix": "node -r esm runner.js --task audit --username e2e-boilerplate",
     "clean:list": "npx rimraf repos/*.json",
     "cypress:doc": "node -r esm ./src/docs/cypress.js --username e2e-boilerplate",
     "docs:implemented": "node -r esm ./src/docs/implmented.js --username e2e-boilerplate",
