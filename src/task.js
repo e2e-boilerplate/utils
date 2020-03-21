@@ -4,6 +4,7 @@ import { username, rootDir, message, command } from "./constants";
 import updateMeta from "./metadata";
 import workflow from "./workflow";
 import readme from "./read-me";
+import makeEslintrc from "./style/eslintrc";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -83,8 +84,15 @@ async function audit(repo) {
   await execute(`npm audit fix`, `${rootDir}/${name}`);
 }
 
+async function eslintrc(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await makeEslintrc(repo);
+}
+
 export {
   audit,
+  eslintrc,
   gitAdd,
   gitClone,
   npmInstall,

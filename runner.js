@@ -1,6 +1,7 @@
 import { readdirSync } from "fs";
 import {
   audit,
+  eslintrc,
   executeArbitraryCommand,
   generateWorkflow,
   generateReadme,
@@ -56,6 +57,9 @@ async function taskPicker(repo) {
       break;
     case "audit":
       await audit(repo);
+      break;
+    case "eslintrc":
+      await eslintrc(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);

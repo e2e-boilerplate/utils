@@ -56,6 +56,7 @@
     "clean:list": "npx rimraf repos/*.json",
     "cypress:doc": "node -r esm ./src/docs/cypress.js --username e2e-boilerplate",
     "docs:implemented": "node -r esm ./src/docs/implmented.js --username e2e-boilerplate",
+    "eslintrc": "node -r esm runner.js --task eslintrc --username e2e-boilerplate",
     "get:repos": "node -r esm repositories.js --pages 2 --username e2e-boilerplate",
     "git:add": "node -r esm runner.js --task add --username e2e-boilerplate",
     "git:clone": "node -r esm runner.js --task clone --username e2e-boilerplate",
