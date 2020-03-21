@@ -12,7 +12,8 @@ import {
   gitPull,
   npmInstall,
   updateMetadata,
-  lint
+  lint,
+  tsconfig
 } from "./src/task";
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
@@ -60,6 +61,9 @@ async function taskPicker(repo) {
       break;
     case "eslintrc":
       await eslintrc(repo);
+      break;
+    case "tsconfig":
+      await tsconfig(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);

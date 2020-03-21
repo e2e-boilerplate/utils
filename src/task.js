@@ -5,6 +5,7 @@ import updateMeta from "./metadata";
 import workflow from "./workflow";
 import readme from "./read-me";
 import makeEslintrc from "./style/eslintrc";
+import makeTsconfig from "./style/tsconfig";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -90,6 +91,12 @@ async function eslintrc(repo) {
   await makeEslintrc(repo);
 }
 
+async function tsconfig(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await makeTsconfig(repo);
+}
+
 export {
   audit,
   eslintrc,
@@ -103,5 +110,6 @@ export {
   gitPush,
   updateMetadata,
   executeArbitraryCommand,
-  lint
+  lint,
+  tsconfig
 };
