@@ -13,7 +13,8 @@ import {
   npmInstall,
   updateMetadata,
   lint,
-  tsconfig
+  tsconfig,
+  tslint
 } from "./src/task";
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
@@ -64,6 +65,9 @@ async function taskPicker(repo) {
       break;
     case "tsconfig":
       await tsconfig(repo);
+      break;
+    case "tslint":
+      await tslint(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);
