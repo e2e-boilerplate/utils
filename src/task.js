@@ -7,6 +7,7 @@ import readme from "./read-me";
 import makeEslintrc from "./style/eslintrc";
 import makeTsconfig from "./style/tsconfig";
 import makeTslint from "./style/tslint";
+import makeDeps from "./deps/deps";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -104,8 +105,15 @@ async function tslint(repo) {
   await makeTslint(repo);
 }
 
+async function dependencies(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await makeDeps(repo);
+}
+
 export {
   audit,
+  dependencies,
   eslintrc,
   gitAdd,
   gitClone,
