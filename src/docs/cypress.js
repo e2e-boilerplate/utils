@@ -17,7 +17,8 @@ import {
   moduleType
 } from "./common";
 
-// browser, no runner
+// browser, no runner, assertion language included
+// TODO fix repeating combs
 const frameworks = ["cypress"];
 
 const chai = {};

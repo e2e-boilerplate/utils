@@ -6,6 +6,7 @@ import { write } from "./exec";
 
 async function workflow(repo) {
   const { name } = repo;
+  const parts = name.split("-");
   const cron = getRandomCron();
   const nodejs = {
     name,
@@ -52,12 +53,18 @@ async function workflow(repo) {
       nodejs.jobs.build.steps.push(update);
     }
 
+    // TODO run nightwatch headless with one config
     if (keys.includes("test:ci")) {
       const test = { name: "Executing tests", run: "npm run test:ci" };
       nodejs.jobs.build.steps.push(test);
     } else if (keys.includes("test")) {
-      const test = { name: "Executing tests", run: "npm run test" };
-      nodejs.jobs.build.steps.push(test);
+      if (parts.includes("cypress")) {
+        const test = { name: "Executing tests", run: "npm run test -- --headless" };
+        nodejs.jobs.build.steps.push(test);
+      } else {
+        const test = { name: "Executing tests", run: "npm run test" };
+        nodejs.jobs.build.steps.push(test);
+      }
     }
 
     if (getFrameworkName(name) === "cypress") {
