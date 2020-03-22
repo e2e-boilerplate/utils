@@ -118,7 +118,7 @@ function getTech(name) {
       }
       const last = format.slice(-1);
 
-      return `using ${first.join(", ")} and ${last}.`;
+      return `Using ${first.join(", ")} and ${last}.`;
     }
   } catch (error) {
     logger.error(`Get tech: ${name} ${error}`);

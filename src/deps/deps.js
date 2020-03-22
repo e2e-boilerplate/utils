@@ -22,30 +22,30 @@ async function makeDeps(repo) {
         devDependencies["@types/node"] = deps["@types/node"];
       }
 
-      if (!parts.includes("jest")) {
+      if (parts.includes("jest")) {
         devDependencies["@types/jest"] = deps["@types/jest"];
       }
 
-      if (!parts.includes("mocha")) {
+      if (parts.includes("mocha")) {
         devDependencies["@types/mocha"] = deps["@types/mocha"];
       }
 
-      if (!parts.includes("chai")) {
+      if (parts.includes("chai")) {
         devDependencies["@types/chai"] = deps["@types/chai"];
       }
 
-      if (!parts.includes("selenium-webdriver")) {
+      if (parts.includes("selenium-webdriver")) {
         devDependencies["@types/selenium-webdriver"] = deps["@types/selenium-webdriver"];
       }
 
-      if (!parts.includes("puppeteer")) {
+      if (parts.includes("puppeteer")) {
         devDependencies["@types/puppeteer"] = deps["@types/puppeteer"];
       }
 
-      if (!parts.includes("jasmine")) {
+      if (parts.includes("jasmine")) {
         devDependencies["@types/jasmine"] = deps["@types/jasmine"];
 
-        if (!parts.includes("protractor")) {
+        if (parts.includes("protractor")) {
           devDependencies["@types/jasminewd2"] = deps["@types/jasminewd2"];
         }
       }
@@ -113,15 +113,23 @@ async function makeDeps(repo) {
       dependencies.tape = deps.tape;
     }
 
-    if (parts.includes("ts") && parts.includes("jest")) {
-      devDependencies["ts-jest"] = deps["ts-jest"];
+    if (parts.includes("ts") && parts.includes("jest") && !parts.includes("node")) {
+      dependencies["ts-jest"] = deps["ts-jest"];
     }
 
     if (parts.includes("ts") && parts.includes("node")) {
       dependencies["ts-node"] = deps["ts-node"];
     }
 
-    if (parts.includes("expect") && !parts.includes("jasmine") && !parts.includes("jest") && !parts.includes("mocha")) {
+    if (
+      parts.includes("expect") &&
+      !parts.includes("jasmine") &&
+      !parts.includes("jest") &&
+      !parts.includes("mocha") &&
+      !parts.includes("chai") &&
+      !parts.includes("cypress") &&
+      !parts.includes("nightwatch")
+    ) {
       dependencies.expect = deps.expect;
     }
 
@@ -143,20 +151,16 @@ async function makeDeps(repo) {
     if (parts.includes("nightwatch")) {
       dependencies.nightwatch = deps.nightwatch;
       dependencies.chromedriver = deps.chromedriver;
-      dependencies.rimraf = deps.rimraf;
 
       if (parts.includes("typescript")) {
         devDependencies["@types/nightwatch"] = deps["@types/nightwatch"];
+        dependencies.rimraf = deps.rimraf;
       }
     }
 
     if (parts.includes("playwright")) {
       dependencies.playwright = deps.playwright;
       dependencies.chromedriver = deps.chromedriver;
-
-      if (parts.includes("expect")) {
-        dependencies.expect = deps.expect;
-      }
     }
 
     if (parts.includes("protractor")) {
@@ -174,6 +178,10 @@ async function makeDeps(repo) {
     if (parts.includes("selenium") && parts.includes("webdriver")) {
       dependencies["selenium-webdriver"] = deps["selenium-webdriver"];
       dependencies.chromedriver = deps.chromedriver;
+    }
+
+    if (parts.includes("webdriver") && parts.includes("manager")) {
+      dependencies["webdriver-manager"] = deps["webdriver-manager"];
     }
 
     if (parts.includes("wd")) {

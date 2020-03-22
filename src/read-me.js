@@ -47,13 +47,15 @@ async function readme(repo) {
   const build = "npm run build";
   const updateWebDriver = "npm run update-webdriver";
   const test = "npm run test";
+  const buyMeCoffee =
+    "[![Buy Me A Coffee](https://img.shields.io/badge/buy-me%20coffee-orange)](https://www.buymeacoffee.com/xgirma)";
 
   const { hasBuildProperty, hasUpdateWebDriverProperty, hasTestProperty } = commands;
 
   let data;
 
   if (hasBuildProperty && hasUpdateWebDriverProperty && hasTestProperty) {
-    data = `${badge} ${mit}
+    data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -64,7 +66,7 @@ async function readme(repo) {
     \n5. ${updateWebDriver}
     \n6. ${test}`;
   } else if (hasUpdateWebDriverProperty && hasTestProperty) {
-    data = `${badge} ${mit}
+    data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -74,7 +76,7 @@ async function readme(repo) {
     \n4. ${updateWebDriver}
     \n5. ${test}`;
   } else if (hasBuildProperty && hasTestProperty) {
-    data = `${badge} ${mit}
+    data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -84,7 +86,7 @@ async function readme(repo) {
     \n4. ${build}
     \n5. ${test}`;
   } else if (hasTestProperty) {
-    data = `${badge} ${mit}
+    data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -93,7 +95,7 @@ async function readme(repo) {
     \t3. ${install}
     \t4. ${test}`;
   } else {
-    data = `${badge} ${mit}
+    data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
