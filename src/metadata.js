@@ -1,7 +1,8 @@
 import { readFileSync } from "fs";
-import { logger, rootDir, author, keywords, username } from "./constants";
+import { logger, rootDir, author, keywords, miscRepos, username } from "./constants";
 import { getFrameworkName, getTech, sortObject } from "./common";
 import { write } from "./exec";
+import makeDeps from "./deps/deps";
 
 function buildKeywords(name) {
   const keysFromRepoName = name.toLowerCase().split("-");
@@ -85,6 +86,12 @@ async function updateMeta(repo) {
       delete pkgJson.main;
     }
     pkgJson.license = "MIT";
+
+    if (!miscRepos.includes(name)) {
+      const { dependencies, devDependencies } = await makeDeps(repo);
+      pkgJson.dependencies = sortObject(dependencies);
+      pkgJson.devDependencies = sortObject(devDependencies);
+    }
 
     const update = JSON.stringify(sortObject(pkgJson), null, 2);
     await write(path, update, "utf8");
