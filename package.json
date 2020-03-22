@@ -1,5 +1,5 @@
 {
-  "author": "Girma Nigusse <xgirma@gmail.com> (https://github.com/xgirma)",
+  "author": "",
   "bugs": {
     "url": "https://github.com/e2e-boilerplate/utils/issues"
   },
@@ -32,11 +32,6 @@
     }
   },
   "keywords": [
-    "boilerplate",
-    "e2e",
-    "e2e tests",
-    "example",
-    "integration test",
     "utils"
   ],
   "license": "MIT",
@@ -55,8 +50,8 @@
     "audit:fix": "node -r esm runner.js --task audit --username e2e-boilerplate",
     "clean:list": "npx rimraf repos/*.json",
     "cypress:doc": "node -r esm ./src/docs/cypress.js --username e2e-boilerplate",
-    "docs:implemented": "node -r esm ./src/docs/implmented.js --username e2e-boilerplate",
     "dependencies": "node -r esm runner.js --task dependencies --username e2e-boilerplate",
+    "docs:implemented": "node -r esm ./src/docs/implmented.js --username e2e-boilerplate",
     "eslintrc": "node -r esm runner.js --task eslintrc --username e2e-boilerplate",
     "get:repos": "node -r esm repositories.js --pages 2 --username e2e-boilerplate",
     "git:add": "node -r esm runner.js --task add --username e2e-boilerplate",
