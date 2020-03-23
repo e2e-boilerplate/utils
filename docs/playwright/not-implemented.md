@@ -105,8 +105,8 @@
 | 103 | playwright-es-modules-esm-mocha                    | Not Implemented |
 | 104 | playwright-es-modules-esm-mocha-chai               | Not Implemented |
 | 105 | playwright-es-modules-esm-mocha-chai-assert        | Not Implemented |
-| 106 | playwright-es-modules-esm-mocha-chai-expect        | Not Implemented |
-| 107 | playwright-es-modules-esm-mocha-chai-should        | Not Implemented |
+| 106 | playwright-es-modules-esm-mocha-chai-should        | Not Implemented |
+| 107 | playwright-es-modules-esm-mocha-expect             | Not Implemented |
 | 108 | playwright-es-modules-esm-tape                     | Not Implemented |
 | 109 | playwright-es-modules-jasmine                      | Not Implemented |
 | 110 | playwright-es-modules-jasmine                      | Not Implemented |
