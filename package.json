@@ -54,7 +54,7 @@
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
     "clean:list": "npx rimraf repos/*.json",
     "dependencies": "node -r esm runner.js --task dependencies --username e2e-boilerplate",
-    "doc: selenium-webdriver": "node -r esm ./src/docs/selenium-webdriver.js --username e2e-boilerplate",
+    "doc:selenium-webdriver": "node -r esm ./src/docs/selenium-webdriver.js --username e2e-boilerplate",
     "doc:cypress": "node -r esm ./src/docs/cypress.js --username e2e-boilerplate",
     "doc:nightwatch": "node -r esm ./src/docs/nightwatch.js --username e2e-boilerplate",
     "doc:playwright": "node -r esm ./src/docs/playwright.js --username e2e-boilerplate",
