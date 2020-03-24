@@ -32,9 +32,9 @@
 | 30  | puppeteer-es-modules                              | Not Implemented |
 | 31  | puppeteer-es-modules                              | Not Implemented |
 | 32  | puppeteer-es-modules                              | Not Implemented |
-| 33  | puppeteer-es-modules-babel                        | Not Implemented |
+| 33  | puppeteer-es-modules-ava                          | Not Implemented |
 | 34  | puppeteer-es-modules-babel                        | Not Implemented |
-| 35  | puppeteer-es-modules-babel-ava                    | Not Implemented |
+| 35  | puppeteer-es-modules-babel                        | Not Implemented |
 | 36  | puppeteer-es-modules-babel-cucumber               | Not Implemented |
 | 37  | puppeteer-es-modules-babel-cucumber               | Not Implemented |
 | 38  | puppeteer-es-modules-babel-cucumber-assert        | Not Implemented |
