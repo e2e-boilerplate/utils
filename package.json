@@ -22,7 +22,7 @@
     "eslint-plugin-prettier": "3.1.2",
     "esm": "3.2.25",
     "husky": "4.2.3",
-    "lint-staged": "10.0.8",
+    "lint-staged": "10.0.9",
     "prettier": "1.19.1"
   },
   "homepage": "https://github.com/e2e-boilerplate/utils#readme",
