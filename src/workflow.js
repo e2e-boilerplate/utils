@@ -48,9 +48,14 @@ async function workflow(repo) {
     nodejs.jobs.build.steps.push(lint);
     nodejs.jobs.build.steps.push(build);
 
-    if (keys.includes("update-webdriver")) {
-      const update = { name: "Updating webdriver", run: "npm run update-webdriver" };
+    if (keys.includes("update:webdriver")) {
+      const update = { name: "Updating webdriver", run: "npm run update:webdriver" };
       nodejs.jobs.build.steps.push(update);
+    }
+
+    if (keys.includes("start:webdriver")) {
+      const start = { name: "Start webdriver", run: "npm run start:webdriver &" };
+      nodejs.jobs.build.steps.push(start);
     }
 
     // TODO run nightwatch headless with one config

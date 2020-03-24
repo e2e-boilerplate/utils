@@ -191,6 +191,7 @@ async function makeDeps(repo) {
 
     if (parts.includes("webdriverio")) {
       dependencies.webdriverio = deps.webdriverio;
+      dependencies.chromedriver = deps.chromedriver;
       dependencies["@wdio/cli"] = deps["@wdio/cli"];
       dependencies["@wdio/dot-reporter"] = deps["@wdio/dot-reporter"];
       dependencies["@wdio/local-runner"] = deps["@wdio/local-runner"];
@@ -204,6 +205,10 @@ async function makeDeps(repo) {
       if (parts.includes("mocha")) {
         dependencies["@wdio/mocha-framework"] = deps["@wdio/mocha-framework"];
       }
+    }
+
+    if (parts.includes("wd") && parts.includes("mocha")) {
+      dependencies.puppeteer = deps.puppeteer;
     }
 
     // logger.info(`dependencies ${JSON.stringify(dependencies, null, 2)}`);

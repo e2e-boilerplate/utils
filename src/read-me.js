@@ -20,7 +20,7 @@ function getScriptsCombo(repo) {
     const pkgJson = JSON.parse(data);
     const { scripts } = pkgJson;
     commands.hasBuildProperty = {}.hasOwnProperty.call(scripts, "build");
-    commands.hasUpdateWebDriverProperty = {}.hasOwnProperty.call(scripts, "update-webdriver");
+    commands.hasUpdateWebDriverProperty = {}.hasOwnProperty.call(scripts, "update:webdriver");
     commands.hasTestProperty = {}.hasOwnProperty.call(scripts, "test");
   } catch (error) {
     logger.error(`readme: get scripts: ${name} ${error}`);
@@ -45,7 +45,7 @@ async function readme(repo) {
   const cd = `cd ${name}`;
   const install = `npm install`;
   const build = "npm run build";
-  const updateWebDriver = "npm run update-webdriver";
+  const updateWebDriver = "npm run update:webdriver";
   const test = "npm run test";
   const buyMeCoffee =
     "[![Buy Me A Coffee](https://img.shields.io/badge/buy-me%20coffee-orange)](https://www.buymeacoffee.com/xgirma)";
