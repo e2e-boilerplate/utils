@@ -1,5 +1,5 @@
 {
-  "author": "Girma Nigusse <xgirma@gmail.com> (https://github.com/xgirma)",
+  "author": "Girma Nigusse <xgirma@gmail.com>",
   "bugs": {
     "url": "https://github.com/e2e-boilerplate/utils/issues"
   },
@@ -54,12 +54,12 @@
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
     "clean:list": "npx rimraf repos/*.json",
     "dependencies": "node -r esm runner.js --task dependencies --username e2e-boilerplate",
-    "doc:selenium-webdriver": "node -r esm ./src/docs/selenium-webdriver.js --username e2e-boilerplate",
     "doc:cypress": "node -r esm ./src/docs/cypress.js --username e2e-boilerplate",
     "doc:nightwatch": "node -r esm ./src/docs/nightwatch.js --username e2e-boilerplate",
     "doc:playwright": "node -r esm ./src/docs/playwright.js --username e2e-boilerplate",
     "doc:protractor": "node -r esm ./src/docs/protractor.js --username e2e-boilerplate",
     "doc:puppeteer": "node -r esm ./src/docs/puppeteer.js --username e2e-boilerplate",
+    "doc:selenium-webdriver": "node -r esm ./src/docs/selenium-webdriver.js --username e2e-boilerplate",
     "doc:wd": "node -r esm ./src/docs/wd.js --username e2e-boilerplate",
     "doc:webdriverio": "node -r esm ./src/docs/webdriverio.js --username e2e-boilerplate",
     "docs:implemented": "node -r esm ./src/docs/implmented.js --username e2e-boilerplate",
