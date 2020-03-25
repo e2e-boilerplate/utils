@@ -32,9 +32,9 @@
 | 30  | playwright-es-modules                              | Not Implemented |
 | 31  | playwright-es-modules                              | Not Implemented |
 | 32  | playwright-es-modules                              | Not Implemented |
-| 33  | playwright-es-modules-babel                        | Not Implemented |
+| 33  | playwright-es-modules-ava                          | Not Implemented |
 | 34  | playwright-es-modules-babel                        | Not Implemented |
-| 35  | playwright-es-modules-babel-ava                    | Not Implemented |
+| 35  | playwright-es-modules-babel                        | Not Implemented |
 | 36  | playwright-es-modules-babel-cucumber               | Not Implemented |
 | 37  | playwright-es-modules-babel-cucumber               | Not Implemented |
 | 38  | playwright-es-modules-babel-cucumber-assert        | Not Implemented |
