@@ -14,7 +14,7 @@ import {
   typescriptTranspiler,
   esModuleTranspiler,
   javascriptType,
-  moduleType
+  moduleType,
 } from "./common";
 
 // browser, no runner, assertion language included
@@ -31,35 +31,35 @@ const module = {};
 const framework = {};
 
 function buildList() {
-  chaiAssertionTypes.forEach(c => {
+  chaiAssertionTypes.forEach((c) => {
     chai[c] = {};
   });
 
-  assertionType.forEach(a => {
+  assertionType.forEach((a) => {
     assertion[a] = a === "chai" ? chai : {};
   });
 
-  bundlerType.forEach(b => {
+  bundlerType.forEach((b) => {
     bundler[b] = assertion;
   });
 
-  typescriptTranspiler.forEach(t => {
+  typescriptTranspiler.forEach((t) => {
     typescript[t] = bundler;
   });
 
-  esModuleTranspiler.forEach(e => {
+  esModuleTranspiler.forEach((e) => {
     esModule[e] = bundler;
   });
 
-  javascriptType.forEach(j => {
+  javascriptType.forEach((j) => {
     javascript[j] = j === "non-typescript" ? esModule : typescript;
   });
 
-  moduleType.forEach(m => {
+  moduleType.forEach((m) => {
     module[m] = m === "commonjs" ? bundler : javascript;
   });
 
-  frameworks.forEach(f => {
+  frameworks.forEach((f) => {
     framework[f] = module;
   });
 }
@@ -72,16 +72,16 @@ async function matrix() {
   const implementedList = [];
   const notImplementedList = [];
 
-  results.forEach(result => {
+  results.forEach((result) => {
     const path = Array.from(result.toString().split(","));
-    const noNonTypeScript = path.filter(part => part !== "non-typescript");
-    const noNone = noNonTypeScript.filter(part => part !== "none");
+    const noNonTypeScript = path.filter((part) => part !== "non-typescript");
+    const noNone = noNonTypeScript.filter((part) => part !== "none");
 
     if (noNone.includes("es-modules") && noNone.includes("typescript")) {
       delete noNone[1];
     }
 
-    const name = noNone.filter(n => n !== "");
+    const name = noNone.filter((n) => n !== "");
 
     list.push(name.join("-"));
     if (implemented(name.join("-"))) {

@@ -135,5 +135,5 @@ export {
   lint,
   setFunding,
   tsconfig,
-  tslint
+  tslint,
 };

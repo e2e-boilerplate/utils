@@ -7,8 +7,8 @@ async function makeTslint(repo) {
   const data = {
     extends: ["tslint:latest", "tslint-plugin-prettier", "tslint-config-prettier"],
     rules: {
-      prettier: true
-    }
+      prettier: true,
+    },
   };
 
   try {

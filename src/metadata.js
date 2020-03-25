@@ -9,7 +9,7 @@ function buildKeywords(name) {
 
   let jestCount = 0;
 
-  keysFromRepoName.forEach(part => {
+  keysFromRepoName.forEach((part) => {
     if (part === "jest") {
       jestCount += 1;
     }
@@ -41,7 +41,7 @@ function buildKeywords(name) {
     ? ["modules", "ts", "node", "es", "webdriver", "manager", "jest"]
     : ["modules", "ts", "node", "es", "webdriver", "manager"];
 
-  const keys = keysFromRepoName.filter(word => !escapeDouble.includes(word));
+  const keys = keysFromRepoName.filter((word) => !escapeDouble.includes(word));
 
   if (hasTwoJest) {
     keys.push("jest");
@@ -75,10 +75,10 @@ async function updateMeta(repo) {
     pkgJson.homepage = `https://github.com/${username}/${name}#readme`;
     pkgJson.repository = {
       type: "git",
-      url: `git+https://github.com/${username}/${name}.git`
+      url: `git+https://github.com/${username}/${name}.git`,
     };
     pkgJson.bugs = {
-      url: `https://github.com/${username}/${name}/issues`
+      url: `https://github.com/${username}/${name}/issues`,
     };
     pkgJson.author = author || "";
     pkgJson.scripts = sortObject(script);

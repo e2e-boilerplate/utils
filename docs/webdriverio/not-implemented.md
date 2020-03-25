@@ -64,8 +64,8 @@
 | 62  | webdriverio-es-modules-babel-jest-expect            | Not Implemented |
 | 63  | webdriverio-es-modules-babel-mocha                  | Not Implemented |
 | 64  | webdriverio-es-modules-babel-mocha                  | Not Implemented |
-| 65  | webdriverio-es-modules-babel-mocha-chai-assert      | Not Implemented |
-| 66  | webdriverio-es-modules-babel-mocha-chai-expect      | Not Implemented |
+| 65  | webdriverio-es-modules-babel-mocha-chai             | Not Implemented |
+| 66  | webdriverio-es-modules-babel-mocha-chai-assert      | Not Implemented |
 | 67  | webdriverio-es-modules-babel-mocha-chai-should      | Not Implemented |
 | 68  | webdriverio-es-modules-babel-mocha-expect           | Not Implemented |
 | 69  | webdriverio-es-modules-babel-tape                   | Not Implemented |

@@ -39,7 +39,7 @@ async function clearReposList() {
 function sortObject(obj) {
   const keys = Object.keys(obj).sort();
   const newObj = {};
-  keys.forEach(key => {
+  keys.forEach((key) => {
     newObj[key] = obj[key];
   });
   return newObj;
@@ -67,7 +67,7 @@ function getTech(name) {
 
       let jestCount = 0;
 
-      techs.forEach(tech => {
+      techs.forEach((tech) => {
         if (tech === "jest") {
           jestCount += 1;
         }
@@ -75,7 +75,7 @@ function getTech(name) {
 
       const hasTwoJest = jestCount === 2;
 
-      techs.forEach(tech => {
+      techs.forEach((tech) => {
         switch (tech) {
           case "es":
             format.push("ES Modules");
@@ -187,7 +187,7 @@ function getRandomCron() {
     "20 2 1-31/2 * *",
     "30 3 1-31/2 * *",
     "40 4 1-31/2 * *",
-    "50 5 1-31/2 * *"
+    "50 5 1-31/2 * *",
   ];
   return cron[Math.floor(Math.random() * cron.length)];
 }

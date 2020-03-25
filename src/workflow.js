@@ -19,11 +19,11 @@ async function workflow(repo) {
           {
             name: "Use Node.js 12.x",
             uses: "actions/setup-node@v1",
-            with: { "node-version": "12.x" }
-          }
-        ]
-      }
-    }
+            with: { "node-version": "12.x" },
+          },
+        ],
+      },
+    },
   };
 
   try {
@@ -36,7 +36,7 @@ async function workflow(repo) {
       const aptGet = {
         name: "Installing linux packages",
         run:
-          "sudo apt-get update\nsudo apt-get install libwoff1 libopus0 libwebp6 libwebpdemux2 libenchant1c2a libgudev-1.0-0 libsecret-1-0 libhyphen0 libgdk-pixbuf2.0-0 libegl1 libgles2 libevent-2.1-6 libnotify4 libxslt1.1\nsudo apt-get install xvfb\n"
+          "sudo apt-get update\nsudo apt-get install libwoff1 libopus0 libwebp6 libwebpdemux2 libenchant1c2a libgudev-1.0-0 libsecret-1-0 libhyphen0 libgdk-pixbuf2.0-0 libegl1 libgles2 libevent-2.1-6 libnotify4 libxslt1.1\nsudo apt-get install xvfb\n",
       };
       nodejs.jobs.build.steps.push(aptGet);
     }
@@ -75,7 +75,7 @@ async function workflow(repo) {
     if (getFrameworkName(name) === "cypress") {
       const clearVideo = {
         name: "Removing cypress video",
-        run: "npm run clean:video"
+        run: "npm run clean:video",
       };
       nodejs.jobs.build.steps.push(clearVideo);
     }

@@ -7,7 +7,7 @@ async function makeDeps(repo) {
   const dependencies = {};
   const devDependencies = {
     husky: deps.husky,
-    prettier: deps.prettier
+    prettier: deps.prettier,
   };
 
   try {
@@ -101,7 +101,7 @@ async function makeDeps(repo) {
       dependencies.ava = deps.ava;
     }
 
-    if (parts.includes("babel") && parts.includes("jest")) {
+    if (parts.includes("babel", "jest")) {
       devDependencies["babel-jest"] = deps["babel-jest"];
     }
 
@@ -113,23 +113,19 @@ async function makeDeps(repo) {
       dependencies.tape = deps.tape;
     }
 
-    if (parts.includes("ts") && parts.includes("jest") && !parts.includes("node")) {
+    if (parts.includes("ts", "jest") && !parts.includes("node")) {
       dependencies["ts-jest"] = deps["ts-jest"];
     }
 
-    if (parts.includes("ts") && parts.includes("node")) {
+    if (parts.includes("ts", "node")) {
       dependencies["ts-node"] = deps["ts-node"];
     }
 
-    if (
-      parts.includes("expect") &&
-      !parts.includes("jasmine") &&
-      !parts.includes("jest") &&
-      !parts.includes("mocha") &&
-      !parts.includes("chai") &&
-      !parts.includes("cypress") &&
-      !parts.includes("nightwatch")
-    ) {
+    if (parts.includes("tape", "typescript")) {
+      devDependencies["@types/tape"] = deps["@types/tape"];
+    }
+
+    if (parts.includes("expect") && !parts.includes("jasmine", "jest", "mocha", "chai", "cypress", "nightwatch")) {
       dependencies.expect = deps.expect;
     }
 
@@ -175,12 +171,12 @@ async function makeDeps(repo) {
       dependencies.puppeteer = deps.puppeteer;
     }
 
-    if (parts.includes("selenium") && parts.includes("webdriver")) {
+    if (parts.includes("selenium", "webdriver")) {
       dependencies["selenium-webdriver"] = deps["selenium-webdriver"];
       dependencies.chromedriver = deps.chromedriver;
     }
 
-    if (parts.includes("webdriver") && parts.includes("manager")) {
+    if (parts.includes("webdriver", "manager")) {
       dependencies["webdriver-manager"] = deps["webdriver-manager"];
     }
 
@@ -207,7 +203,7 @@ async function makeDeps(repo) {
       }
     }
 
-    if (parts.includes("wd") && parts.includes("mocha")) {
+    if (parts.includes("wd", "mocha")) {
       dependencies.puppeteer = deps.puppeteer;
     }
 
@@ -224,7 +220,7 @@ async function makeDeps(repo) {
 
   return {
     dependencies,
-    devDependencies
+    devDependencies,
   };
 }
 

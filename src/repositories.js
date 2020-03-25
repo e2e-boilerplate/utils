@@ -10,8 +10,8 @@ async function getReposList() {
     method: "GET",
     headers: {
       "user-agent": "node.js",
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   try {
@@ -27,13 +27,13 @@ async function getReposList() {
       const path = `/users/${username}/repos?page=${i + 1}&per_page=100`;
       options.path = path;
 
-      const req = request(options, response => {
+      const req = request(options, (response) => {
         let body = "";
-        response.on("error", error => {
+        response.on("error", (error) => {
           throw error;
         });
 
-        response.on("data", chunk => {
+        response.on("data", (chunk) => {
           body += chunk.toString("utf8");
         });
 
@@ -49,7 +49,7 @@ async function getReposList() {
         });
       });
 
-      req.on("error", error => {
+      req.on("error", (error) => {
         throw error;
       });
 

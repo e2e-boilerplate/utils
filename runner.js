@@ -16,7 +16,7 @@ import {
   lint,
   setFunding,
   tsconfig,
-  tslint
+  tslint,
 } from "./src/task";
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
@@ -104,7 +104,7 @@ async function runner() {
 
     for (let i = 1; i < files.length; i += 1) {
       const repos = require(`./repos/repo-${i}.json`);
-      repos.forEach(repo => {
+      repos.forEach((repo) => {
         const name = getName(repo.name);
 
         if (module) {
