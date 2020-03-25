@@ -121,6 +121,10 @@ async function makeDeps(repo) {
       dependencies["ts-node"] = deps["ts-node"];
     }
 
+    if (parts.includes("tape", "typescript")) {
+      devDependencies["@types/tape"] = deps["@types/tape"];
+    }
+
     if (parts.includes("expect") && !parts.includes("jasmine", "jest", "mocha", "chai", "cypress", "nightwatch")) {
       dependencies.expect = deps.expect;
     }
