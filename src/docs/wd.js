@@ -13,7 +13,7 @@ import {
   typescriptTranspiler,
   esModuleTranspiler,
   javascriptType,
-  moduleType
+  moduleType,
 } from "./common";
 
 const frameworks = ["wd"];
@@ -31,39 +31,39 @@ const module = {};
 const framework = {};
 
 function buildList() {
-  chaiAssertionTypes.forEach(c => {
+  chaiAssertionTypes.forEach((c) => {
     chai[c] = {};
   });
 
-  assertionType.forEach(a => {
+  assertionType.forEach((a) => {
     assertion[a] = a === "chai" ? chai : {};
   });
 
-  runnerType.forEach(r => {
+  runnerType.forEach((r) => {
     runner[r] = r === "ava" || r === "tape" || r === "none" ? {} : assertion;
   });
 
-  driverType.forEach(d => {
+  driverType.forEach((d) => {
     driver[d] = runner;
   });
 
-  typescriptTranspiler.forEach(t => {
+  typescriptTranspiler.forEach((t) => {
     typescript[t] = driver;
   });
 
-  esModuleTranspiler.forEach(e => {
+  esModuleTranspiler.forEach((e) => {
     esModule[e] = driver;
   });
 
-  javascriptType.forEach(j => {
+  javascriptType.forEach((j) => {
     javascript[j] = j === "non-typescript" ? esModule : typescript;
   });
 
-  moduleType.forEach(m => {
+  moduleType.forEach((m) => {
     module[m] = m === "commonjs" ? driver : javascript;
   });
 
-  frameworks.forEach(f => {
+  frameworks.forEach((f) => {
     framework[f] = module;
   });
 }
@@ -76,16 +76,16 @@ async function matrix() {
   const implementedList = [];
   const notImplementedList = [];
 
-  results.forEach(result => {
+  results.forEach((result) => {
     const path = Array.from(result.toString().split(","));
-    const noNonTypeScript = path.filter(part => part !== "non-typescript");
-    const noNone = noNonTypeScript.filter(part => part !== "none");
+    const noNonTypeScript = path.filter((part) => part !== "non-typescript");
+    const noNone = noNonTypeScript.filter((part) => part !== "none");
 
     if (noNone.includes("es-modules") && noNone.includes("typescript")) {
       delete noNone[1];
     }
 
-    const name = noNone.filter(n => n !== "");
+    const name = noNone.filter((n) => n !== "");
 
     if (!(!path.includes("jest") && path.includes("ts-jest"))) {
       list.push(name.join("-"));

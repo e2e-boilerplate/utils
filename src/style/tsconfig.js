@@ -12,8 +12,8 @@ async function makeTsconfig(repo) {
       lib: [],
       types: ["node"],
       typeRoots: ["node_modules/@types"],
-      outDir: "build"
-    }
+      outDir: "build",
+    },
   };
 
   try {

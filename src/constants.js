@@ -8,7 +8,7 @@ const reposDir = "./repos";
 const miscRepos = ["sandbox", "utils", "resources", "e2e-boilerplate"];
 const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd"];
 const logger = require("pino")({
-  prettyPrint: { colorize: true }
+  prettyPrint: { colorize: true },
 });
 
 export {
@@ -25,5 +25,5 @@ export {
   command,
   keywords,
   author,
-  module
+  module,
 };

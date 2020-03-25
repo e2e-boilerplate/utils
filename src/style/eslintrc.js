@@ -6,10 +6,10 @@ async function makeEslintrc(repo) {
   const parts = name.split("-");
   const data = {
     env: {
-      commonjs: true
+      commonjs: true,
     },
     extends: ["airbnb-base", "plugin:prettier/recommended"],
-    plugins: []
+    plugins: [],
   };
 
   try {
@@ -50,7 +50,7 @@ async function makeEslintrc(repo) {
       if (parts.includes("wd")) {
         data.globals = {
           $: true,
-          browser: true
+          browser: true,
         };
       }
 

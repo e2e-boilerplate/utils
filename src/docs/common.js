@@ -15,18 +15,18 @@ export function getPaths(root) {
   const nodes = [
     {
       obj: root,
-      path: []
-    }
+      path: [],
+    },
   ];
   while (nodes.length > 0) {
     const n = nodes.pop();
-    Object.keys(n.obj).forEach(k => {
+    Object.keys(n.obj).forEach((k) => {
       if (typeof n.obj[k] === "object") {
         const path = n.path.concat(k);
         paths.push(path);
         nodes.unshift({
           obj: n.obj[k],
-          path
+          path,
         });
       }
     });
@@ -43,7 +43,7 @@ export function implemented(name) {
     for (let i = 1; i < files.length; i += 1) {
       const repos = require(`../../repos/repo-${i}.json`);
       // eslint-disable-next-line no-loop-func
-      repos.forEach(repo => {
+      repos.forEach((repo) => {
         isImplemented = repo.name === name;
         if (isImplemented) {
           throw BreakException;

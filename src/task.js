@@ -127,5 +127,5 @@ export {
   executeArbitraryCommand,
   lint,
   tsconfig,
-  tslint
+  tslint,
 };

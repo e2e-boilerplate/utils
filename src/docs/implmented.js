@@ -8,7 +8,7 @@ async function implementedList() {
   const content = {};
   const path = `${rootDir}/utils/docs/implemented.md`;
 
-  frameworks.sort().forEach(framework => {
+  frameworks.sort().forEach((framework) => {
     content[framework] = readFileSync(`${rootDir}/utils/docs/${framework}/implemented.md`, "utf8");
   });
 
@@ -48,4 +48,4 @@ async function implementedList() {
 }
 
 // eslint-disable-next-line no-unused-vars
-implementedList().then(r => {});
+implementedList().then((r) => {});
