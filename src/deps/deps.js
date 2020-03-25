@@ -34,7 +34,7 @@ async function makeDeps(repo) {
         devDependencies["@types/chai"] = deps["@types/chai"];
       }
 
-      if (parts.includes("selenium-webdriver")) {
+      if (parts.includes("selenium", "webdriver")) {
         devDependencies["@types/selenium-webdriver"] = deps["@types/selenium-webdriver"];
       }
 
@@ -209,6 +209,10 @@ async function makeDeps(repo) {
 
     if (parts.includes("wd") && parts.includes("mocha")) {
       dependencies.puppeteer = deps.puppeteer;
+    }
+
+    if (parts.includes("ava", "babel")) {
+      devDependencies["@ava/babel"] = deps["@ava/babel"];
     }
 
     // logger.info(`dependencies ${JSON.stringify(dependencies, null, 2)}`);
