@@ -3,6 +3,7 @@ import { hasRepository } from "./validators";
 import { username, rootDir, message, command } from "./constants";
 import updateMeta from "./metadata";
 import workflow from "./workflow";
+import funding from "./funding";
 import readme from "./read-me";
 import makeEslintrc from "./style/eslintrc";
 import makeTsconfig from "./style/tsconfig";
@@ -61,6 +62,12 @@ async function generateWorkflow(repo) {
   const { name } = repo;
   await prepareRepo(name);
   await workflow(repo);
+}
+
+async function setFunding(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await funding(repo);
 }
 
 async function generateReadme(repo) {
@@ -126,6 +133,7 @@ export {
   updateMetadata,
   executeArbitraryCommand,
   lint,
+  setFunding,
   tsconfig,
   tslint
 };

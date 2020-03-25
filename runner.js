@@ -14,6 +14,7 @@ import {
   npmInstall,
   updateMetadata,
   lint,
+  setFunding,
   tsconfig,
   tslint
 } from "./src/task";
@@ -48,6 +49,9 @@ async function taskPicker(repo) {
       break;
     case "workflow":
       await generateWorkflow(repo);
+      break;
+    case "funding":
+      await setFunding(repo);
       break;
     case "readme":
       await generateReadme(repo);
