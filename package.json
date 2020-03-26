@@ -75,10 +75,10 @@
     "npm:install:deps": "node -r esm runner.js --task install --username e2e-boilerplate",
     "npm:lint": "npx eslint --ext .js ./ --fix",
     "npm:lint:repos": "node -r esm runner.js --task lint --username e2e-boilerplate",
+    "set:funding": "node -r esm runner.js --task funding --username e2e-boilerplate",
     "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplate --keywords \"e2e-e2e tests-boilerplate-example-integration test\" --author \"Girma Nigusse <xgirma@gmail.com>\"",
     "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplate",
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate",
-    "set:funding": "node -r esm runner.js --task funding --username e2e-boilerplate",
     "tsconfig": "node -r esm runner.js --task tsconfig --username e2e-boilerplate",
     "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate"
   },
