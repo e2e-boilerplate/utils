@@ -81,7 +81,7 @@ async function makeDeps(repo) {
     }
 
     if (!parts.includes("typescript")) {
-      dependencies.eslint = version(pkgJson.dependencies.eslint, deps.eslint);
+      devDependencies.eslint = version(pkgJson.dependencies.eslint, deps.eslint);
       devDependencies["eslint-config-airbnb-base"] = version(
         pkgJson.devDependencies["eslint-config-airbnb-base"],
         deps["eslint-config-airbnb-base"]
@@ -178,7 +178,15 @@ async function makeDeps(repo) {
       devDependencies["@types/tape"] = version(pkgJson.devDependencies["@types/tape"], deps["@types/tape"]);
     }
 
-    if (parts.includes("expect") && !parts.includes("jasmine", "jest", "mocha", "chai", "cypress", "nightwatch")) {
+    if (
+      parts.includes("expect") &&
+      !parts.includes("jasmine") &&
+      !parts.includes("jest") &&
+      !parts.includes("mocha") &&
+      !parts.includes("chai") &&
+      !parts.includes("cypress") &&
+      !parts.includes("nightwatch")
+    ) {
       dependencies.expect = version(pkgJson.dependencies.expect, deps.expect);
     }
 
