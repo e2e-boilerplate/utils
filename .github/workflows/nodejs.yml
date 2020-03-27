@@ -2,20 +2,20 @@ name: utils
 'on':
   push: null
   schedule:
-    - cron: 20 2 1-31/2 * *
+    - cron: 40 4 1-31/2 * *
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 12.x
+      - name: NPM_INSTALL
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - run: npm install
         env:
           CI: true
-      - name: Lint
+      - name: LINT
         run: npm run lint --if-present
-      - name: Build
+      - name: BUILD
         run: npm run build --if-present
