@@ -5,7 +5,9 @@ const logger = require("pino")({
   prettyPrint: { colorize: true },
 });
 
-const { task, username, pages, message, command, keywords, author, module } = minimist(process.argv.slice(2));
+const { task, username = "e2e-boilerplate", pages, message, command, keywords, author, module } = minimist(
+  process.argv.slice(2)
+);
 const user = userInfo().username;
 const rootDir = `/Users/${user}/Documents/${username}`;
 const reposDir = "./repos";

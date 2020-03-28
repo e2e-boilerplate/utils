@@ -15,6 +15,7 @@ import {
   updateMetadata,
   lint,
   runs,
+  runsStatus,
   setFunding,
   tsconfig,
   tslint,
@@ -80,6 +81,9 @@ async function taskPicker(repo) {
       break;
     case "runs":
       await runs(repo);
+      break;
+    case "runstatus":
+      await runsStatus(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);
