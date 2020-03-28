@@ -1,19 +1,10 @@
 import { writeFileSync } from "fs";
 import { request } from "https";
 import { hasRepositoriesList, isNumeric } from "./validators";
-import { username, pages, logger } from "./constants";
+import { username, pages, logger, options } from "./constants";
 import { clearReposList } from "./common";
 
 async function getReposList() {
-  const options = {
-    host: "api.github.com",
-    method: "GET",
-    headers: {
-      "user-agent": "node.js",
-      "Content-Type": "application/json",
-    },
-  };
-
   try {
     const hasReposList = await hasRepositoriesList();
 

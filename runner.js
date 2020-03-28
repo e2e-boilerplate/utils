@@ -14,6 +14,7 @@ import {
   npmInstall,
   updateMetadata,
   lint,
+  runs,
   setFunding,
   tsconfig,
   tslint,
@@ -76,6 +77,9 @@ async function taskPicker(repo) {
       break;
     case "dependencies":
       await dependencies(repo);
+      break;
+    case "runs":
+      await runs(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);

@@ -80,7 +80,8 @@
     "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplate",
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate",
     "tsconfig": "node -r esm runner.js --task tsconfig --username e2e-boilerplate",
-    "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate"
+    "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate",
+    "actions:runs": "node -r esm runner.js --task runs --username e2e-boilerplate --module puppeteer"
   },
   "version": "1.0.1"
 }

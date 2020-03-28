@@ -9,6 +9,7 @@ import makeEslintrc from "./style/eslintrc";
 import makeTsconfig from "./style/tsconfig";
 import makeTslint from "./style/tslint";
 import makeDeps from "./deps/deps";
+import runsResult from "./runs";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -118,6 +119,12 @@ async function dependencies(repo) {
   await makeDeps(repo);
 }
 
+async function runs(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await runsResult(repo);
+}
+
 export {
   audit,
   dependencies,
@@ -133,6 +140,7 @@ export {
   updateMetadata,
   executeArbitraryCommand,
   lint,
+  runs,
   setFunding,
   tsconfig,
   tslint,
