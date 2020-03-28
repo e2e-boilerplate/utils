@@ -53,7 +53,7 @@
     "url": "git+https://github.com/e2e-boilerplate/utils.git"
   },
   "scripts": {
-    "actions:runs": "node -r esm runner.js --task runs --username e2e-boilerplate --module wedriverio",
+    "actions:runs": "node -r esm runner.js --task runs --username e2e-boilerplate",
     "actions:build:doc": "node -r esm runner.js --task runstatus",
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
     "clean:list": "npx rimraf repos/*.json",
