@@ -7,44 +7,52 @@ import { write } from "./exec";
 const moment = require("moment");
 
 function jobs(name, id) {
-  const s = [];
-  options.path = `/repos/${username}/${name}/actions/runs/${id}/jobs`;
-  try {
-    const req = request(options, (response) => {
-      let body = "";
+  return new Promise((resolve) => {
+    options.path = `/repos/${username}/${name}/actions/runs/${id}/jobs`;
 
-      response.on("error", (error) => {
+    try {
+      const req = request(options, (response) => {
+        let body = "";
+
+        response.on("error", (error) => {
+          throw error;
+        });
+
+        response.on("data", (chunk) => {
+          body += chunk.toString("utf8");
+        });
+
+        response.on("end", () => {
+          const jobSteps = [];
+          const isOk = response.statusCode === 200;
+          const content = isOk ? JSON.parse(`${body}`) : "[]";
+
+          if (isOk && content !== "[]") {
+            const { steps } = content.jobs[0];
+            steps.forEach((step) => {
+              const data = {};
+              if (workflow.includes(step.name)) {
+                data.name = step.name;
+                data.conclusion = step.conclusion;
+                // logger.info(data.conclusion); // success,failure,skipped
+                // logger.info(data.name); // success,failure,skipped
+                jobSteps.push(data);
+              }
+            });
+          }
+          resolve(jobSteps);
+        });
+      });
+
+      req.on("error", (error) => {
         throw error;
       });
 
-      response.on("data", (chunk) => {
-        body += chunk.toString("utf8");
-      });
-
-      response.on("end", () => {
-        logger.warn(body);
-        const { steps } = body.jobs;
-        logger.warn(steps);
-        steps.forEach((step) => {
-          if (workflow.includes[step[name]]) {
-            delete steps.status;
-            delete steps.number;
-            delete steps.started_at;
-            delete steps.completed_at;
-            s.push(steps);
-          }
-        });
-      });
-    });
-
-    req.on("error", (error) => {
-      throw error;
-    });
-
-    req.end();
-  } catch (error) {
-    logger.error(`Jobs ${name} ${error}`);
-  }
+      req.end();
+    } catch (error) {
+      logger.error(`Jobs ${name} ${error}`);
+    }
+  });
 }
 
 async function buildResults(repo) {
@@ -65,8 +73,14 @@ async function buildResults(repo) {
 
         const status = conclusion === "success" ? pass : fail;
 
-        const j = jobs(name, id);
-        const r = [run_number, updatedAt, status, ...j];
+        // const x = jobs(name, id, (cb) => {
+        //   logger.warn(cb);
+        //   return cb;
+        // });
+        const rr = jobs(name, id);
+
+        logger.error(rr);
+        const r = [run_number, updatedAt, status];
         runs.push(r);
       });
 

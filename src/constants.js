@@ -5,7 +5,7 @@ const logger = require("pino")({
   prettyPrint: { colorize: true },
 });
 
-const { task, username = "e2e-boilerplate", pages, message, command, keywords, author, module } = minimist(
+const { task, username = "e2e-boilerplate", pages, message, command, keywords, author, module, token } = minimist(
   process.argv.slice(2)
 );
 const user = userInfo().username;
@@ -22,6 +22,10 @@ const options = {
     "Content-Type": "application/json",
   },
 };
+
+if (token) {
+  options.headers.Authorization = `token ${token}`;
+}
 
 export {
   frameworks,
