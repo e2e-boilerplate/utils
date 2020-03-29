@@ -17,7 +17,7 @@ async function workflow(repo) {
         steps: [
           { uses: "actions/checkout@v2" },
           {
-            name: "NPM_INSTALL",
+            name: "node",
             uses: "actions/setup-node@v1",
             with: { "node-version": "12.x" },
           },
@@ -34,47 +34,47 @@ async function workflow(repo) {
 
     if (getFrameworkName(name) === "Playwright") {
       const aptGet = {
-        name: "INSTALLING_LINUX_PACKAGES",
+        name: "install:linux",
         run:
           "sudo apt-get update\nsudo apt-get install libwoff1 libopus0 libwebp6 libwebpdemux2 libenchant1c2a libgudev-1.0-0 libsecret-1-0 libhyphen0 libgdk-pixbuf2.0-0 libegl1 libgles2 libevent-2.1-6 libnotify4 libxslt1.1\nsudo apt-get install xvfb\n",
       };
       nodejs.jobs.build.steps.push(aptGet);
     }
 
-    const installNamModules = { run: "npm install", env: { CI: true } };
-    const lint = { name: "LINT", run: "npm run lint --if-present" };
-    const build = { name: "BUILD", run: "npm run build --if-present" };
+    const installNamModules = { name: "npm:install", run: "npm install", env: { CI: true } };
+    const lint = { name: "lint", run: "npm run lint --if-present" };
+    const build = { name: "build", run: "npm run build --if-present" };
     nodejs.jobs.build.steps.push(installNamModules);
     nodejs.jobs.build.steps.push(lint);
     nodejs.jobs.build.steps.push(build);
 
     if (keys.includes("update:webdriver")) {
-      const update = { name: "UPDATING_WEBDRIVER", run: "npm run update:webdriver" };
+      const update = { name: "update:webdriver", run: "npm run update:webdriver" };
       nodejs.jobs.build.steps.push(update);
     }
 
     if (keys.includes("start:webdriver")) {
-      const start = { name: "START_WEBDRIVER", run: "npm run start:webdriver &" };
+      const start = { name: "start:webdriver", run: "npm run start:webdriver &" };
       nodejs.jobs.build.steps.push(start);
     }
 
     // TODO run nightwatch headless with one config
     if (keys.includes("test:ci")) {
-      const test = { name: "EXECUTING_TESTS", run: "npm run test:ci" };
+      const test = { name: "test", run: "npm run test:ci" };
       nodejs.jobs.build.steps.push(test);
     } else if (keys.includes("test")) {
       if (parts.includes("cypress")) {
-        const test = { name: "EXECUTING_TESTS", run: "npm run test -- --headless" };
+        const test = { name: "test", run: "npm run test -- --headless" };
         nodejs.jobs.build.steps.push(test);
       } else {
-        const test = { name: "EXECUTING_TESTS", run: "npm run test" };
+        const test = { name: "test", run: "npm run test" };
         nodejs.jobs.build.steps.push(test);
       }
     }
 
     if (getFrameworkName(name) === "cypress") {
       const clearVideo = {
-        name: "REMOVING_CYPRESS_VIDEO",
+        name: "cypress:clear:video",
         run: "npm run clean:video",
       };
       nodejs.jobs.build.steps.push(clearVideo);
