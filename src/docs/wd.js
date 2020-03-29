@@ -15,11 +15,12 @@ import {
   javascriptType,
   moduleType,
 } from "./common";
+import { removeDuplicates } from "../common";
 
 const frameworks = ["wd"];
-
 const driverType = ["webdriver-manager"];
 
+// TODO make sure webdriver-manager comes after commonjs,es-modules, & type-script
 const chai = {};
 const assertion = {};
 const runner = {};
@@ -97,9 +98,9 @@ async function matrix() {
     }
   });
 
-  const content = all(list);
-  const contentImplemented = implementedOnly(implementedList);
-  const notContentImplemented = notImplementedOnly(notImplementedList);
+  const content = all(removeDuplicates(list));
+  const contentImplemented = implementedOnly(removeDuplicates(implementedList));
+  const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
     const path = `${rootDir}/utils/docs/wd/all.md`;

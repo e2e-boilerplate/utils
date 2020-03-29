@@ -192,4 +192,19 @@ function getRandomCron() {
   return cron[Math.floor(Math.random() * cron.length)];
 }
 
-export { clear, clearReposList, createPath, getTech, getFrameworkName, getRandomCron, getName, hasPath, sortObject };
+function removeDuplicates(array) {
+  return array.filter((a, b) => array.indexOf(a) === b);
+}
+
+export {
+  clear,
+  clearReposList,
+  createPath,
+  getTech,
+  getFrameworkName,
+  getRandomCron,
+  getName,
+  hasPath,
+  sortObject,
+  removeDuplicates,
+};

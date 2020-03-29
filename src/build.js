@@ -99,7 +99,7 @@ async function buildResults(repo) {
               job.push(jobStatus(step.conclusion, "npm", "install"));
             }
 
-            if (step.name === "install:install") {
+            if (step.name === "install:linux") {
               job.push(jobStatus(step.conclusion, "install", "install"));
             }
 

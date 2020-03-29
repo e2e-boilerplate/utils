@@ -16,9 +16,8 @@ import {
   javascriptType,
   moduleType,
 } from "./common";
+import { removeDuplicates } from "../common";
 
-// browser, no runner, assertion language included
-// TODO fix repeating combs
 const frameworks = ["cypress"];
 
 const chai = {};
@@ -91,9 +90,9 @@ async function matrix() {
     }
   });
 
-  const content = all(list);
-  const contentImplemented = implementedOnly(implementedList);
-  const notContentImplemented = notImplementedOnly(notImplementedList);
+  const content = all(removeDuplicates(list));
+  const contentImplemented = implementedOnly(removeDuplicates(implementedList));
+  const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
     const path = `${rootDir}/utils/docs/cypress/all.md`;

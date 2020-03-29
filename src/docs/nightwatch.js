@@ -15,6 +15,7 @@ import {
   javascriptType,
   moduleType,
 } from "./common";
+import { removeDuplicates } from "../common";
 
 // built-in test runner
 const frameworks = ["nightwatch"];
@@ -84,9 +85,9 @@ async function matrix() {
     }
   });
 
-  const content = all(list);
-  const contentImplemented = implementedOnly(implementedList);
-  const notContentImplemented = notImplementedOnly(notImplementedList);
+  const content = all(removeDuplicates(list));
+  const contentImplemented = implementedOnly(removeDuplicates(implementedList));
+  const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
     const path = `${rootDir}/utils/docs/nightwatch/all.md`;
