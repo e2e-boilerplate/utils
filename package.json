@@ -53,8 +53,8 @@
     "url": "git+https://github.com/e2e-boilerplate/utils.git"
   },
   "scripts": {
-    "actions:build:doc": "node -r esm runner.js --task runstatus --module wd",
-    "actions:runs": "node -r esm runner.js --task runs --username e2e-boilerplate --module wd",
+    "actions:build:doc": "node -r esm runner.js --task runstatus --module playwright",
+    "actions:runs": "node -r esm runner.js --task runs --username e2e-boilerplate --module playwright",
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
     "clean:list": "npx rimraf repos/*.json",
     "dependencies": "node -r esm runner.js --task dependencies --username e2e-boilerplate",
