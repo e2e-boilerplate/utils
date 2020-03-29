@@ -5,15 +5,14 @@ import { write } from "./exec";
 
 const moment = require("moment");
 
-const runs = [];
-
 async function buildResults(repo) {
-  runs.push(["No", "Updates at", "Conclusion"]);
-
   try {
     const { name } = repo;
 
     if (!miscRepos.includes(name)) {
+      const runs = [];
+      runs.push(["No", "Updates at", "Conclusion"]);
+
       const { workflow_runs } = require(`${rootDir}/${name}/.github/runs.json`);
 
       workflow_runs.forEach((run) => {
