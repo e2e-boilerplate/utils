@@ -160,6 +160,5 @@
 | 158 | cypress-typescript-webpack                        | Not Implemented |
 | 159 | cypress-typescript-webpack-assert                 | Not Implemented |
 | 160 | cypress-typescript-webpack-chai                   | Not Implemented |
-| 161 | cypress-typescript-webpack-chai-assert            | Not Implemented |
-| 162 | cypress-typescript-webpack-chai-expect            | Not Implemented |
-| 163 | cypress-typescript-webpack-expect                 | Not Implemented |
+| 161 | cypress-typescript-webpack-chai-expect            | Not Implemented |
+| 162 | cypress-typescript-webpack-expect                 | Not Implemented |
