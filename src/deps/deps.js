@@ -280,6 +280,12 @@ async function makeDeps(repo) {
           deps["@cypress/webpack-preprocessor"],
           "@cypress/webpack-preprocessor"
         );
+        dependencies.webpack = version(pkgJson.dependencies.webpack, deps.webpack, "webpack");
+        devDependencies["webpack-cli"] = version(
+          pkgJson.devDependencies["webpack-cli"],
+          deps["webpack-cli"],
+          "webpack-cli"
+        );
       }
     }
 

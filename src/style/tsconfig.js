@@ -50,7 +50,8 @@ async function makeTsconfig(repo) {
 
       if (parts.includes("cypress")) {
         data.compilerOptions.lib.push("dom");
-        data.compilerOptions.types.push("cypress");
+        data.compilerOptions.lib.push("es2015");
+        data.compilerOptions.types[0] = "cypress";
         delete data.compilerOptions.outDir;
       }
 
