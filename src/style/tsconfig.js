@@ -40,7 +40,7 @@ async function makeTsconfig(repo) {
         data.compilerOptions.types.push("mocha");
       }
 
-      if (parts.includes("chai")) {
+      if (parts.includes("chai") && !parts.includes("browserify")) {
         data.compilerOptions.types.push("chai");
       }
 

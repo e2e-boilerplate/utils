@@ -259,7 +259,6 @@ async function makeDeps(repo) {
     if (parts.includes("cypress")) {
       dependencies.cypress = version(pkgJson.dependencies.cypress, deps.cypress, "cypress");
       dependencies.rimraf = version(pkgJson.dependencies.rimraf, deps.rimraf, "rimraf");
-      dependencies["ts-loader"] = version(pkgJson.dependencies["ts-loader"], deps["ts-loader"], "ts-loader");
       devDependencies["eslint-plugin-cypress"] = version(
         pkgJson.devDependencies["eslint-plugin-cypress"],
         deps["eslint-plugin-cypress"],
@@ -274,6 +273,10 @@ async function makeDeps(repo) {
         );
       }
 
+      if (parts.includes("browserify", "typescript")) {
+        dependencies.tsify = version(pkgJson.dependencies.tsify, deps.tsify, "tsify");
+      }
+
       if (parts.includes("webpack")) {
         dependencies["@cypress/webpack-preprocessor"] = version(
           pkgJson.dependencies["@cypress/webpack-preprocessor"],
@@ -286,6 +289,9 @@ async function makeDeps(repo) {
           deps["webpack-cli"],
           "webpack-cli"
         );
+      }
+      if (parts.includes("webpack", "typescript")) {
+        dependencies["ts-loader"] = version(pkgJson.dependencies["ts-loader"], deps["ts-loader"], "ts-loader");
       }
     }
 
