@@ -283,6 +283,14 @@ async function makeDeps(repo) {
           deps["@cypress/webpack-preprocessor"],
           "@cypress/webpack-preprocessor"
         );
+        dependencies.webpack = version(pkgJson.dependencies.webpack, deps.webpack, "webpack");
+        devDependencies["webpack-cli"] = version(
+          pkgJson.devDependencies["webpack-cli"],
+          deps["webpack-cli"],
+          "webpack-cli"
+        );
+      }
+      if (parts.includes("webpack", "typescript")) {
         dependencies["ts-loader"] = version(pkgJson.dependencies["ts-loader"], deps["ts-loader"], "ts-loader");
       }
     }
@@ -358,7 +366,7 @@ async function makeDeps(repo) {
         deps["@wdio/local-runner"],
         "@wdio/local-runner"
       );
-      dependencies["@wdio/sync"] = version(pkgJson.dependencies["@wdio/sync"], deps["@wdio/sync"], "@wdio/sync");
+      dependencies["@wdio/sync"] = version(pkgJson.dependencies["@wdio/sync"], deps["@wdio/sync"]);
       dependencies["wdio-chromedriver-service"] = version(
         pkgJson.dependencies["wdio-chromedriver-service"],
         deps["wdio-chromedriver-service"],
