@@ -43,8 +43,8 @@
   ],
   "license": "MIT",
   "lint-staged": {
-    "*.js": [
-      "eslint --fix"
+    "*.{js,json,md}": [
+      "prettier --write"
     ]
   },
   "name": "utils",
