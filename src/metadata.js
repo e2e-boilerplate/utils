@@ -4,6 +4,20 @@ import { getFrameworkName, getTech, sortObject } from "./common";
 import { write } from "./exec";
 import makeDeps from "./deps/deps";
 
+const lintStagedTypescript = {
+  "*.{js,ts,json,md}": ["prettier --write"] // eslint-disable-line
+};
+
+const husky = {
+  hooks: {
+    "pre-commit": "lint-staged" // eslint-disable-line
+  } // eslint-disable-line
+};
+
+const lintStaged = {
+  "*.{js,json,md}": ["prettier --write"] // eslint-disable-line
+};
+
 function buildKeywords(name) {
   const keysFromRepoName = name.toLowerCase().split("-");
 
@@ -68,6 +82,7 @@ async function updateMeta(repo) {
     const pkgJson = JSON.parse(data);
     const script = pkgJson.scripts;
     const path = `${rootDir}/${name}/package.json`;
+    const parts = name.split("-");
 
     pkgJson.keywords = buildKeywords(name);
     pkgJson.description = buildDescription(name);
@@ -85,7 +100,15 @@ async function updateMeta(repo) {
     if (pkgJson.main) {
       delete pkgJson.main;
     }
+
     pkgJson.license = "MIT";
+    pkgJson.husky = husky;
+
+    if (!parts.includes("typescript")) {
+      pkgJson["lint-staged"] = lintStaged;
+    } else {
+      pkgJson["lint-staged"] = lintStagedTypescript;
+    }
 
     if (!miscRepos.includes(name)) {
       const { dependencies, devDependencies } = await makeDeps(repo);
