@@ -8,14 +8,14 @@ const lintStagedTypescript = {
   "*.{js,ts,json,md}": ["prettier --write"], // eslint-disable-line
 };
 
-const husky = {
-  hooks: {
-    "pre-commit": "lint-staged", // eslint-disable-line
-  }, // eslint-disable-line
-};
-
 const lintStaged = {
   "*.{js,json,md}": ["prettier --write"], // eslint-disable-line
+};
+
+const husky = {
+  hooks: {
+    "pre-commit": "lint-staged --allow-empty", // eslint-disable-line
+  }, // eslint-disable-line
 };
 
 const cypressCucumberPreprocessor = {
