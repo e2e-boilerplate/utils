@@ -305,6 +305,14 @@ async function makeDeps(repo) {
           "cypress-jest-adapter"
         );
       }
+
+      if (parts.includes("cucumber")) {
+        dependencies["cypress-cucumber-preprocessor"] = version(
+          pkgJson.dependencies["cypress-cucumber-preprocessor"],
+          deps["cypress-cucumber-preprocessor"],
+          "cypress-cucumber-preprocessor"
+        );
+      }
     }
 
     if (parts.includes("nightwatch")) {

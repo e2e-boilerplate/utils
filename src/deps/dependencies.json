@@ -32,6 +32,7 @@
   "chromedriver": "80.0.1",
   "cucumber": "6.0.5",
   "cypress": "4.3.0",
+  "cypress-cucumber-preprocessor": "2.2.0",
   "cypress-jest-adapter": "0.1.1",
   "eslint": "6.8.0",
   "eslint-config-airbnb-base": "14.1.0",
