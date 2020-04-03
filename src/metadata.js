@@ -5,17 +5,21 @@ import { write } from "./exec";
 import makeDeps from "./deps/deps";
 
 const lintStagedTypescript = {
-  "*.{js,ts,json,md}": ["prettier --write"] // eslint-disable-line
+  "*.{js,ts,json,md}": ["prettier --write"], // eslint-disable-line
 };
 
 const husky = {
   hooks: {
-    "pre-commit": "lint-staged" // eslint-disable-line
-  } // eslint-disable-line
+    "pre-commit": "lint-staged", // eslint-disable-line
+  }, // eslint-disable-line
 };
 
 const lintStaged = {
-  "*.{js,json,md}": ["prettier --write"] // eslint-disable-line
+  "*.{js,json,md}": ["prettier --write"], // eslint-disable-line
+};
+
+const cypressCucumberPreprocessor = {
+  nonGlobalStepDefinitions: true, // eslint-disable-line
 };
 
 function buildKeywords(name) {
@@ -108,6 +112,10 @@ async function updateMeta(repo) {
       pkgJson["lint-staged"] = lintStaged;
     } else {
       pkgJson["lint-staged"] = lintStagedTypescript;
+    }
+
+    if (parts.includes("cypress") && parts.includes("cucumber")) {
+      pkgJson["cypress-cucumber-preprocessor"] = cypressCucumberPreprocessor;
     }
 
     if (!miscRepos.includes(name)) {
