@@ -64,10 +64,7 @@ function buildList() {
 }
 
 async function matrix() {
-  logger.info("[ start ... ]");
   buildList();
-  logger.warn(framework);
-  logger.info("[ end ... ]");
   const results = getPaths(framework);
 
   const list = [];

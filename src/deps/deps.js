@@ -204,7 +204,7 @@ async function makeDeps(repo) {
       dependencies.jasmine = version(pkgJson.dependencies.jasmine, deps.jasmine, "jasmine");
     }
 
-    if (parts.includes("jest")) {
+    if (parts.includes("jest") && !parts.includes("cypress")) {
       dependencies.jest = version(pkgJson.dependencies.jest, deps.jest, "jest");
     }
 
@@ -292,6 +292,18 @@ async function makeDeps(repo) {
       }
       if (parts.includes("webpack", "typescript")) {
         dependencies["ts-loader"] = version(pkgJson.dependencies["ts-loader"], deps["ts-loader"], "ts-loader");
+      }
+
+      if (parts.includes("typescript")) {
+        dependencies["ts-loader"] = version(pkgJson.dependencies["ts-loader"], deps["ts-loader"], "ts-loader");
+      }
+
+      if (parts.includes("jest")) {
+        dependencies["cypress-jest-adapter"] = version(
+          pkgJson.dependencies["cypress-jest-adapter"],
+          deps["cypress-jest-adapter"],
+          "cypress-jest-adapter"
+        );
       }
     }
 
