@@ -51,8 +51,20 @@ async function makeTsconfig(repo) {
       if (parts.includes("cypress")) {
         data.compilerOptions.lib.push("dom");
         data.compilerOptions.lib.push("es2015");
-        data.compilerOptions.types[0] = "cypress";
+
         delete data.compilerOptions.outDir;
+
+        if (parts.includes("typescript") && parts.includes("jest")) {
+          data.compilerOptions.types[0] = "jest";
+          data.compilerOptions.types[1] = "cypress";
+          data.compilerOptions.skipLibCheck = true;
+          data.compilerOptions.paths = {
+            chai: ["./noop.d.ts"], // eslint-disable-line
+          };
+          data.compilerOptions.baseUrl = "../node_modules";
+        } else {
+          data.compilerOptions.types[0] = "cypress";
+        }
       }
 
       if (parts.includes("webdriverio") && parts.includes("jasmine")) {

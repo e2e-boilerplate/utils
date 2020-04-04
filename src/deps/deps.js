@@ -204,7 +204,7 @@ async function makeDeps(repo) {
       dependencies.jasmine = version(pkgJson.dependencies.jasmine, deps.jasmine, "jasmine");
     }
 
-    if (parts.includes("jest")) {
+    if (parts.includes("jest") && !parts.includes("cypress")) {
       dependencies.jest = version(pkgJson.dependencies.jest, deps.jest, "jest");
     }
 
@@ -293,6 +293,26 @@ async function makeDeps(repo) {
       if (parts.includes("webpack", "typescript")) {
         dependencies["ts-loader"] = version(pkgJson.dependencies["ts-loader"], deps["ts-loader"], "ts-loader");
       }
+
+      if (parts.includes("typescript")) {
+        dependencies["ts-loader"] = version(pkgJson.dependencies["ts-loader"], deps["ts-loader"], "ts-loader");
+      }
+
+      if (parts.includes("jest")) {
+        dependencies["cypress-jest-adapter"] = version(
+          pkgJson.dependencies["cypress-jest-adapter"],
+          deps["cypress-jest-adapter"],
+          "cypress-jest-adapter"
+        );
+      }
+
+      if (parts.includes("cucumber")) {
+        dependencies["cypress-cucumber-preprocessor"] = version(
+          pkgJson.dependencies["cypress-cucumber-preprocessor"],
+          deps["cypress-cucumber-preprocessor"],
+          "cypress-cucumber-preprocessor"
+        );
+      }
     }
 
     if (parts.includes("nightwatch")) {
@@ -366,7 +386,7 @@ async function makeDeps(repo) {
         deps["@wdio/local-runner"],
         "@wdio/local-runner"
       );
-      dependencies["@wdio/sync"] = version(pkgJson.dependencies["@wdio/sync"], deps["@wdio/sync"]);
+      dependencies["@wdio/sync"] = version(pkgJson.dependencies["@wdio/sync"], deps["@wdio/sync"], "@wdio/sync");
       dependencies["wdio-chromedriver-service"] = version(
         pkgJson.dependencies["wdio-chromedriver-service"],
         deps["wdio-chromedriver-service"],

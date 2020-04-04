@@ -9,53 +9,53 @@ import {
   implementedOnly,
   notImplementedOnly,
   chaiAssertionTypes,
-  assertionType,
-  bundlerType,
-  typescriptTranspiler,
-  esModuleTranspiler,
   javascriptType,
-  moduleType,
 } from "./common";
 import { removeDuplicates } from "../common";
 
 const frameworks = ["cypress"];
+const moduleType = ["es-modules"];
+const cucumberType = ["cucumber", "no-cucumber"];
+const preprocessorType = ["browserify", "webpack", "no-preprocessor"];
+const assertionType = ["chai", "jest"];
+const jestAssertionType = ["expect"];
 
 const chai = {};
 const assertion = {};
-const bundler = {};
-const typescript = {};
-const esModule = {};
+const jestAssertion = {};
 const javascript = {};
 const module = {};
 const framework = {};
+const cucumber = {};
+const preprocessor = {};
 
 function buildList() {
   chaiAssertionTypes.forEach((c) => {
     chai[c] = {};
   });
 
+  jestAssertionType.forEach((a) => {
+    jestAssertion[a] = {};
+  });
+
   assertionType.forEach((a) => {
-    assertion[a] = a === "chai" ? chai : {};
+    assertion[a] = a === "chai" ? chai : jestAssertion;
   });
 
-  bundlerType.forEach((b) => {
-    bundler[b] = assertion;
+  cucumberType.forEach((c) => {
+    cucumber[c] = assertion;
   });
 
-  typescriptTranspiler.forEach((t) => {
-    typescript[t] = bundler;
-  });
-
-  esModuleTranspiler.forEach((e) => {
-    esModule[e] = bundler;
+  preprocessorType.forEach((p) => {
+    preprocessor[p] = cucumber;
   });
 
   javascriptType.forEach((j) => {
-    javascript[j] = j === "non-typescript" ? esModule : typescript;
+    javascript[j] = j === "non-typescript" ? cucumber : preprocessor;
   });
 
   moduleType.forEach((m) => {
-    module[m] = m === "commonjs" ? bundler : javascript;
+    module[m] = javascript;
   });
 
   frameworks.forEach((f) => {
@@ -74,13 +74,14 @@ async function matrix() {
   results.forEach((result) => {
     const path = Array.from(result.toString().split(","));
     const noNonTypeScript = path.filter((part) => part !== "non-typescript");
-    const noNone = noNonTypeScript.filter((part) => part !== "none");
+    const noNonTranspiler = noNonTypeScript.filter((part) => part !== "no-preprocessor");
+    const noCucumber = noNonTranspiler.filter((part) => part !== "no-cucumber");
 
-    if (noNone.includes("es-modules") && noNone.includes("typescript")) {
-      delete noNone[1];
+    if (noCucumber.includes("es-modules") && noCucumber.includes("typescript")) {
+      delete noCucumber[1];
     }
 
-    const name = noNone.filter((n) => n !== "");
+    const name = noCucumber.filter((n) => n !== "");
 
     list.push(name.join("-"));
     if (implemented(name.join("-"))) {

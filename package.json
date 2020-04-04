@@ -9,7 +9,7 @@
     "markdown-table": "2.0.0",
     "minimist": "1.2.5",
     "moment": "2.24.0",
-    "pino": "6.0.0",
+    "pino": "6.1.1",
     "pino-pretty": "3.6.1",
     "rimraf": "3.0.2"
   },
@@ -24,13 +24,13 @@
     "eslint-plugin-prettier": "3.1.2",
     "esm": "3.2.25",
     "husky": "4.2.3",
-    "lint-staged": "10.0.10",
+    "lint-staged": "10.1.1",
     "prettier": "2.0.2"
   },
   "homepage": "https://github.com/e2e-boilerplate/utils#readme",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged --allow-empty"
     }
   },
   "keywords": [
@@ -43,8 +43,8 @@
   ],
   "license": "MIT",
   "lint-staged": {
-    "*.js": [
-      "eslint --fix"
+    "*.{js,json,md}": [
+      "prettier --write"
     ]
   },
   "name": "utils",
