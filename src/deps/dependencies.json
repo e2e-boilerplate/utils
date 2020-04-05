@@ -30,7 +30,7 @@
   "babel-jest": "25.2.6",
   "chai": "4.2.0",
   "chai-as-promised": "7.1.1",
-  "chromedriver": "80.0.1",
+  "chromedriver": "80.0.2",
   "cucumber": "6.0.5",
   "cypress": "4.3.0",
   "cypress-cucumber-preprocessor": "2.2.0",
@@ -72,5 +72,5 @@
   "webpack": "4.42.1",
   "webpack-cli": "3.3.11",
   "wd": "1.12.1",
-  "wdio-chromedriver-service": "5.0.2"
+  "wdio-chromedriver-service": "6.0.1"
 }
