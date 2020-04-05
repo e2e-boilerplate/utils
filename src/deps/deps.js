@@ -266,7 +266,7 @@ async function makeDeps(repo) {
       );
 
       if (parts.includes("browserify")) {
-        dependencies["@cypress/browserify-preprocessor"] = version(
+        devDependencies["@cypress/browserify-preprocessor"] = version(
           pkgJson.dependencies["@cypress/browserify-preprocessor"],
           deps["@cypress/browserify-preprocessor"],
           "@cypress/browserify-preprocessor"
@@ -294,10 +294,6 @@ async function makeDeps(repo) {
         dependencies["ts-loader"] = version(pkgJson.dependencies["ts-loader"], deps["ts-loader"], "ts-loader");
       }
 
-      if (parts.includes("typescript")) {
-        dependencies["ts-loader"] = version(pkgJson.dependencies["ts-loader"], deps["ts-loader"], "ts-loader");
-      }
-
       if (parts.includes("jest")) {
         dependencies["cypress-jest-adapter"] = version(
           pkgJson.dependencies["cypress-jest-adapter"],
@@ -312,6 +308,18 @@ async function makeDeps(repo) {
           deps["cypress-cucumber-preprocessor"],
           "cypress-cucumber-preprocessor"
         );
+
+        if (parts.includes("typescript")) {
+          devDependencies["@types/cypress-cucumber-preprocessor"] = version(
+            pkgJson.dependencies["@types/cypress-cucumber-preprocessor"],
+            deps["@types/cypress-cucumber-preprocessor"],
+            "@types/cypress-cucumber-preprocessor"
+          );
+
+          if (!parts.includes("webpackwebpack")) {
+            dependencies.tsify = version(pkgJson.dependencies.tsify, deps.tsify, "tsify");
+          }
+        }
       }
     }
 
