@@ -25,7 +25,9 @@ async function hasPath(path) {
 async function createPath(path) {
   try {
     logger.info(`Creating: ${path}`);
-    await mkdirSync(path);
+    if (!(await hasPath(path))) {
+      await mkdirSync(path);
+    }
   } catch (error) {
     logger.error(`Creating path: ${path} : ${error}`);
   }

@@ -83,7 +83,8 @@
     "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplate",
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate",
     "tsconfig": "node -r esm runner.js --task tsconfig --username e2e-boilerplate",
-    "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate"
+    "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate",
+    "traffic": "node -r esm runner.js --task traffic --username e2e-boilerplate --token add-token-here"
   },
   "version": "1.0.1"
 }

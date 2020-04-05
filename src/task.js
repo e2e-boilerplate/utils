@@ -11,6 +11,7 @@ import makeTslint from "./style/tslint";
 import makeDeps from "./deps/deps";
 import runsResult from "./runs";
 import buildResults from "./build";
+import traffic from "./docs/traffic";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -132,6 +133,12 @@ async function runsStatus(repo) {
   await buildResults(repo);
 }
 
+async function repoTraffic(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await traffic(repo);
+}
+
 export {
   audit,
   dependencies,
@@ -149,6 +156,7 @@ export {
   lint,
   runs,
   runsStatus,
+  repoTraffic,
   setFunding,
   tsconfig,
   tslint,
