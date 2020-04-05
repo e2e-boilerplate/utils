@@ -1,0 +1,12 @@
+| referrer                                                           | count | uniques |
+| :----------------------------------------------------------------- | :---- | :------ |
+| /e2e-boilerplate/utils/blob/master/docs/implemented.md             | 307   | 3       |
+| /e2e-boilerplate/utils                                             | 51    | 4       |
+| /e2e-boilerplate/utils/tree/master/docs/cypress                    | 51    | 2       |
+| /e2e-boilerplate/utils/tree/master/docs                            | 48    | 2       |
+| /e2e-boilerplate/utils/blob/master/docs/cypress/all.md             | 24    | 2       |
+| /e2e-boilerplate/utils/blob/master/docs/cypress/implemented.md     | 20    | 2       |
+| /e2e-boilerplate/utils/blob/master/docs/cypress/not-implemented.md | 15    | 2       |
+| /e2e-boilerplate/utils/tree/master/src                             | 10    | 3       |
+| /e2e-boilerplate/utils/tree/master/src/deps                        | 4     | 3       |
+| /e2e-boilerplate/utils/blob/master/runs.md                         | 4     | 1       |
