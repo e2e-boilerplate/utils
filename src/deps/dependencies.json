@@ -7,7 +7,7 @@
   "@babel/register": "7.9.0",
   "@babel/runtime": "7.9.2",
   "@cypress/browserify-preprocessor": "2.1.4",
-  "@cypress/webpack-preprocessor": "4.1.5",
+  "@cypress/webpack-preprocessor": "5.0.0",
   "@types/chai": "4.2.11",
   "@types/cypress-cucumber-preprocessor": "1.14.1",
   "@types/jasmine": "3.5.10",
