@@ -418,10 +418,6 @@ async function makeDeps(repo) {
       }
     }
 
-    if (parts.includes("wd", "mocha")) {
-      dependencies.puppeteer = version(pkgJson.dependencies.puppeteer, deps.puppeteer, "puppeteer");
-    }
-
     if (parts.includes("ava", "babel")) {
       devDependencies["@ava/babel"] = version(pkgJson.devDependencies["@ava/babel"], deps["@ava/babel"], "@ava/babel");
     }
