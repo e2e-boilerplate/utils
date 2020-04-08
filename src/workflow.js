@@ -49,12 +49,12 @@ async function workflow(repo) {
     nodejs.jobs.build.steps.push(build);
 
     if (keys.includes("update:webdriver")) {
-      const update = { name: "update:webdriver", run: "npm run update:webdriver" };
+      const update = { name: "update:webdriver", run: "npm run update:webdriver -- --versions.chrome 80.0.3987.106" };
       nodejs.jobs.build.steps.push(update);
     }
 
     if (keys.includes("start:webdriver")) {
-      const start = { name: "start:webdriver", run: "npm run start:webdriver &" };
+      const start = { name: "start:webdriver", run: "npm run start:webdriver -- --versions.chrome 80.0.3987.106 &" };
       nodejs.jobs.build.steps.push(start);
     }
 
