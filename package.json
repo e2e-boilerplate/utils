@@ -53,8 +53,8 @@
     "url": "git+https://github.com/e2e-boilerplate/utils.git"
   },
   "scripts": {
-    "actions:build:doc": "node -r esm runner.js --task runstatus --module cypress",
-    "actions:runs": "node -r esm runner.js --task runs --username e2e-boilerplate --module cypress",
+    "actions:build:doc": "node -r esm runner.js --task runstatus --token a85095fd6863080ca068519553c45a9d33cfa970",
+    "actions:runs": "node -r esm runner.js --task runs --username e2e-boilerplate --token a85095fd6863080ca068519553c45a9d33cfa970",
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
     "clean:list": "npx rimraf repos/*.json",
     "dependencies": "node -r esm runner.js --task dependencies --username e2e-boilerplate",
@@ -79,10 +79,10 @@
     "npm:lint": "npx eslint --ext .js ./ --fix",
     "npm:lint:repos": "node -r esm runner.js --task lint --username e2e-boilerplate",
     "set:funding": "node -r esm runner.js --task funding --username e2e-boilerplate",
-    "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplate --keywords \"e2e-e2e tests-boilerplate-example-integration test\" --author \"Girma Nigusse <xgirma@gmail.com>\" --module cypress",
+    "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplate --keywords \"e2e-e2e tests-boilerplate-example-integration test\" --author \"Girma Nigusse <xgirma@gmail.com>\"",
     "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplate",
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate",
-    "traffic": "node -r esm runner.js --task traffic --username e2e-boilerplate --token add-token-here",
+    "traffic": "node -r esm runner.js --task traffic --username e2e-boilerplate --token a85095fd6863080ca068519553c45a9d33cfa970",
     "tsconfig": "node -r esm runner.js --task tsconfig --username e2e-boilerplate",
     "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate"
   },

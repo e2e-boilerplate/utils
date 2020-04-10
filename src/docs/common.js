@@ -6,7 +6,7 @@ export const assertionType = ["assert", "expect", "chai", "none"];
 export const runnerType = ["jasmine", "mocha", "jest", "ava", "tape", "cucumber", "none"];
 export const bundlerType = ["webpack", "browserify", "none"];
 export const typescriptTranspiler = ["tsc", "ts-node", "ts-jest", "none"];
-export const esModuleTranspiler = ["babel", "esm", "none"];
+export const esModuleTranspiler = ["babel", "esm", "none", "babel-jest"];
 export const javascriptType = ["non-typescript", "typescript"];
 export const moduleType = ["commonjs", "es-modules"];
 
