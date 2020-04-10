@@ -2,7 +2,7 @@ name: utils
 'on':
   push: null
   schedule:
-    - cron: 10 7 2-31/2 * *
+    - cron: 59 5 2-31/2 * *
 jobs:
   build:
     runs-on: ubuntu-latest
