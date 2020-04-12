@@ -47,11 +47,6 @@ async function makeDeps(repo) {
 
       devDependencies.tslint = version(pkgJson.devDependencies.tslint, deps.tslint, "tslint");
       dependencies.typescript = version(pkgJson.dependencies.typescript, deps.typescript, "typescript");
-      devDependencies["lint-staged"] = version(
-        pkgJson.devDependencies["lint-staged"],
-        deps["lint-staged"],
-        "lint-staged"
-      );
 
       if (!parts.includes("cypress")) {
         devDependencies["@types/node"] = version(
@@ -230,10 +225,12 @@ async function makeDeps(repo) {
 
     if (parts.includes("ts", "jest") && !parts.includes("node")) {
       dependencies["ts-jest"] = version(pkgJson.dependencies["ts-jest"], deps["ts-jest"], "ts-jest");
+      delete dependencies["ts-node"];
     }
 
-    if (parts.includes("ts", "node")) {
+    if (parts.includes("ts", "node") && !parts.includes("jest")) {
       dependencies["ts-node"] = version(pkgJson.dependencies["ts-node"], deps["ts-node"], "ts-node");
+      delete dependencies["ts-jest"];
     }
 
     if (parts.includes("tape", "typescript")) {
@@ -421,6 +418,12 @@ async function makeDeps(repo) {
     if (parts.includes("ava", "babel")) {
       devDependencies["@ava/babel"] = version(pkgJson.devDependencies["@ava/babel"], deps["@ava/babel"], "@ava/babel");
     }
+
+    devDependencies["lint-staged"] = version(
+      pkgJson.devDependencies["lint-staged"],
+      deps["lint-staged"],
+      "lint-staged"
+    );
 
     logger.info(`dependencies: ${name}`);
     logger.info(`dependencies ${JSON.stringify(dependencies, null, 2)}`);

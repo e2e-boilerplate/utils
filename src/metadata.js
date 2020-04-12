@@ -43,8 +43,12 @@ function buildKeywords(name) {
     keysFromRepoName.push("ts-jest");
   }
 
-  if (keysFromRepoName.includes("selenium" && "webdriver")) {
+  if (keysFromRepoName.includes("selenium" && "webdriver") && !keysFromRepoName.includes("manager")) {
     keysFromRepoName.push("selenium-webdriver");
+  }
+
+  if (keysFromRepoName.includes("selenium" && "manager") && !keysFromRepoName.includes("webdriver")) {
+    keysFromRepoName.push("webdriver manager");
   }
 
   if (keysFromRepoName.includes("es && modules")) {
