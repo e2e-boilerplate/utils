@@ -67,6 +67,7 @@
     "doc:webdriverio": "node -r esm ./src/docs/webdriverio.js --username e2e-boilerplate",
     "docs:implemented": "node -r esm ./src/docs/implmented.js --username e2e-boilerplate",
     "eslintrc": "node -r esm runner.js --task eslintrc --username e2e-boilerplate",
+    "gen:cron": "node -r esm runner.js --task cron --username e2e-boilerplate",
     "get:repos": "node -r esm src/repositories.js --pages 2 --username e2e-boilerplate",
     "git:add": "node -r esm runner.js --task add --username e2e-boilerplate",
     "git:clone": "node -r esm runner.js --task clone --username e2e-boilerplate",
@@ -83,8 +84,7 @@
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate -module wd",
     "traffic": "node -r esm runner.js --task traffic --username e2e-boilerplate --token xyz",
     "tsconfig": "node -r esm runner.js --task tsconfig --username e2e-boilerplate",
-    "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate",
-    "gen:cron": "node -r esm runner.js --task cron --username e2e-boilerplate"
+    "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate"
   },
   "version": "1.0.1"
 }
