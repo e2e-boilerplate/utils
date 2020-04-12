@@ -56,7 +56,6 @@
     "actions:build:doc": "node -r esm runner.js --task runstatus",
     "actions:runs": "node -r esm runner.js --task runs --username e2e-boilerplate",
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
-    "clean:list": "npx rimraf repos/*.json",
     "dependencies": "node -r esm runner.js --task dependencies --username e2e-boilerplate",
     "doc:cypress": "node -r esm ./src/docs/cypress.js --username e2e-boilerplate",
     "doc:nightwatch": "node -r esm ./src/docs/nightwatch.js --username e2e-boilerplate",
