@@ -20,6 +20,7 @@ import {
   tsconfig,
   tslint,
   repoTraffic,
+  genCron,
 } from "./src/task";
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
@@ -88,6 +89,9 @@ async function taskPicker(repo) {
       break;
     case "traffic":
       await repoTraffic(repo);
+      break;
+    case "cron":
+      await genCron(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);

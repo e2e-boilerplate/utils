@@ -1,13 +1,23 @@
 import { safeDump } from "js-yaml";
 import { readFileSync } from "fs";
 import { logger, rootDir } from "./constants";
-import { clear, createPath, getFrameworkName, getRandomCron, hasPath } from "./common";
+import { clear, createPath, getFrameworkName, getRandomCron, hasPath, getMetaValue } from "./common";
 import { write } from "./exec";
+
+async function setCron(name) {
+  let value;
+  try {
+    value = await getMetaValue(name, "cron");
+  } catch (error) {
+    logger.error(error);
+  }
+  return value || getRandomCron();
+}
 
 async function workflow(repo) {
   const { name } = repo;
   const parts = name.split("-");
-  const cron = getRandomCron();
+  const cron = await setCron(name);
   const nodejs = {
     name,
     on: { push: null, schedule: [{ cron }] },

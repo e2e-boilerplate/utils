@@ -1,17 +1,10 @@
 import { writeFileSync } from "fs";
 import { request } from "https";
-import { hasRepositoriesList, isNumeric } from "./validators";
+import { isNumeric } from "./validators";
 import { username, pages, logger, options } from "./constants";
-import { clearReposList } from "./common";
 
-async function getReposList() {
+function getReposList() {
   try {
-    const hasReposList = await hasRepositoriesList();
-
-    if (hasReposList) {
-      await clearReposList();
-    }
-
     const count = isNumeric(pages) ? pages : 2;
 
     for (let i = 0; i < count; i += 1) {
@@ -51,4 +44,7 @@ async function getReposList() {
   }
 }
 
-export { getReposList, clearReposList };
+getReposList();
+
+// eslint-disable-next-line import/prefer-default-export
+export { getReposList };

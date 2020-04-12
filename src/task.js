@@ -12,6 +12,7 @@ import makeDeps from "./deps/deps";
 import runsResult from "./runs";
 import buildResults from "./build";
 import traffic from "./docs/traffic";
+import cron from "./cron";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -139,6 +140,12 @@ async function repoTraffic(repo) {
   await traffic(repo);
 }
 
+async function genCron(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await cron(name);
+}
+
 export {
   audit,
   dependencies,
@@ -160,4 +167,5 @@ export {
   setFunding,
   tsconfig,
   tslint,
+  genCron,
 };

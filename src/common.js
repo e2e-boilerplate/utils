@@ -1,6 +1,7 @@
 import * as rimraf from "rimraf";
-import { existsSync, mkdirSync } from "fs";
-import { frameworks, logger, miscRepos } from "./constants";
+import { existsSync, mkdirSync, readFileSync } from "fs";
+import { write } from "./exec";
+import { frameworks, logger, miscRepos, rootDir } from "./constants";
 
 async function clear(path) {
   try {
@@ -176,6 +177,32 @@ function getFrameworkName(name) {
   return frameworkName;
 }
 
+async function writeMeta(data, path) {
+  const update = JSON.stringify(sortObject(data), null, 2);
+  await write(path, update, "utf8");
+}
+
+async function getMetaValue(name, key) {
+  let value;
+  try {
+    const path = `${rootDir}/${name}/.github/meta.json`;
+    const metaPath = `${rootDir}/${name}/.github`;
+
+    if (!(await hasPath(path))) {
+      await createPath(metaPath);
+      const obj = {};
+      await writeMeta(obj, path);
+    } else {
+      const metaData = readFileSync(`${metaPath}/meta.json`);
+      const metaJson = JSON.parse(metaData);
+      value = metaJson[key];
+    }
+  } catch (error) {
+    logger.error(`Get meta value: ${error}`);
+  }
+  return value;
+}
+
 function getRandomCron() {
   const cron = [
     "0 0 1-31/2 * *",
@@ -277,4 +304,5 @@ export {
   hasPath,
   sortObject,
   removeDuplicates,
+  getMetaValue,
 };
