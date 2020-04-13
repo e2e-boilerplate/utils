@@ -1,21 +1,31 @@
 import { rootDir, logger } from "../constants";
-import { sortObject } from "../common";
 import { write } from "../exec";
 
 function config(name) {
   const parts = name.split("-");
+  let data;
 
-  const data = {
-    testEnvironment: "node",
-    testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
-    testPathIgnorePatterns: ["/node_modules/"],
-    setupFilesAfterEnv: ["./jest.setup.js"],
-  };
+  /*eslint-disable */
+  data = `module.exports = {
+  testEnvironment: "node",
+  testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
+  testPathIgnorePatterns: ["/node_modules/"],
+  setupFilesAfterEnv: ["./jest.setup.js"],
+};`;
 
-  if (!parts.includes("typescript", "ts", "jest")) {
-    data.transform = {
-      "^.+\\.tsx?$": "ts-jest",
-    };
+  const typescript = `module.exports = {
+  testEnvironment: "node",
+  testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
+  testPathIgnorePatterns: ["/node_modules/"],
+  setupFilesAfterEnv: ["./jest.setup.js"],
+  transform: {
+    "^.+\\.tsx?$": "ts-jest"
+  }
+};`;
+  /* eslint-enable */
+
+  if (parts.includes("typescript", "ts", "jest")) {
+    data = typescript;
   }
 
   return data;
@@ -31,14 +41,12 @@ async function jestConfig(name) {
     if (parts.includes("jest") && !parts.includes("cypress")) {
       const configPath = `${rootDir}/${name}/jest.config.js`;
       const configData = config(name);
-      const c = JSON.stringify(sortObject(configData), null, 2);
-      await write(configPath, c, "utf8");
+      await write(configPath, configData, "utf8");
       logger.info(`jest.config.js ${name}`);
 
       const setupPath = `${rootDir}/${name}/jest.setup.js`;
       const setupData = setup(name);
-      const s = JSON.stringify(sortObject(setupData), null, 2);
-      await write(setupPath, s, "utf8");
+      await write(setupPath, setupData, "utf8");
       logger.info(`jest.setup.js ${name}`);
     }
   } catch (error) {
