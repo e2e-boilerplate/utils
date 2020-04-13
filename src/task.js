@@ -14,6 +14,7 @@ import buildResults from "./build";
 import traffic from "./docs/traffic";
 import cron from "./cron";
 import jestConfig from "./config/jest";
+import mochaConfig from "./config/mocha";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -153,6 +154,12 @@ async function genJestConfig(repo) {
   await jestConfig(name);
 }
 
+async function genMochaConfig(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await mochaConfig(name);
+}
+
 export {
   audit,
   dependencies,
@@ -176,4 +183,5 @@ export {
   tslint,
   genCron,
   genJestConfig,
+  genMochaConfig,
 };

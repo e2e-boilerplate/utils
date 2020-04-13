@@ -22,6 +22,7 @@ import {
   repoTraffic,
   genCron,
   genJestConfig,
+  genMochaConfig,
 } from "./src/task";
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
@@ -96,6 +97,9 @@ async function taskPicker(repo) {
       break;
     case "jest":
       await genJestConfig(repo);
+      break;
+    case "mocha":
+      await genMochaConfig(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);
