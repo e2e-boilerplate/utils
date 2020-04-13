@@ -13,6 +13,7 @@ import runsResult from "./runs";
 import buildResults from "./build";
 import traffic from "./docs/traffic";
 import cron from "./cron";
+import jestConfig from "./config/jest";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -146,6 +147,12 @@ async function genCron(repo) {
   await cron(name);
 }
 
+async function genJestConfig(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await jestConfig(name);
+}
+
 export {
   audit,
   dependencies,
@@ -168,4 +175,5 @@ export {
   tsconfig,
   tslint,
   genCron,
+  genJestConfig,
 };
