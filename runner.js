@@ -23,6 +23,7 @@ import {
   genCron,
   genJestConfig,
   genMochaConfig,
+  genProtractorConfig,
 } from "./src/task";
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
@@ -100,6 +101,9 @@ async function taskPicker(repo) {
       break;
     case "mocha":
       await genMochaConfig(repo);
+      break;
+    case "protractor":
+      await genProtractorConfig(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);

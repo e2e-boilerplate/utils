@@ -19,7 +19,7 @@ async function mochaConfig(name) {
       logger.info(`.mocharc.js ${name}`);
     }
   } catch (error) {
-    logger.error(`jest ${error}`);
+    logger.error(`.mocharc.js ${error}`);
   }
 }
 
