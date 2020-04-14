@@ -24,6 +24,7 @@ import {
   genJestConfig,
   genMochaConfig,
   genProtractorConfig,
+  genWebdriverioConfig,
 } from "./src/task";
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
@@ -104,6 +105,9 @@ async function taskPicker(repo) {
       break;
     case "protractor":
       await genProtractorConfig(repo);
+      break;
+    case "webdriverio":
+      await genWebdriverioConfig(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);

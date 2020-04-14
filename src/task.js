@@ -16,6 +16,7 @@ import cron from "./cron";
 import jestConfig from "./config/jest";
 import mochaConfig from "./config/mocha";
 import protractorConfig from "./config/protractor";
+import wdioConfig from "./config/webdriverio";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -167,6 +168,12 @@ async function genProtractorConfig(repo) {
   await protractorConfig(name);
 }
 
+async function genWebdriverioConfig(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await wdioConfig(name);
+}
+
 export {
   audit,
   dependencies,
@@ -192,4 +199,5 @@ export {
   genJestConfig,
   genMochaConfig,
   genProtractorConfig,
+  genWebdriverioConfig,
 };

@@ -413,6 +413,14 @@ async function makeDeps(repo) {
           "@wdio/mocha-framework"
         );
       }
+
+      if (parts.includes("cucumber")) {
+        dependencies["@wdio/cucumber-framework"] = version(
+          pkgJson.dependencies["@wdio/cucumber-framework"],
+          deps["@wdio/cucumber-framework"],
+          "@wdio/cucumber-framework"
+        );
+      }
     }
 
     if (parts.includes("ava", "babel")) {

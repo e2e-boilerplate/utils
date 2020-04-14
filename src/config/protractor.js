@@ -46,7 +46,7 @@ async function protractorConfig(name) {
       const framework = parts.includes("mocha") ? mocha : jasmine;
       const mochaOpts = parts.includes("mocha") ? mochaOp : noMochaOp;
       const specs = parts.includes("typescript")
-        ? `const specs = ["spec/*.spec.ts"];`
+        ? `const specs = ["spec/*.spec.{js,ts}"];`
         : `const specs = ["spec/*.spec.js"];`;
 
       const start =

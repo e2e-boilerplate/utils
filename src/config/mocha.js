@@ -1,7 +1,7 @@
 import { rootDir, logger } from "../constants";
 import { write } from "../exec";
 
-async function mochaConfig(name) {
+async function webdriverIoConfig(name) {
   /*eslint-disable */
   const data = `module.exports = {
   extension: ["js"],
@@ -23,4 +23,4 @@ async function mochaConfig(name) {
   }
 }
 
-export default mochaConfig;
+export default webdriverIoConfig;
