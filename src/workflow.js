@@ -61,11 +61,17 @@ async function workflow(repo) {
     if (keys.includes("update:webdriver")) {
       const update = { name: "update:webdriver", run: "npm run update:webdriver -- --versions.chrome 80.0.3987.106" };
       nodejs.jobs.build.steps.push(update);
+
+      const wait = { name: "sleep:7s", uses: "jakejarvis/wait-action@master", with: { time: "10s" } };
+      nodejs.jobs.build.steps.push(wait);
     }
 
     if (keys.includes("start:webdriver")) {
       const start = { name: "start:webdriver", run: "npm run start:webdriver -- --versions.chrome 80.0.3987.106 &" };
       nodejs.jobs.build.steps.push(start);
+
+      const wait = { name: "sleep:7s", uses: "jakejarvis/wait-action@master", with: { time: "10s" } };
+      nodejs.jobs.build.steps.push(wait);
     }
 
     // TODO run nightwatch headless with one config
