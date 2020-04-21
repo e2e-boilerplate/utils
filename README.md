@@ -11,3 +11,6 @@ utils.
 2. cd utils
     
 3. npm install
+        
+    
+For more boilerplate click [here](https://github.com/e2e-boilerplate/utils/blob/master/docs/implemented.md)
