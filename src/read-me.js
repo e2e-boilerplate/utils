@@ -49,6 +49,8 @@ async function readme(repo) {
   const test = "npm run test";
   const buyMeCoffee =
     "[![Buy Me A Coffee](https://img.shields.io/badge/buy-me%20coffee-orange)](https://www.buymeacoffee.com/xgirma)";
+  const more =
+    "For more boilerplate click [here](https://github.com/e2e-boilerplate/utils/blob/master/docs/implemented.md)";
 
   const { hasBuildProperty, hasUpdateWebDriverProperty, hasTestProperty } = commands;
 
@@ -64,7 +66,9 @@ async function readme(repo) {
     \n3. ${install}
     \n4. ${build}
     \n5. ${updateWebDriver}
-    \n6. ${test}`;
+    \n6. ${test}
+    
+    \n${more}`;
   } else if (hasUpdateWebDriverProperty && hasTestProperty) {
     data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
@@ -74,7 +78,9 @@ async function readme(repo) {
     \n2. ${cd}
     \n3. ${install}
     \n4. ${updateWebDriver}
-    \n5. ${test}`;
+    \n5. ${test}
+        
+    \n${more}`;
   } else if (hasBuildProperty && hasTestProperty) {
     data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
@@ -84,7 +90,9 @@ async function readme(repo) {
     \n2. ${cd}
     \n3. ${install}
     \n4. ${build}
-    \n5. ${test}`;
+    \n5. ${test}
+        
+    \n${more}`;
   } else if (hasTestProperty) {
     data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
@@ -93,7 +101,9 @@ async function readme(repo) {
     \t1. ${clone}
     \t2. ${cd}
     \t3. ${install}
-    \t4. ${test}`;
+    \t4. ${test}
+        
+    \n${more}`;
   } else {
     data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
@@ -101,7 +111,9 @@ async function readme(repo) {
     \n${subTitle}
     \n1. ${clone}
     \n2. ${cd}
-    \n3. ${install}`;
+    \n3. ${install}
+        
+    \n${more}`;
   }
 
   try {
