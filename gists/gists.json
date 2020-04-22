@@ -1,0 +1,63 @@
+[
+  {
+    "url": "https://api.github.com/gists/371da4a5e936a3505d77f72f1787927c",
+    "forks_url": "https://api.github.com/gists/371da4a5e936a3505d77f72f1787927c/forks",
+    "commits_url": "https://api.github.com/gists/371da4a5e936a3505d77f72f1787927c/commits",
+    "id": "371da4a5e936a3505d77f72f1787927c",
+    "node_id": "MDQ6R2lzdDM3MWRhNGE1ZTkzNmEzNTA1ZDc3ZjcyZjE3ODc5Mjdj",
+    "git_pull_url": "https://gist.github.com/371da4a5e936a3505d77f72f1787927c.git",
+    "git_push_url": "https://gist.github.com/371da4a5e936a3505d77f72f1787927c.git",
+    "html_url": "https://gist.github.com/371da4a5e936a3505d77f72f1787927c",
+    "files": {
+      "playwright-commonjs.md": {
+        "filename": "playwright-commonjs.md",
+        "type": "text/markdown",
+        "language": "Markdown",
+        "raw_url": "https://gist.githubusercontent.com/xgirma/371da4a5e936a3505d77f72f1787927c/raw/90a1d60ab71387c42694fa4b6335c37f51255fc2/playwright-commonjs.md",
+        "size": 3
+      },
+      "playwright-es-modules.md": {
+        "filename": "playwright-es-modules.md",
+        "type": "text/markdown",
+        "language": "Markdown",
+        "raw_url": "https://gist.githubusercontent.com/xgirma/371da4a5e936a3505d77f72f1787927c/raw/90a1d60ab71387c42694fa4b6335c37f51255fc2/playwright-es-modules.md",
+        "size": 3
+      },
+      "playwright-typescript.md": {
+        "filename": "playwright-typescript.md",
+        "type": "text/markdown",
+        "language": "Markdown",
+        "raw_url": "https://gist.githubusercontent.com/xgirma/371da4a5e936a3505d77f72f1787927c/raw/90a1d60ab71387c42694fa4b6335c37f51255fc2/playwright-typescript.md",
+        "size": 3
+      }
+    },
+    "public": true,
+    "created_at": "2020-04-22T10:11:11Z",
+    "updated_at": "2020-04-22T10:18:27Z",
+    "description": "e2e-boilerplate",
+    "comments": 0,
+    "user": null,
+    "comments_url": "https://api.github.com/gists/371da4a5e936a3505d77f72f1787927c/comments",
+    "owner": {
+      "login": "xgirma",
+      "id": 5876481,
+      "node_id": "MDQ6VXNlcjU4NzY0ODE=",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5876481?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/xgirma",
+      "html_url": "https://github.com/xgirma",
+      "followers_url": "https://api.github.com/users/xgirma/followers",
+      "following_url": "https://api.github.com/users/xgirma/following{/other_user}",
+      "gists_url": "https://api.github.com/users/xgirma/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/xgirma/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/xgirma/subscriptions",
+      "organizations_url": "https://api.github.com/users/xgirma/orgs",
+      "repos_url": "https://api.github.com/users/xgirma/repos",
+      "events_url": "https://api.github.com/users/xgirma/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/xgirma/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "truncated": false
+  }
+]

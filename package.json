@@ -73,6 +73,7 @@
     "eslintrc": "node -r esm runner.js --task eslintrc --username e2e-boilerplate",
     "gen:cron": "node -r esm runner.js --task cron --username e2e-boilerplate",
     "get:repos": "node -r esm src/repositories.js --pages 2 --username e2e-boilerplate",
+    "get:gists": "node -r esm src/gists.js --username xgirma",
     "git:add": "node -r esm runner.js --task add --username e2e-boilerplate",
     "git:clone": "node -r esm runner.js --task clone --username e2e-boilerplate",
     "git:commit": "node -r esm runner.js --task commit --username e2e-boilerplate --message update README.md",
