@@ -1,13 +1,9 @@
 import { writeFileSync } from "fs";
 import { request } from "https";
-import { isNumeric } from "./validators";
-import { username, pages, logger, options } from "./constants";
+import { username, logger, options } from "./constants";
 
 function getGistsList() {
   try {
-    // const count = isNumeric(pages) ? pages : 2;
-
-    // for (let i = 0; i < count; i += 1) {
     const path = `/users/${username}/gists`;
     options.path = path;
 
@@ -38,7 +34,6 @@ function getGistsList() {
     });
 
     req.end();
-    // }
   } catch (error) {
     logger.error(error);
   }
