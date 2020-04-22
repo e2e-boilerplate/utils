@@ -66,3 +66,4 @@ typings/
 
 # generated repo list
 repos/*.json
+gists/*.json

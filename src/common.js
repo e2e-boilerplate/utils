@@ -290,7 +290,13 @@ function getRandomCron() {
 }
 
 function removeDuplicates(array) {
-  return array.filter((a, b) => array.indexOf(a) === b);
+  let filtered = [];
+  try {
+    filtered = array.filter((a, b) => array.indexOf(a) === b);
+  } catch (error) {
+    logger.error(error);
+  }
+  return filtered;
 }
 
 export {
