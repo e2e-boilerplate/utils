@@ -64,6 +64,14 @@ export function actionsStatus(name) {
   return `[![GitHub Actions status &#124; ${username}/${name}](https://github.com/${username}/${name}/workflows/${name}/badge.svg)](https://github.com/${username}/${name}/actions?workflow=${name})`;
 }
 
+export function actionsStatusShort(name) {
+  const svg = `https://github.com/${username}/${name}/workflows/${name}/badge.svg`;
+  const repo = `https://github.com/${username}/${name}`;
+  return `[![${name}](${svg})](${repo})`;
+
+  // return `[![GitHub Actions status &#124; ${username}/${name}](https://github.com/${username}/${name}/workflows/${name}/badge.svg)](https://github.com/${username}/${name}/actions?workflow=${name})`;
+}
+
 export function all(list) {
   const content = [];
   content.push(["No", "Repository", "Status"]);
@@ -86,6 +94,18 @@ export function implementedOnly(list) {
   list.sort().forEach((i, index) => {
     if (implemented(i)) {
       contentImplemented.push([`${index + 1}`, `${actionsStatus(i)}`]);
+    }
+  });
+  return contentImplemented;
+}
+
+export function implementedOnlyWo(list) {
+  const contentImplemented = [];
+  contentImplemented.push(["No", "Status"]);
+
+  list.sort().forEach((i, index) => {
+    if (implemented(i)) {
+      contentImplemented.push([`${index + 1}`, `${actionsStatusShort(i)}`]);
     }
   });
   return contentImplemented;

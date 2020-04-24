@@ -1,8 +1,5 @@
 import { readdirSync } from "fs";
 import { request } from "https";
-import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "../../validators";
-import { getRepositoriesList, setRootDir } from "../../exec";
-import { clearReposList } from "../../common";
 import { logger, options, reposDir } from "../../constants";
 
 async function getGistId() {
@@ -19,22 +16,6 @@ async function getGistId() {
 async function getRepos(x, y, z) {
   const list = [];
   try {
-    const hasRootDir = await hasRootDirectory();
-    if (!hasRootDir) {
-      await setRootDir();
-    }
-
-    const hasReposList = await hasRepositoriesList();
-    if (!hasReposList) {
-      await getRepositoriesList();
-    }
-
-    const hasMatchingReposList = await hasMatchingRepositoriesList();
-    if (!hasMatchingReposList) {
-      await clearReposList();
-      await getRepositoriesList();
-    }
-
     const files = readdirSync(reposDir);
 
     for (let i = 1; i < files.length; i += 1) {
@@ -67,6 +48,8 @@ async function writeGist(content, fileName) {
     const path = `/gists/${id}`;
     options.path = path;
     options.method = "PATCH";
+    options.headers["X-Github-Username"] = "xgirma";
+    options.headers["content-type"] = "application/x-www-form-urlencoded";
     const body = {
       description: "Hello World Examples",
       files: {},
@@ -88,20 +71,29 @@ async function writeGist(content, fileName) {
         throw error;
       });
 
-      response.on("data", (chunk) => {
-        logger.info(`/gists/${id}, for ${fileName} statusCode: ${chunk.statusCode}`);
+      const chunks = [];
+
+      response.on("data", function (chunk) {
+        chunks.push(chunk);
       });
 
-      response.on("end", () => {
-        console.log(`.........`, response.statusCode);
-        const isOk = response.statusCode === 200;
-        if (isOk) {
-          logger.info(`GET: ${path}.`);
-        } else {
-          logger.warn(`Not Found: ${path}.`);
-        }
+      response.on("end", function () {
+        // const body = Buffer.concat(chunks);
+        // console.log(body.toString());
+
+        response.on("end", () => {
+          console.log(`.........`, response.statusCode);
+          const isOk = response.statusCode === 200;
+          if (isOk) {
+            logger.info(`GET: ${path}.`);
+          } else {
+            logger.warn(`Not Found: ${path}.`);
+          }
+        });
       });
     });
+
+    req.write(data);
 
     req.on("error", (error) => {
       throw error;
