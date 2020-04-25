@@ -52,7 +52,7 @@ export function implemented(name) {
     }
   } catch (error) {
     if (error !== BreakException) {
-      logger.error(error);
+      logger.error(`${__filename}: ${error}`);
       throw error;
     }
   }
@@ -104,6 +104,7 @@ export function implementedOnlyHome(list) {
       contentImplemented.push([`${index + 1}`, `${actionsStatusHome(i)}`]);
     }
   });
+
   return contentImplemented;
 }
 

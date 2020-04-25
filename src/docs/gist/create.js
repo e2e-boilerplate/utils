@@ -1,7 +1,7 @@
-import { createGist } from "../common";
+import { createGist } from "./common";
 import combs from "./combs";
 
-function createPlaywright() {
+function create() {
   let body = {};
   combs.forEach((fileName) => {
     body = {
@@ -18,4 +18,4 @@ function createPlaywright() {
   });
 }
 
-export default createPlaywright;
+export default create;

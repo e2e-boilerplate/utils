@@ -294,7 +294,7 @@ function removeDuplicates(array) {
   try {
     filtered = array.filter((a, b) => array.indexOf(a) === b);
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
   return filtered;
 }

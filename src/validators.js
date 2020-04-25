@@ -35,7 +35,7 @@ async function hasMatchingRepositoriesList() {
         const { login } = repos[0].owner;
         if (login !== username) {
           hasMatchingRepos = false;
-          logger.warn(`Found non-matching repository: ${login} and ${username}`);
+          logger.warn(`${__filename}: Found non-matching repository: ${login} and ${username}`);
         }
       }
     }

@@ -27,7 +27,7 @@ async function runsResult(repo) {
             write(path, content);
             logger.info(`GET: ${options.path}.`);
           } else {
-            logger.warn(`Not Found: ${options.path}.`);
+            logger.warn(`${__filename}: Not Found: ${options.path}.`);
           }
         });
       });

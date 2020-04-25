@@ -24,9 +24,9 @@ function getGistsList() {
         const content = isOk ? JSON.parse(JSON.stringify(body)) : "[]";
         if (isOk && content !== "[]") {
           writeFileSync(`gists/gists.json`, content);
-          logger.info(`GET: ${path}.`);
+          logger.info(`${__filename}: GET: ${path}.`);
         } else {
-          logger.warn(`Not Found: ${path}. Code: ${response.statusCode}`);
+          logger.warn(`${__filename}: Not Found: ${path}. Code: ${response.statusCode}`);
         }
       });
     });
@@ -37,7 +37,7 @@ function getGistsList() {
 
     req.end();
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 

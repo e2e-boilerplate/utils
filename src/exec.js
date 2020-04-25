@@ -1,6 +1,6 @@
 import * as util from "util";
 import { mkdirSync, writeFileSync } from "fs";
-import { getReposList } from "./repositories";
+import getReposList from "./repositories";
 import { username, rootDir, logger } from "./constants";
 
 const exec = util.promisify(require("child_process").exec);

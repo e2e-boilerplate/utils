@@ -26,9 +26,9 @@ function getReposList() {
           const content = isOk ? JSON.parse(JSON.stringify(body)) : "[]";
           if (isOk && content !== "[]") {
             writeFileSync(`repos/repo-${i + 1}.json`, content);
-            logger.info(`GET: ${path}.`);
+            logger.info(`${__filename}: GET: ${path}.`);
           } else {
-            logger.warn(`Not Found: ${path}.`);
+            logger.warn(`${__filename}: Not Found: ${path}.`);
           }
         });
       });
@@ -44,7 +44,4 @@ function getReposList() {
   }
 }
 
-getReposList();
-
-// eslint-disable-next-line import/prefer-default-export
-export { getReposList };
+export default getReposList;

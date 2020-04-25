@@ -13,7 +13,8 @@ function getGistId(fileName) {
   return id;
 }
 
-function getRepos(x, y, z) {
+// returns filtered repositories
+function getFilteredRepos(x, y, z) {
   const list = [];
   try {
     const files = readdirSync(reposDir);
@@ -35,7 +36,7 @@ function getRepos(x, y, z) {
       });
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 
   return list;
@@ -68,10 +69,11 @@ function updateGist(content, fileName) {
 
       response.on("end", () => {
         const isOk = response.statusCode === 200;
+        logger.log(`${isOk} .............`);
         if (isOk) {
-          logger.info(`GET: ${path}.`);
+          logger.info(`${__filename}: Gist update, PATCH: ${path}.`);
         } else {
-          logger.warn(`Code: ${response.statusCode} Path: ${path}.`);
+          logger.warn(`${__filename}: Gist update, Code: ${response.statusCode} Path: ${path}.`);
         }
       });
     });
@@ -84,7 +86,7 @@ function updateGist(content, fileName) {
 
     req.end();
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 
@@ -99,7 +101,7 @@ function hasGist(fileName) {
       }
     });
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 
   return has;
@@ -127,9 +129,9 @@ function createGist(content, fileName) {
         response.on("end", () => {
           const isCreated = response.statusCode === 201;
           if (isCreated) {
-            logger.info(`POST: ${path}.`);
+            logger.info(`${__filename}: Gist create, POST: ${path}.`);
           } else {
-            logger.warn(`Code: ${response.statusCode} Path: ${path}`);
+            logger.warn(`${__filename}: Gist create, Path: ${path}, Code: ${response.statusCode}`);
           }
         });
       });
@@ -143,8 +145,8 @@ function createGist(content, fileName) {
       req.end();
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 
-export { createGist, getGistId, getRepos, updateGist };
+export { createGist, getGistId, getFilteredRepos, updateGist };
