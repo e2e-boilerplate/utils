@@ -6,6 +6,8 @@ function getGistsList() {
   try {
     const path = `/users/${username}/gists`;
     options.path = path;
+    options.headers["X-Github-Username"] = "xgirma";
+    delete options.headers["Content-Type"];
 
     const req = request(options, (response) => {
       let body = "";
@@ -24,7 +26,7 @@ function getGistsList() {
           writeFileSync(`gists/gists.json`, content);
           logger.info(`GET: ${path}.`);
         } else {
-          logger.warn(`Not Found: ${path}.`);
+          logger.warn(`Not Found: ${path}. Code: ${response.statusCode}`);
         }
       });
     });
@@ -41,5 +43,4 @@ function getGistsList() {
 
 getGistsList();
 
-// eslint-disable-next-line import/prefer-default-export
-export { getGistsList };
+export default getGistsList;

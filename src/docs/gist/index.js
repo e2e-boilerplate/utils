@@ -1,11 +1,10 @@
-// playwright
-import playwrightCommonjs from "./playwright/commonjs";
+import updatePlaywright from "./playwright/update";
 
-async function createGist() {
-  // playwright
-  await playwrightCommonjs();
+async function updateGist() {
+  await updatePlaywright();
 }
 
-createGist().then((r) => {});
+// eslint-disable-next-line no-unused-vars
+updateGist().then((r) => {});
 
-export default createGist;
+export default updateGist;
