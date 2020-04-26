@@ -22,7 +22,7 @@ async function funding(repo) {
     logger.info(`Generates: ${name} ${yml}`);
     await write(yml, yamlStr, "utf8");
   } catch (error) {
-    logger.error(`Workflow: ${rootDir}/${name}/.github/FUNDING.yml ${error}`);
+    logger.error(`${__filename}: Workflow: ${rootDir}/${name}/.github/FUNDING.yml ${error}`);
   }
 }
 

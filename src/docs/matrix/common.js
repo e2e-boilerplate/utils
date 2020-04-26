@@ -1,10 +1,9 @@
 import { readdirSync } from "fs";
-import { logger, reposDir, username } from "../constants";
+import { logger, reposDir, username } from "../../constants";
 
 export const chaiAssertionTypes = ["expect", "should", "assert"];
 export const assertionType = ["assert", "expect", "chai", "none"];
 export const runnerType = ["jasmine", "mocha", "jest", "ava", "tape", "cucumber", "none"];
-export const bundlerType = ["webpack", "browserify", "none"];
 export const typescriptTranspiler = ["tsc", "ts-node", "ts-jest", "none"];
 export const esModuleTranspiler = ["babel", "esm", "none", "babel-jest"];
 export const javascriptType = ["non-typescript", "typescript"];
@@ -41,7 +40,7 @@ export function implemented(name) {
   try {
     const files = readdirSync(reposDir);
     for (let i = 1; i < files.length; i += 1) {
-      const repos = require(`../../repos/repo-${i}.json`);
+      const repos = require(`../../../repos/repo-${i}.json`);
       // eslint-disable-next-line no-loop-func
       repos.forEach((repo) => {
         isImplemented = repo.name === name;

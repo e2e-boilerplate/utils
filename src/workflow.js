@@ -9,7 +9,7 @@ async function setCron(name) {
   try {
     value = await getMetaValue(name, "cron");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
   return value || getRandomCron();
 }
@@ -118,7 +118,7 @@ async function workflow(repo) {
     logger.info(`Generates: ${yml}`);
     await write(yml, yamlStr, "utf8");
   } catch (error) {
-    logger.error(`Workflow: ${rootDir}/${name}/package.json ${error}`);
+    logger.error(`${__filename}: Workflow: ${rootDir}/${name}/package.json ${error}`);
   }
 }
 

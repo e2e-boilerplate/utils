@@ -64,7 +64,7 @@ async function makeEslintrc(repo) {
       logger.info(`eslintrc ${name}`);
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 

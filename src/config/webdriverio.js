@@ -108,7 +108,7 @@ exports.config = config;
       logger.info(`.wdio.conf.js ${name}`);
     }
   } catch (error) {
-    logger.error(`.wdio.conf.js ${error}`);
+    logger.error(`${__filename}: .wdio.conf.js ${error}`);
   }
 }
 

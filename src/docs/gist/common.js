@@ -73,7 +73,7 @@ function updateGist(content, fileName) {
         throw error;
       });
 
-      logger.info(`${__filename}: Gist update, PATCH, Code: ${response.statusCode}, Path: ${path}.`);
+      logger.info(`Gist update, PATCH, Code: ${response.statusCode}, Path: ${path}.`);
     });
 
     req.write(data);
@@ -127,7 +127,7 @@ function createGist(content, fileName) {
           throw error;
         });
 
-        logger.info(`${__filename}: ${fileName}, Gist created, POST, Code: ${response.statusCode}, Path: ${path}.`);
+        logger.info(`${fileName}, Gist created, POST, Code: ${response.statusCode}, Path: ${path}.`);
       });
 
       req.write(data);
@@ -138,7 +138,7 @@ function createGist(content, fileName) {
 
       req.end();
     } else {
-      logger.info(`${__filename}: ${fileName} already exist`);
+      logger.info(`${fileName} already exist`);
     }
   } catch (error) {
     logger.error(`${__filename}: ${error}`);

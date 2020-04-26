@@ -1,10 +1,10 @@
 import { readFileSync } from "fs";
-import { logger, rootDir, frameworks } from "../constants";
-import { write } from "../exec";
+import { logger, rootDir, frameworks } from "../../constants";
+import { write } from "../../exec";
 
 frameworks.push("selenium-webdriver");
 
-async function implementedList() {
+export default async function implementedList() {
   const content = {};
   const path = `${rootDir}/utils/docs/implemented.md`;
 
@@ -43,9 +43,6 @@ async function implementedList() {
   try {
     await write(path, data, "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
-
-// eslint-disable-next-line no-unused-vars
-implementedList().then((r) => {});

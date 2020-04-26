@@ -1,6 +1,6 @@
 import table from "markdown-table";
-import { logger, rootDir } from "../constants";
-import { write } from "../exec";
+import { logger, rootDir } from "../../constants";
+import { write } from "../../exec";
 
 import {
   all,
@@ -11,7 +11,7 @@ import {
   chaiAssertionTypes,
   javascriptType,
 } from "./common";
-import { removeDuplicates } from "../common";
+import { removeDuplicates } from "../../common";
 
 const frameworks = ["cypress"];
 const moduleType = ["es-modules"];
@@ -63,7 +63,7 @@ function buildList() {
   });
 }
 
-async function matrix() {
+export default async function cypress() {
   buildList();
   const results = getPaths(framework);
 
@@ -103,8 +103,6 @@ async function matrix() {
     await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
-
-matrix();

@@ -2,7 +2,7 @@ import table from "markdown-table";
 import combs from "./combs";
 import { getFilteredRepos, updateGist } from "./common";
 import { removeDuplicates } from "../../common";
-import { implementedOnlyHome } from "../common";
+import { implementedOnlyHome } from "../matrix/common";
 import { logger } from "../../constants";
 
 function update() {

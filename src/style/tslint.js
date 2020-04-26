@@ -19,7 +19,7 @@ async function makeTslint(repo) {
       logger.info(`tslint ${name}`);
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 

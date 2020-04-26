@@ -9,9 +9,6 @@ import makeEslintrc from "./style/eslintrc";
 import makeTsconfig from "./style/tsconfig";
 import makeTslint from "./style/tslint";
 import makeDeps from "./deps/deps";
-import runsResult from "./runs";
-import buildResults from "./build";
-import traffic from "./docs/traffic";
 import cron from "./cron";
 import jestConfig from "./config/jest";
 import mochaConfig from "./config/mocha";
@@ -126,24 +123,6 @@ async function dependencies(repo) {
   await makeDeps(repo);
 }
 
-async function runs(repo) {
-  const { name } = repo;
-  await prepareRepo(name);
-  await runsResult(repo);
-}
-
-async function runsStatus(repo) {
-  const { name } = repo;
-  await prepareRepo(name);
-  await buildResults(repo);
-}
-
-async function repoTraffic(repo) {
-  const { name } = repo;
-  await prepareRepo(name);
-  await traffic(repo);
-}
-
 async function genCron(repo) {
   const { name } = repo;
   await prepareRepo(name);
@@ -189,9 +168,6 @@ export {
   updateMetadata,
   executeArbitraryCommand,
   lint,
-  runs,
-  runsStatus,
-  repoTraffic,
   setFunding,
   tsconfig,
   tslint,

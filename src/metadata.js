@@ -131,7 +131,7 @@ async function updateMeta(repo) {
     const update = JSON.stringify(sortObject(pkgJson), null, 2);
     await write(path, update, "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 
