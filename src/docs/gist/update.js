@@ -8,7 +8,6 @@ import { logger } from "../../constants";
 function update() {
   try {
     combs.forEach((comb) => {
-      logger.info(comb);
       const parts = comb.split("-");
       const list = getFilteredRepos(...parts);
       const statusBadge = implementedOnlyHome(removeDuplicates(list));

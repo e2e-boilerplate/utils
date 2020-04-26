@@ -1,6 +1,7 @@
 import { readdirSync } from "fs";
 import { request } from "https";
 import { logger, options, reposDir } from "../../constants";
+import { write } from "../../exec";
 
 function getGistId(fileName) {
   let id;
@@ -10,11 +11,12 @@ function getGistId(fileName) {
       id = gist.id;
     }
   });
+
   return id;
 }
 
 // returns filtered repositories
-function getFilteredRepos(x, y, z) {
+function getFilteredRepos(first, second, third, fourth) {
   const list = [];
   try {
     const files = readdirSync(reposDir);
@@ -24,9 +26,13 @@ function getFilteredRepos(x, y, z) {
       repos.forEach((repo) => {
         const { name } = repo;
         const parts = name.split("-");
-        if (parts.includes(x) && parts.includes(y)) {
-          if (z) {
-            if (parts.includes(z)) {
+        if (parts.includes(first) && parts.includes(second)) {
+          if (third) {
+            if (fourth) {
+              if (parts.includes(third) && parts.includes(fourth)) {
+                list.push(name);
+              }
+            } else if (parts.includes(third)) {
               list.push(name);
             }
           } else {
@@ -67,15 +73,7 @@ function updateGist(content, fileName) {
         throw error;
       });
 
-      response.on("end", () => {
-        const isOk = response.statusCode === 200;
-        logger.log(`${isOk} .............`);
-        if (isOk) {
-          logger.info(`${__filename}: Gist update, PATCH: ${path}.`);
-        } else {
-          logger.warn(`${__filename}: Gist update, Code: ${response.statusCode} Path: ${path}.`);
-        }
-      });
+      logger.info(`${__filename}: Gist update, PATCH, Code: ${response.statusCode}, Path: ${path}.`);
     });
 
     req.write(data);
@@ -90,27 +88,30 @@ function updateGist(content, fileName) {
   }
 }
 
-function hasGist(fileName) {
-  let has;
+async function buildGistList() {
   try {
-    has = false;
+    const list = [];
     const gists = require("../../../gists/gists.json");
     gists.forEach((gist) => {
-      if (gist.files[fileName]) {
-        has = true;
+      if (gist.description) {
+        list.push(gist.description);
       }
     });
-  } catch (error) {
-    logger.error(`${__filename}: ${error}`);
-  }
+    const path = "./gists/list.json";
+    const data = JSON.stringify([...new Set(list)].sort(), null, 2);
+    logger.error(data);
 
-  return has;
+    await write(path, data, "utf8");
+  } catch (error) {
+    logger.error(`${__filename}, Build Gist list error`);
+  }
 }
 
 // create a new gist if not exist
 function createGist(content, fileName) {
   try {
     const path = `/gists`;
+    const list = require("../../../gists/list.json");
     options.path = path;
     options.method = "POST";
     options.headers["X-Github-Username"] = "xgirma";
@@ -120,20 +121,13 @@ function createGist(content, fileName) {
 
     options.headers["Content-Length"] = data.length;
 
-    if (!hasGist(fileName)) {
+    if (!list.includes(fileName)) {
       const req = request(options, (response) => {
         response.on("error", (error) => {
           throw error;
         });
 
-        response.on("end", () => {
-          const isCreated = response.statusCode === 201;
-          if (isCreated) {
-            logger.info(`${__filename}: Gist create, POST: ${path}.`);
-          } else {
-            logger.warn(`${__filename}: Gist create, Path: ${path}, Code: ${response.statusCode}`);
-          }
-        });
+        logger.info(`${__filename}: ${fileName}, Gist created, POST, Code: ${response.statusCode}, Path: ${path}.`);
       });
 
       req.write(data);
@@ -143,10 +137,12 @@ function createGist(content, fileName) {
       });
 
       req.end();
+    } else {
+      logger.info(`${__filename}: ${fileName} already exist`);
     }
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }
 }
 
-export { createGist, getGistId, getFilteredRepos, updateGist };
+export { buildGistList, createGist, getGistId, getFilteredRepos, updateGist };
