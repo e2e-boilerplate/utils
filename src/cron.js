@@ -26,7 +26,7 @@ async function cron(name) {
       logger.info(`writing meta for ${name}`);
     }
   } catch (error) {
-    logger.error(`cron: ${error}`);
+    logger.error(`${__filename}: cron: ${error}`);
   }
 }
 

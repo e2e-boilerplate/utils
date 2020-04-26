@@ -43,7 +43,7 @@ async function implementedList() {
   try {
     await write(path, data, "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 

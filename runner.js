@@ -14,8 +14,6 @@ import {
   npmInstall,
   updateMetadata,
   lint,
-  runs,
-  runsStatus,
   setFunding,
   tsconfig,
   tslint,
@@ -85,12 +83,6 @@ async function taskPicker(repo) {
     case "dependencies":
       await dependencies(repo);
       break;
-    case "runs":
-      await runs(repo);
-      break;
-    case "runstatus":
-      await runsStatus(repo);
-      break;
     case "traffic":
       await repoTraffic(repo);
       break;
@@ -149,7 +141,7 @@ async function runner() {
       });
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 

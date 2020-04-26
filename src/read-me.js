@@ -23,7 +23,7 @@ function getScriptsCombo(repo) {
     commands.hasUpdateWebDriverProperty = {}.hasOwnProperty.call(scripts, "update:webdriver");
     commands.hasTestProperty = {}.hasOwnProperty.call(scripts, "test");
   } catch (error) {
-    logger.error(`readme: get scripts: ${name} ${error}`);
+    logger.error(`${__filename}: readme: get scripts: ${name} ${error}`);
   }
 
   return commands;
@@ -119,7 +119,7 @@ async function readme(repo) {
   try {
     await write(path, data, "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 

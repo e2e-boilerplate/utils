@@ -437,7 +437,7 @@ async function makeDeps(repo) {
     logger.info(`dependencies ${JSON.stringify(dependencies, null, 2)}`);
     logger.info(`devDependencies ${JSON.stringify(devDependencies, null, 2)}`);
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 
   return {

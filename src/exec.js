@@ -15,8 +15,8 @@ async function execute(cmd, cwd) {
     logger.info(stdout);
     logger.info(stderr);
   } catch (error) {
-    logger.error(cwd);
-    logger.error(error);
+    logger.error(`${__filename}: ${cwd}`);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 
@@ -24,7 +24,7 @@ async function getRepositoriesList() {
   try {
     await getReposList();
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 
@@ -38,7 +38,7 @@ async function setRootDir() {
     await mkdirSync(rootDir);
     logger.info("Writing root directory.");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 
@@ -47,7 +47,7 @@ async function write(path, data, opt) {
     writeFileSync(path, data, opt);
     logger.info(`Write ${path}`);
   } catch (error) {
-    logger.error(`exec: write: ${path} ${error}`);
+    logger.error(`${__filename}: exec: write: ${path} ${error}`);
   }
 }
 

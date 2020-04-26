@@ -108,7 +108,7 @@ ${end}`;
       logger.info(`protractor.conf.js ${name}`);
     }
   } catch (error) {
-    logger.error(`protractor.conf.js ${error}`);
+    logger.error(`${__filename}: protractor.conf.js ${error}`);
   }
 }
 

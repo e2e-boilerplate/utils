@@ -19,7 +19,7 @@ async function webdriverIoConfig(name) {
       logger.info(`.mocharc.js ${name}`);
     }
   } catch (error) {
-    logger.error(`.mocharc.js ${error}`);
+    logger.error(`${__filename}: .mocharc.js ${error}`);
   }
 }
 

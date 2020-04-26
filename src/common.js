@@ -8,7 +8,7 @@ async function clear(path) {
     await rimraf.sync(path);
     logger.info(`Clearing: ${path}`);
   } catch (error) {
-    logger.info(`Clearing file/folder: ${path}: ${error}`);
+    logger.info(`${__filename}: Clearing file/folder: ${path}: ${error}`);
   }
 }
 
@@ -19,7 +19,7 @@ async function hasPath(path) {
   } catch (error) {
     logger.error(`Has path: ${path} : ${error}`);
   }
-  logger.info(`Has: ${path}? ${has}`);
+  logger.info(`${__filename}: Has: ${path}? ${has}`);
   return has;
 }
 
@@ -30,7 +30,7 @@ async function createPath(path) {
       await mkdirSync(path);
     }
   } catch (error) {
-    logger.error(`Creating path: ${path} : ${error}`);
+    logger.error(`${__filename}: Creating path: ${path} : ${error}`);
   }
 }
 
@@ -124,7 +124,7 @@ function getTech(name) {
       return `Using ${first.join(", ")} and ${last}.`;
     }
   } catch (error) {
-    logger.error(`Get tech: ${name} ${error}`);
+    logger.error(`${__filename}: Get tech: ${name} ${error}`);
   }
 
   return [];
@@ -142,7 +142,7 @@ function getName(name) {
         frameworkName = `${parts[0]}-${parts[1]}`;
       }
     } catch (error) {
-      logger.error(error);
+      logger.error(`${__filename}: ${error}`);
     }
   }
 
@@ -170,7 +170,7 @@ function getFrameworkName(name) {
         frameworkName = `${capitalize(parts[0])}-${capitalize(parts[1])}`;
       }
     } catch (error) {
-      logger.error(`Get framework name: ${name} ${error}`);
+      logger.error(`${__filename}: Get framework name: ${name} ${error}`);
     }
   }
 
@@ -198,7 +198,7 @@ async function getMetaValue(name, key) {
       value = metaJson[key];
     }
   } catch (error) {
-    logger.error(`Get meta value: ${error}`);
+    logger.error(`${__filename}: Get meta value: ${error}`);
   }
   return value;
 }

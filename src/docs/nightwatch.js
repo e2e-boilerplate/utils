@@ -97,7 +97,7 @@ async function matrix() {
     await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 

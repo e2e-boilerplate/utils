@@ -50,7 +50,7 @@ async function jestConfig(name) {
       logger.info(`jest.setup.js ${name}`);
     }
   } catch (error) {
-    logger.error(`jest ${error}`);
+    logger.error(`${__filename}: jest ${error}`);
   }
 }
 

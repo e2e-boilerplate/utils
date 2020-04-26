@@ -95,7 +95,7 @@ async function makeTsconfig(repo) {
       logger.info(`eslintrc ${name}`);
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 

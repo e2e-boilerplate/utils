@@ -40,7 +40,7 @@ function getReposList() {
       req.end();
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 

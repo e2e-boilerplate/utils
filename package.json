@@ -54,7 +54,6 @@
   },
   "scripts": {
     "actions:build:doc": "node -r esm runner.js --task runstatus",
-    "actions:runs": "node -r esm runner.js --task runs --username e2e-boilerplate",
     "any:execute": "node -r esm runner.js --task command --username e2e-boilerplate",
     "config:jest": "node -r esm runner.js --task jest --username e2e-boilerplate",
     "config:mocha": "node -r esm runner.js --task mocha --username e2e-boilerplate",
