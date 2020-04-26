@@ -1,6 +1,6 @@
 import table from "markdown-table";
-import { logger, rootDir } from "../constants";
-import { write } from "../exec";
+import { logger, rootDir } from "../../constants";
+import { write } from "../../exec";
 import {
   all,
   getPaths,
@@ -15,20 +15,23 @@ import {
   javascriptType,
   moduleType,
 } from "./common";
-import { removeDuplicates } from "../common";
+import { removeDuplicates } from "../../common";
 
+const frameworks = ["wd"];
+const driverType = ["webdriver-manager"];
+
+// TODO make sure webdriver-manager comes after commonjs,es-modules, & type-script
 const chai = {};
 const assertion = {};
 const runner = {};
+const driver = {};
 const typescript = {};
 const esModule = {};
 const javascript = {};
 const module = {};
 const framework = {};
 
-function buildList(fwk) {
-  const frameworks = [`${fwk}`];
-
+function buildList() {
   chaiAssertionTypes.forEach((c) => {
     chai[c] = {};
   });
@@ -41,12 +44,16 @@ function buildList(fwk) {
     runner[r] = r === "ava" || r === "tape" || r === "none" ? {} : assertion;
   });
 
+  driverType.forEach((d) => {
+    driver[d] = runner;
+  });
+
   typescriptTranspiler.forEach((t) => {
-    typescript[t] = runner;
+    typescript[t] = driver;
   });
 
   esModuleTranspiler.forEach((e) => {
-    esModule[e] = runner;
+    esModule[e] = driver;
   });
 
   javascriptType.forEach((j) => {
@@ -54,18 +61,16 @@ function buildList(fwk) {
   });
 
   moduleType.forEach((m) => {
-    module[m] = m === "commonjs" ? runner : javascript;
+    module[m] = m === "commonjs" ? driver : javascript;
   });
 
   frameworks.forEach((f) => {
-    if (f !== "cypress") {
-      framework[f] = module;
-    }
+    framework[f] = module;
   });
 }
 
-export default async function matrix(fwk) {
-  buildList(fwk);
+export default async function wd() {
+  buildList();
   const results = getPaths(framework);
 
   const list = [];
@@ -98,9 +103,9 @@ export default async function matrix(fwk) {
   const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
-    const path = `${rootDir}/utils/docs/${fwk}/all.md`;
-    const pathImplemented = `${rootDir}/utils/docs/${fwk}/implemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/docs/${fwk}/not-implemented.md`;
+    const path = `${rootDir}/utils/docs/wd/all.md`;
+    const pathImplemented = `${rootDir}/utils/docs/wd/implemented.md`;
+    const pathNotImplemented = `${rootDir}/utils/docs/wd/not-implemented.md`;
     await write(path, table(content, { align: "l" }), "utf8");
     await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");

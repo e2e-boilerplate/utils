@@ -22,12 +22,12 @@ import {
   genMochaConfig,
   genProtractorConfig,
   genWebdriverioConfig,
-} from "./src/task";
+} from "../src/task";
 
-import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "./src/validators";
-import { getRepositoriesList, setRootDir } from "./src/exec";
-import { task, reposDir, logger, module } from "./src/constants";
-import { clearReposList, getName } from "./src/common";
+import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "../src/validators";
+import { getRepositoriesList, setRootDir } from "../src/exec";
+import { task, reposDir, logger, module } from "../src/constants";
+import { clearReposList, getName } from "../src/common";
 
 async function taskPicker(repo) {
   switch (task) {
@@ -123,7 +123,7 @@ async function runner() {
     const files = readdirSync(reposDir);
 
     for (let i = 1; i < files.length; i += 1) {
-      const repos = require(`./repos/repo-${i}.json`);
+      const repos = require(`../repos/repo-${i}.json`);
       repos.forEach((repo) => {
         const name = getName(repo.name);
 

@@ -1,7 +1,6 @@
 import table from "markdown-table";
-import { logger, rootDir } from "../constants";
-import { write } from "../exec";
-
+import { logger, rootDir } from "../../constants";
+import { write } from "../../exec";
 import {
   all,
   getPaths,
@@ -9,53 +8,48 @@ import {
   implementedOnly,
   notImplementedOnly,
   chaiAssertionTypes,
+  assertionType,
+  typescriptTranspiler,
+  esModuleTranspiler,
   javascriptType,
+  moduleType,
 } from "./common";
-import { removeDuplicates } from "../common";
+import { removeDuplicates } from "../../common";
 
-const frameworks = ["cypress"];
-const moduleType = ["es-modules"];
-const cucumberType = ["cucumber", "no-cucumber"];
-const preprocessorType = ["browserify", "webpack", "no-preprocessor"];
-const assertionType = ["chai", "jest"];
-const jestAssertionType = ["expect"];
+// built-in test runner
+const frameworks = ["nightwatch"];
 
 const chai = {};
 const assertion = {};
-const jestAssertion = {};
+const typescript = {};
+const esModule = {};
 const javascript = {};
 const module = {};
 const framework = {};
-const cucumber = {};
-const preprocessor = {};
 
 function buildList() {
   chaiAssertionTypes.forEach((c) => {
     chai[c] = {};
   });
 
-  jestAssertionType.forEach((a) => {
-    jestAssertion[a] = {};
-  });
-
   assertionType.forEach((a) => {
-    assertion[a] = a === "chai" ? chai : jestAssertion;
+    assertion[a] = a === "chai" ? chai : {};
   });
 
-  cucumberType.forEach((c) => {
-    cucumber[c] = assertion;
+  typescriptTranspiler.forEach((t) => {
+    typescript[t] = assertion;
   });
 
-  preprocessorType.forEach((p) => {
-    preprocessor[p] = cucumber;
+  esModuleTranspiler.forEach((e) => {
+    esModule[e] = assertion;
   });
 
   javascriptType.forEach((j) => {
-    javascript[j] = j === "non-typescript" ? cucumber : preprocessor;
+    javascript[j] = j === "non-typescript" ? esModule : typescript;
   });
 
   moduleType.forEach((m) => {
-    module[m] = javascript;
+    module[m] = m === "commonjs" ? assertion : javascript;
   });
 
   frameworks.forEach((f) => {
@@ -63,7 +57,7 @@ function buildList() {
   });
 }
 
-async function matrix() {
+export default async function nightwatch() {
   buildList();
   const results = getPaths(framework);
 
@@ -74,14 +68,13 @@ async function matrix() {
   results.forEach((result) => {
     const path = Array.from(result.toString().split(","));
     const noNonTypeScript = path.filter((part) => part !== "non-typescript");
-    const noNonTranspiler = noNonTypeScript.filter((part) => part !== "no-preprocessor");
-    const noCucumber = noNonTranspiler.filter((part) => part !== "no-cucumber");
+    const noNone = noNonTypeScript.filter((part) => part !== "none");
 
-    if (noCucumber.includes("es-modules") && noCucumber.includes("typescript")) {
-      delete noCucumber[1];
+    if (noNone.includes("es-modules") && noNone.includes("typescript")) {
+      delete noNone[1];
     }
 
-    const name = noCucumber.filter((n) => n !== "");
+    const name = noNone.filter((n) => n !== "");
 
     list.push(name.join("-"));
     if (implemented(name.join("-"))) {
@@ -96,9 +89,9 @@ async function matrix() {
   const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
-    const path = `${rootDir}/utils/docs/cypress/all.md`;
-    const pathImplemented = `${rootDir}/utils/docs/cypress/implemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/docs/cypress/not-implemented.md`;
+    const path = `${rootDir}/utils/docs/nightwatch/all.md`;
+    const pathImplemented = `${rootDir}/utils/docs/nightwatch/implemented.md`;
+    const pathNotImplemented = `${rootDir}/utils/docs/nightwatch/not-implemented.md`;
     await write(path, table(content, { align: "l" }), "utf8");
     await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
@@ -106,5 +99,3 @@ async function matrix() {
     logger.error(`${__filename}: ${error}`);
   }
 }
-
-matrix();

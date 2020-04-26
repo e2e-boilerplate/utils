@@ -123,12 +123,6 @@ async function dependencies(repo) {
   await makeDeps(repo);
 }
 
-async function repoTraffic(repo) {
-  const { name } = repo;
-  await prepareRepo(name);
-  await traffic(repo);
-}
-
 async function genCron(repo) {
   const { name } = repo;
   await prepareRepo(name);
@@ -174,7 +168,6 @@ export {
   updateMetadata,
   executeArbitraryCommand,
   lint,
-  repoTraffic,
   setFunding,
   tsconfig,
   tslint,
