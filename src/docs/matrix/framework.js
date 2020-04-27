@@ -24,7 +24,7 @@ const typescript = {};
 const esModule = {};
 const javascript = {};
 const module = {};
-const framework = {};
+let framework;
 
 function buildList(fwk) {
   const frameworks = [`${fwk}`];
@@ -65,6 +65,7 @@ function buildList(fwk) {
 }
 
 export default async function commonMatrix(fwk) {
+  framework = {};
   buildList(fwk);
   const results = getPaths(framework);
 
