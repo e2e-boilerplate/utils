@@ -78,7 +78,7 @@ async function setFunding(repo) {
 async function generateReadme(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await readme(repo);
+  readme(repo);
 }
 
 async function executeArbitraryCommand(repo) {

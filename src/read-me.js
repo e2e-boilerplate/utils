@@ -29,7 +29,7 @@ function getScriptsCombo(repo) {
   return commands;
 }
 
-async function readme(repo) {
+export default function readme(repo) {
   const { name } = repo;
   const frameworkName = getFrameworkName(name);
   const tech = getTech(name);
@@ -122,5 +122,3 @@ async function readme(repo) {
     logger.error(`${__filename}: ${error}`);
   }
 }
-
-export default readme;
