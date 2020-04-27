@@ -81,7 +81,6 @@
     "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplate --keywords \"e2e-e2e tests-boilerplate-example-integration test\" --author \"Girma Nigusse <xgirma@gmail.com>\"",
     "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplate",
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate -module wd",
-    "traffic": "node -r esm runner.js --task traffic --username e2e-boilerplate --token token",
     "tsconfig": "node -r esm runner.js --task tsconfig --username e2e-boilerplate",
     "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate"
   },
