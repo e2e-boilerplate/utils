@@ -42,7 +42,7 @@ async function setRootDir() {
   }
 }
 
-async function write(path, data, opt) {
+function write(path, data, opt) {
   try {
     writeFileSync(path, data, opt);
     logger.info(`Write ${path}`);

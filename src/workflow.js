@@ -116,7 +116,7 @@ async function workflow(repo) {
 
     const yamlStr = safeDump(nodejs);
     logger.info(`Generates: ${yml}`);
-    await write(yml, yamlStr, "utf8");
+    write(yml, yamlStr, "utf8");
   } catch (error) {
     logger.error(`${__filename}: Workflow: ${rootDir}/${name}/package.json ${error}`);
   }

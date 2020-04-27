@@ -3,9 +3,9 @@ import { logger, rootDir } from "./constants";
 import { write } from "./exec";
 import { getRandomCron, sortObject, getMetaValue } from "./common";
 
-async function writeMeta(data, path) {
+function writeMeta(data, path) {
   const update = JSON.stringify(sortObject(data), null, 2);
-  await write(path, update, "utf8");
+  write(path, update, "utf8");
 }
 
 async function cron(name) {

@@ -4,7 +4,7 @@ import { write } from "../../exec";
 
 frameworks.push("selenium-webdriver");
 
-export default async function implementedList() {
+export default function implementedList() {
   const content = {};
   const path = `${rootDir}/utils/docs/implemented.md`;
 
@@ -41,7 +41,7 @@ export default async function implementedList() {
   `;
 
   try {
-    await write(path, data, "utf8");
+    write(path, data, "utf8");
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }

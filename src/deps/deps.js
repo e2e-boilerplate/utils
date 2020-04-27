@@ -19,7 +19,7 @@ function version(first, second, name) {
   return second;
 }
 
-async function makeDeps(repo) {
+export default function makeDeps(repo) {
   const { name } = repo;
   const parts = name.split("-");
   const dependencies = {};
@@ -445,5 +445,3 @@ async function makeDeps(repo) {
     devDependencies,
   };
 }
-
-export default makeDeps;

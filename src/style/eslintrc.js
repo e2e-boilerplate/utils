@@ -1,7 +1,7 @@
 import { logger, miscRepos, rootDir } from "../constants";
 import { write } from "../exec";
 
-async function makeEslintrc(repo) {
+function makeEslintrc(repo) {
   const { name } = repo;
   const parts = name.split("-");
   const data = {
@@ -60,7 +60,7 @@ async function makeEslintrc(repo) {
 
       const eslintrc = JSON.stringify(data, null, 2);
       const path = `${rootDir}/${name}/.eslintrc.json`;
-      await write(path, eslintrc, "utf8");
+      write(path, eslintrc, "utf8");
       logger.info(`eslintrc ${name}`);
     }
   } catch (error) {

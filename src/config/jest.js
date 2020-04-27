@@ -35,23 +35,21 @@ function setup() {
   return "jest.setTimeout(50000);";
 }
 
-async function jestConfig(name) {
+export default function jestConfig(name) {
   try {
     const parts = name.split("-");
     if (parts.includes("jest") && !parts.includes("cypress")) {
       const configPath = `${rootDir}/${name}/jest.config.js`;
       const configData = config(name);
-      await write(configPath, configData, "utf8");
+      write(configPath, configData, "utf8");
       logger.info(`jest.config.js ${name}`);
 
       const setupPath = `${rootDir}/${name}/jest.setup.js`;
       const setupData = setup(name);
-      await write(setupPath, setupData, "utf8");
+      write(setupPath, setupData, "utf8");
       logger.info(`jest.setup.js ${name}`);
     }
   } catch (error) {
     logger.error(`${__filename}: jest ${error}`);
   }
 }
-
-export default jestConfig;

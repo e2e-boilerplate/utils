@@ -59,7 +59,7 @@
   "puppeteer": "3.0.1",
   "rimraf": "3.0.2",
   "selenium-webdriver": "4.0.0-alpha.7",
-  "tape": "4.13.2",
+  "tape": "5.0.0",
   "ts-jest": "25.4.0",
   "tsify": "4.0.1",
   "ts-loader": "6.2.2",

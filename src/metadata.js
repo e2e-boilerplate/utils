@@ -82,7 +82,7 @@ function buildDescription(name) {
   return `${framework} end-to-end test automation boilerplate. ${tech}`;
 }
 
-async function updateMeta(repo) {
+export default function updateMeta(repo) {
   const { name } = repo;
 
   try {
@@ -123,16 +123,14 @@ async function updateMeta(repo) {
     }
 
     if (!miscRepos.includes(name)) {
-      const { dependencies, devDependencies } = await makeDeps(repo);
+      const { dependencies, devDependencies } = makeDeps(repo);
       pkgJson.dependencies = sortObject(dependencies);
       pkgJson.devDependencies = sortObject(devDependencies);
     }
 
     const update = JSON.stringify(sortObject(pkgJson), null, 2);
-    await write(path, update, "utf8");
+    write(path, update, "utf8");
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }
 }
-
-export default updateMeta;

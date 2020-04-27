@@ -64,7 +64,7 @@ function buildList(fwk) {
   });
 }
 
-export default async function commonMatrix(fwk) {
+export default function commonMatrix(fwk) {
   framework = {};
   buildList(fwk);
   const results = getPaths(framework);
@@ -102,9 +102,9 @@ export default async function commonMatrix(fwk) {
     const path = `${rootDir}/utils/docs/${fwk}/all.md`;
     const pathImplemented = `${rootDir}/utils/docs/${fwk}/implemented.md`;
     const pathNotImplemented = `${rootDir}/utils/docs/${fwk}/not-implemented.md`;
-    await write(path, table(content, { align: "l" }), "utf8");
-    await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
-    await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
+    write(path, table(content, { align: "l" }), "utf8");
+    write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
+    write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }

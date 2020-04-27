@@ -177,9 +177,9 @@ function getFrameworkName(name) {
   return frameworkName;
 }
 
-async function writeMeta(data, path) {
+function writeMeta(data, path) {
   const update = JSON.stringify(sortObject(data), null, 2);
-  await write(path, update, "utf8");
+  write(path, update, "utf8");
 }
 
 async function getMetaValue(name, key) {

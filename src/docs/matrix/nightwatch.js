@@ -57,7 +57,7 @@ function buildList() {
   });
 }
 
-export default async function nightwatch() {
+export default function nightwatch() {
   buildList();
   const results = getPaths(framework);
 
@@ -92,9 +92,9 @@ export default async function nightwatch() {
     const path = `${rootDir}/utils/docs/nightwatch/all.md`;
     const pathImplemented = `${rootDir}/utils/docs/nightwatch/implemented.md`;
     const pathNotImplemented = `${rootDir}/utils/docs/nightwatch/not-implemented.md`;
-    await write(path, table(content, { align: "l" }), "utf8");
-    await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
-    await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
+    write(path, table(content, { align: "l" }), "utf8");
+    write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
+    write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }

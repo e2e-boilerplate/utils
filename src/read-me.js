@@ -117,7 +117,7 @@ async function readme(repo) {
   }
 
   try {
-    await write(path, data, "utf8");
+    write(path, data, "utf8");
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }

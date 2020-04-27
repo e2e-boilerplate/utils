@@ -69,7 +69,7 @@ function buildList() {
   });
 }
 
-export default async function wd() {
+export default function wd() {
   buildList();
   const results = getPaths(framework);
 
@@ -106,9 +106,9 @@ export default async function wd() {
     const path = `${rootDir}/utils/docs/wd/all.md`;
     const pathImplemented = `${rootDir}/utils/docs/wd/implemented.md`;
     const pathNotImplemented = `${rootDir}/utils/docs/wd/not-implemented.md`;
-    await write(path, table(content, { align: "l" }), "utf8");
-    await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
-    await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
+    write(path, table(content, { align: "l" }), "utf8");
+    write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
+    write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }

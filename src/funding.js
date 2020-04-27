@@ -20,7 +20,7 @@ async function funding(repo) {
 
     const yamlStr = safeDump(buyMeCoffee);
     logger.info(`Generates: ${name} ${yml}`);
-    await write(yml, yamlStr, "utf8");
+    write(yml, yamlStr, "utf8");
   } catch (error) {
     logger.error(`${__filename}: Workflow: ${rootDir}/${name}/.github/FUNDING.yml ${error}`);
   }

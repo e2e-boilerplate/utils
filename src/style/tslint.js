@@ -1,7 +1,7 @@
 import { logger, rootDir } from "../constants";
 import { write } from "../exec";
 
-async function makeTslint(repo) {
+function makeTslint(repo) {
   const { name } = repo;
   const parts = name.split("-");
   const data = {
@@ -15,7 +15,7 @@ async function makeTslint(repo) {
     if (parts.includes("typescript")) {
       const tslint = JSON.stringify(data, null, 2);
       const path = `${rootDir}/${name}/tslint.json`;
-      await write(path, tslint, "utf8");
+      write(path, tslint, "utf8");
       logger.info(`tslint ${name}`);
     }
   } catch (error) {

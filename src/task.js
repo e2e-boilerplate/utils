@@ -120,7 +120,7 @@ async function tslint(repo) {
 async function dependencies(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await makeDeps(repo);
+  makeDeps(repo);
 }
 
 async function genCron(repo) {
@@ -132,19 +132,19 @@ async function genCron(repo) {
 async function genJestConfig(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await jestConfig(name);
+  jestConfig(name);
 }
 
 async function genMochaConfig(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await mochaConfig(name);
+  mochaConfig(name);
 }
 
 async function genProtractorConfig(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await protractorConfig(name);
+  protractorConfig(name);
 }
 
 async function genWebdriverioConfig(repo) {

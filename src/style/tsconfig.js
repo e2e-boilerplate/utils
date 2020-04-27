@@ -1,7 +1,7 @@
 import { logger, rootDir } from "../constants";
 import { write } from "../exec";
 
-async function makeTsconfig(repo) {
+function makeTsconfig(repo) {
   const { name } = repo;
   const parts = name.split("-");
   const data = {
@@ -91,7 +91,7 @@ async function makeTsconfig(repo) {
 
       const eslintrc = JSON.stringify(data, null, 2);
       const path = `${rootDir}/${name}/tsconfig.json`;
-      await write(path, eslintrc, "utf8");
+      write(path, eslintrc, "utf8");
       logger.info(`eslintrc ${name}`);
     }
   } catch (error) {

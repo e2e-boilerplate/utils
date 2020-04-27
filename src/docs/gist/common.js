@@ -101,7 +101,7 @@ async function buildGistList() {
     const data = JSON.stringify([...new Set(list)].sort(), null, 2);
     logger.error(data);
 
-    await write(path, data, "utf8");
+    write(path, data, "utf8");
   } catch (error) {
     logger.error(`${__filename}, Build Gist list error`);
   }
