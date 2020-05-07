@@ -59,7 +59,6 @@
     "config:protractor": "node -r esm exec/runner.js --task protractor --username e2e-boilerplate --module protractor",
     "config:webdriverio": "node -r esm exec/runner.js --task webdriverio --username e2e-boilerplate --module webdriverio",
     "dependencies": "node -r esm runner.js --task dependencies --username e2e-boilerplate",
-    "style:eslintrc": "node -r esm runner.js --task eslintrc --username e2e-boilerplate",
     "gen:cron": "node -r esm runner.js --task cron --username e2e-boilerplate",
     "get:repos": "node -r esm exec/repositories.js --pages 2 --username e2e-boilerplate",
     "gist:create": "node -r esm exec/gist_create.js --username e2e-boilerplate --token token",
@@ -81,6 +80,7 @@
     "set:metadata": "node -r esm runner.js --task metadata --username e2e-boilerplate --keywords \"e2e-e2e tests-boilerplate-example-integration test\" --author \"Girma Nigusse <xgirma@gmail.com>\"",
     "set:readme": "node -r esm runner.js --task readme --username e2e-boilerplate",
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate -module wd",
+    "style:eslintrc": "node -r esm runner.js --task eslintrc --username e2e-boilerplate",
     "tsconfig": "node -r esm runner.js --task tsconfig --username e2e-boilerplate",
     "tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate"
   },
