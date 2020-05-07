@@ -121,6 +121,9 @@ function getTech(name) {
       }
       const last = format.slice(-1);
 
+      if (first.join(", ") === "") {
+        return `Using ${last}.`;
+      }
       return `Using ${first.join(", ")} and ${last}.`;
     }
   } catch (error) {
@@ -163,6 +166,8 @@ function getFrameworkName(name) {
           frameworkName = parts[0].toUpperCase();
         } else if (parts[0] === "webdriverio") {
           frameworkName = "WebdriverIO";
+        } else if (parts[0] === "testcafe") {
+          frameworkName = "TestCafe";
         } else {
           frameworkName = capitalize(parts[0]);
         }
