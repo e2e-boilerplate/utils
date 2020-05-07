@@ -33,7 +33,7 @@ export default function implementedList() {
   ## Selenium Webdriver
   ${content["selenium-webdriver"]}
   
-  ## Testcafe
+  ## TestCafé
   ${content.testcafe}
   
   ## WD
