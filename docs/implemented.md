@@ -171,6 +171,7 @@
 | :- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1  | [![GitHub Actions status &#124; e2e-boilerplate/testcafe-commonjs](https://github.com/e2e-boilerplate/testcafe-commonjs/workflows/testcafe-commonjs/badge.svg)](https://github.com/e2e-boilerplate/testcafe-commonjs/actions?workflow=testcafe-commonjs)           |
 | 2  | [![GitHub Actions status &#124; e2e-boilerplate/testcafe-es-modules](https://github.com/e2e-boilerplate/testcafe-es-modules/workflows/testcafe-es-modules/badge.svg)](https://github.com/e2e-boilerplate/testcafe-es-modules/actions?workflow=testcafe-es-modules) |
+| 3  | [![GitHub Actions status &#124; e2e-boilerplate/testcafe-typescript](https://github.com/e2e-boilerplate/testcafe-typescript/workflows/testcafe-typescript/badge.svg)](https://github.com/e2e-boilerplate/testcafe-typescript/actions?workflow=testcafe-typescript) |
   
   ## WD
   | No | Status                                                                                                                                                                                                                                                                                                                                                                                                                                            |
