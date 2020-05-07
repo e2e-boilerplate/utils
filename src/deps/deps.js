@@ -433,6 +433,18 @@ export default function makeDeps(repo) {
       "lint-staged"
     );
 
+    if (parts.includes("testcafe")) {
+      dependencies.testcafe = version(pkgJson.devDependencies.testcafe, deps.testcafe, "testcafe");
+    }
+
+    if (parts.includes("testcafe") && !parts.includes("typescript")) {
+      devDependencies["eslint-plugin-testcafe"] = version(
+        pkgJson.devDependencies["eslint-plugin-testcafe"],
+        deps["eslint-plugin-testcafe"],
+        "eslint-plugin-testcafe"
+      );
+    }
+
     logger.info(`dependencies: ${name}`);
     logger.info(`dependencies ${JSON.stringify(dependencies, null, 2)}`);
     logger.info(`devDependencies ${JSON.stringify(devDependencies, null, 2)}`);
