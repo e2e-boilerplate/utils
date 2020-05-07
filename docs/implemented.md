@@ -167,9 +167,10 @@
 | 34 | [![GitHub Actions status &#124; e2e-boilerplate/selenium-webdriver-typescript-ts-node-tape](https://github.com/e2e-boilerplate/selenium-webdriver-typescript-ts-node-tape/workflows/selenium-webdriver-typescript-ts-node-tape/badge.svg)](https://github.com/e2e-boilerplate/selenium-webdriver-typescript-ts-node-tape/actions?workflow=selenium-webdriver-typescript-ts-node-tape)                                                        |
   
   ## Testcafe
-  | No | Status                                                                                                                                                                                                                                                   |
-| :- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1  | [![GitHub Actions status &#124; e2e-boilerplate/testcafe-commonjs](https://github.com/e2e-boilerplate/testcafe-commonjs/workflows/testcafe-commonjs/badge.svg)](https://github.com/e2e-boilerplate/testcafe-commonjs/actions?workflow=testcafe-commonjs) |
+  | No | Status                                                                                                                                                                                                                                                             |
+| :- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1  | [![GitHub Actions status &#124; e2e-boilerplate/testcafe-commonjs](https://github.com/e2e-boilerplate/testcafe-commonjs/workflows/testcafe-commonjs/badge.svg)](https://github.com/e2e-boilerplate/testcafe-commonjs/actions?workflow=testcafe-commonjs)           |
+| 2  | [![GitHub Actions status &#124; e2e-boilerplate/testcafe-es-modules](https://github.com/e2e-boilerplate/testcafe-es-modules/workflows/testcafe-es-modules/badge.svg)](https://github.com/e2e-boilerplate/testcafe-es-modules/actions?workflow=testcafe-es-modules) |
   
   ## WD
   | No | Status                                                                                                                                                                                                                                                                                                                                                                                                                                            |
