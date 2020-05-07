@@ -83,7 +83,10 @@ async function workflow(repo) {
     }
 
     // TODO run nightwatch headless with one config
-    if (keys.includes("test:ci")) {
+    if (parts.includes("testcafe")) {
+      const test = { name: "test", uses: "DevExpress/testcafe-action@latest", with: { args: "chrome spec/*.spec.js" } };
+      nodejs.jobs.build.steps.push(test);
+    } else if (keys.includes("test:ci")) {
       const test = { name: "test", run: "npm run test:ci" };
       nodejs.jobs.build.steps.push(test);
     } else if (keys.includes("test")) {
