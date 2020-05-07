@@ -59,7 +59,7 @@
     "config:protractor": "node -r esm exec/runner.js --task protractor --username e2e-boilerplate --module protractor",
     "config:webdriverio": "node -r esm exec/runner.js --task webdriverio --username e2e-boilerplate --module webdriverio",
     "dependencies": "node -r esm runner.js --task dependencies --username e2e-boilerplate",
-    "eslintrc": "node -r esm runner.js --task eslintrc --username e2e-boilerplate",
+    "style:eslintrc": "node -r esm runner.js --task eslintrc --username e2e-boilerplate",
     "gen:cron": "node -r esm runner.js --task cron --username e2e-boilerplate",
     "get:repos": "node -r esm exec/repositories.js --pages 2 --username e2e-boilerplate",
     "gist:create": "node -r esm exec/gist_create.js --username e2e-boilerplate --token token",

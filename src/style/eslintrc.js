@@ -54,7 +54,14 @@ function makeEslintrc(repo) {
         };
       }
 
-      if (!parts.includes("cypress") && !parts.includes("webdriverio")) {
+      if (parts.includes("testcafe")) {
+        data.extends.push("plugin:testcafe/recommended");
+        data.plugins.push("testcafe");
+        data.rules = {};
+        data.rules["no-unused-expressions"] = 0;
+      }
+
+      if (!parts.includes("cypress") && !parts.includes("webdriverio") && !parts.includes("testcafe")) {
         delete data.plugins;
       }
 
