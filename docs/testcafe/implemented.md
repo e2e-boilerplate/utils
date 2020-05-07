@@ -1,0 +1,3 @@
+| No | Status                                                                                                                                                                                                                                                   |
+| :- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1  | [![GitHub Actions status &#124; e2e-boilerplate/testcafe-commonjs](https://github.com/e2e-boilerplate/testcafe-commonjs/workflows/testcafe-commonjs/badge.svg)](https://github.com/e2e-boilerplate/testcafe-commonjs/actions?workflow=testcafe-commonjs) |
