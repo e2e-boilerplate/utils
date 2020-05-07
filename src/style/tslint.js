@@ -13,6 +13,9 @@ function makeTslint(repo) {
 
   try {
     if (parts.includes("typescript")) {
+      if (parts.includes("testcafe")) {
+        data.rules["no-unused-expression"] = false;
+      }
       const tslint = JSON.stringify(data, null, 2);
       const path = `${rootDir}/${name}/tslint.json`;
       write(path, tslint, "utf8");
