@@ -12,7 +12,7 @@ const user = userInfo().username;
 const rootDir = `/Users/${user}/Documents/${username}`;
 const reposDir = "./repos";
 const miscRepos = ["sandbox", "utils", "resources", "e2e-boilerplate"];
-const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd"];
+const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd", "testcafe"];
 const workflow = ["npm:install", "install:linux", "lint", "build", "update:webdriver", "start:webdriver", "test"];
 const options = {
   host: "api.github.com",

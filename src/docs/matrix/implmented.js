@@ -33,6 +33,9 @@ export default function implementedList() {
   ## Selenium Webdriver
   ${content["selenium-webdriver"]}
   
+  ## Testcafe
+  ${content.testcafe}
+  
   ## WD
   ${content.wd}
   
