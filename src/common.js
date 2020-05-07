@@ -167,7 +167,7 @@ function getFrameworkName(name) {
         } else if (parts[0] === "webdriverio") {
           frameworkName = "WebdriverIO";
         } else if (parts[0] === "testcafe") {
-          frameworkName = "TestCafe";
+          frameworkName = "TestCafé";
         } else {
           frameworkName = capitalize(parts[0]);
         }
