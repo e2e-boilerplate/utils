@@ -3,7 +3,7 @@ import { request } from "https";
 import { isNumeric } from "./validators";
 import { username, pages, logger, options } from "./constants";
 
-function getReposList() {
+function getReposMeta() {
   try {
     const count = isNumeric(pages) ? pages : 2;
 
@@ -44,4 +44,4 @@ function getReposList() {
   }
 }
 
-export default getReposList;
+export default getReposMeta;
