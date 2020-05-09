@@ -2,7 +2,7 @@
 import { rootDir, logger } from "../constants";
 import { write } from "../exec";
 
-async function wdioConfig(name) {
+export default function wdioConfig(name) {
   const runner = `runner: "local"`;
   const path = `path: "/"`;
   const services = `services: ["chromedriver"]`;
@@ -102,15 +102,12 @@ const config = process.env.GITHUB_ACTIONS ? headless : headed;
 
 exports.config = config;
 `;
-
+      /* eslint-enable */
       const configPath = `${rootDir}/${name}/wdio.conf.js`;
-      await write(configPath, data, "utf8");
+      write(configPath, data, "utf8");
       logger.info(`.wdio.conf.js ${name}`);
     }
   } catch (error) {
-    logger.error(`.wdio.conf.js ${error}`);
+    logger.error(`${__filename}: .wdio.conf.js ${error}`);
   }
 }
-
-export default wdioConfig;
-/* eslint-enable */

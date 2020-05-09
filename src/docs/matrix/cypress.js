@@ -1,6 +1,6 @@
 import table from "markdown-table";
-import { logger, rootDir } from "../constants";
-import { write } from "../exec";
+import { logger, rootDir } from "../../constants";
+import { write } from "../../exec";
 
 import {
   all,
@@ -11,7 +11,7 @@ import {
   chaiAssertionTypes,
   javascriptType,
 } from "./common";
-import { removeDuplicates } from "../common";
+import { removeDuplicates } from "../../common";
 
 const frameworks = ["cypress"];
 const moduleType = ["es-modules"];
@@ -63,7 +63,7 @@ function buildList() {
   });
 }
 
-async function matrix() {
+export default function cypress() {
   buildList();
   const results = getPaths(framework);
 
@@ -99,12 +99,10 @@ async function matrix() {
     const path = `${rootDir}/utils/docs/cypress/all.md`;
     const pathImplemented = `${rootDir}/utils/docs/cypress/implemented.md`;
     const pathNotImplemented = `${rootDir}/utils/docs/cypress/not-implemented.md`;
-    await write(path, table(content, { align: "l" }), "utf8");
-    await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
-    await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
+    write(path, table(content, { align: "l" }), "utf8");
+    write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
+    write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
-
-matrix();

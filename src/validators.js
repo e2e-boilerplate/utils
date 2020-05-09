@@ -6,7 +6,7 @@ async function hasRootDirectory() {
   try {
     hasDir = await existsSync(rootDir);
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
   return hasDir;
 }
@@ -17,7 +17,7 @@ async function hasRepositoriesList() {
     const files = await readdirSync(reposDir);
     hasList = files.length > 1;
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 
   return hasList;
@@ -40,7 +40,7 @@ async function hasMatchingRepositoriesList() {
       }
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 
   return hasMatchingRepos;
@@ -54,7 +54,7 @@ async function hasRepository(repoName) {
     const files = await readdirSync(repo);
     repoExist = files.length > 1;
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 
   return repoExist;

@@ -1,6 +1,6 @@
 import table from "markdown-table";
-import { logger, rootDir } from "../constants";
-import { write } from "../exec";
+import { logger, rootDir } from "../../constants";
+import { write } from "../../exec";
 import {
   all,
   getPaths,
@@ -9,26 +9,24 @@ import {
   notImplementedOnly,
   chaiAssertionTypes,
   assertionType,
-  runnerType,
   typescriptTranspiler,
   esModuleTranspiler,
   javascriptType,
   moduleType,
 } from "./common";
-import { removeDuplicates } from "../common";
+import { removeDuplicates } from "../../common";
 
+const frameworks = ["testcafe"];
+
+const javascript = {};
 const chai = {};
 const assertion = {};
-const runner = {};
 const typescript = {};
 const esModule = {};
-const javascript = {};
 const module = {};
 const framework = {};
 
-function buildList(fwk) {
-  const frameworks = [`${fwk}`];
-
+function buildList() {
   chaiAssertionTypes.forEach((c) => {
     chai[c] = {};
   });
@@ -37,16 +35,16 @@ function buildList(fwk) {
     assertion[a] = a === "chai" ? chai : {};
   });
 
-  runnerType.forEach((r) => {
-    runner[r] = r === "ava" || r === "tape" || r === "none" ? {} : assertion;
-  });
-
   typescriptTranspiler.forEach((t) => {
-    typescript[t] = runner;
+    if (t !== "ts-jest") {
+      typescript[t] = assertion;
+    }
   });
 
   esModuleTranspiler.forEach((e) => {
-    esModule[e] = runner;
+    if (e !== "babel-jest") {
+      esModule[e] = assertion;
+    }
   });
 
   javascriptType.forEach((j) => {
@@ -54,18 +52,16 @@ function buildList(fwk) {
   });
 
   moduleType.forEach((m) => {
-    module[m] = m === "commonjs" ? runner : javascript;
+    module[m] = m === "commonjs" ? assertion : javascript;
   });
 
   frameworks.forEach((f) => {
-    if (f !== "cypress") {
-      framework[f] = module;
-    }
+    framework[f] = module;
   });
 }
 
-export default async function matrix(fwk) {
-  buildList(fwk);
+export default function testcafe() {
+  buildList();
   const results = getPaths(framework);
 
   const list = [];
@@ -83,28 +79,25 @@ export default async function matrix(fwk) {
 
     const name = noNone.filter((n) => n !== "");
 
-    if (!(!path.includes("jest") && path.includes("ts-jest"))) {
-      list.push(name.join("-"));
-      if (implemented(name.join("-"))) {
-        implementedList.push(name.join("-"));
-      } else {
-        notImplementedList.push(name.join("-"));
-      }
+    list.push(name.join("-"));
+    if (implemented(name.join("-"))) {
+      implementedList.push(name.join("-"));
+    } else {
+      notImplementedList.push(name.join("-"));
     }
   });
 
   const content = all(removeDuplicates(list));
   const contentImplemented = implementedOnly(removeDuplicates(implementedList));
   const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
-
   try {
-    const path = `${rootDir}/utils/docs/${fwk}/all.md`;
-    const pathImplemented = `${rootDir}/utils/docs/${fwk}/implemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/docs/${fwk}/not-implemented.md`;
-    await write(path, table(content, { align: "l" }), "utf8");
-    await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
-    await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
+    const path = `${rootDir}/utils/docs/testcafe/all.md`;
+    const pathImplemented = `${rootDir}/utils/docs/testcafe/implemented.md`;
+    const pathNotImplemented = `${rootDir}/utils/docs/testcafe/not-implemented.md`;
+    write(path, table(content, { align: "l" }), "utf8");
+    write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
+    write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }

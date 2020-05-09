@@ -2,7 +2,7 @@
 import { rootDir, logger } from "../constants";
 import { write } from "../exec";
 
-async function protractorConfig(name) {
+export default function protractorConfig(name) {
   const directConnect = `const directConnect = true;`;
   const mocha = `const framework = "mocha";`;
   const jasmine = `const framework = "jasmine";`;
@@ -104,12 +104,10 @@ ${end}`;
         parts.includes("typescript") && parts.includes("tsc")
           ? `${rootDir}/${name}/protractor.conf.ts`
           : `${rootDir}/${name}/protractor.conf.js`;
-      await write(configPath, data, "utf8");
+      write(configPath, data, "utf8");
       logger.info(`protractor.conf.js ${name}`);
     }
   } catch (error) {
-    logger.error(`protractor.conf.js ${error}`);
+    logger.error(`${__filename}: protractor.conf.js ${error}`);
   }
 }
-
-export default protractorConfig;

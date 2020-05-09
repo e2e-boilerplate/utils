@@ -1,7 +1,6 @@
 import table from "markdown-table";
-import { logger, rootDir } from "../constants";
-import { write } from "../exec";
-
+import { logger, rootDir } from "../../constants";
+import { write } from "../../exec";
 import {
   all,
   getPaths,
@@ -10,25 +9,26 @@ import {
   notImplementedOnly,
   chaiAssertionTypes,
   assertionType,
+  runnerType,
   typescriptTranspiler,
   esModuleTranspiler,
   javascriptType,
   moduleType,
 } from "./common";
-import { removeDuplicates } from "../common";
-
-// built-in test runner
-const frameworks = ["nightwatch"];
+import { removeDuplicates } from "../../common";
 
 const chai = {};
 const assertion = {};
+const runner = {};
 const typescript = {};
 const esModule = {};
 const javascript = {};
 const module = {};
-const framework = {};
+let framework;
 
-function buildList() {
+function buildList(fwk) {
+  const frameworks = [`${fwk}`];
+
   chaiAssertionTypes.forEach((c) => {
     chai[c] = {};
   });
@@ -37,12 +37,16 @@ function buildList() {
     assertion[a] = a === "chai" ? chai : {};
   });
 
+  runnerType.forEach((r) => {
+    runner[r] = r === "ava" || r === "tape" || r === "none" ? {} : assertion;
+  });
+
   typescriptTranspiler.forEach((t) => {
-    typescript[t] = assertion;
+    typescript[t] = runner;
   });
 
   esModuleTranspiler.forEach((e) => {
-    esModule[e] = assertion;
+    esModule[e] = runner;
   });
 
   javascriptType.forEach((j) => {
@@ -50,16 +54,19 @@ function buildList() {
   });
 
   moduleType.forEach((m) => {
-    module[m] = m === "commonjs" ? assertion : javascript;
+    module[m] = m === "commonjs" ? runner : javascript;
   });
 
   frameworks.forEach((f) => {
-    framework[f] = module;
+    if (f !== "cypress") {
+      framework[f] = module;
+    }
   });
 }
 
-async function matrix() {
-  buildList();
+export default function commonMatrix(fwk) {
+  framework = {};
+  buildList(fwk);
   const results = getPaths(framework);
 
   const list = [];
@@ -77,11 +84,13 @@ async function matrix() {
 
     const name = noNone.filter((n) => n !== "");
 
-    list.push(name.join("-"));
-    if (implemented(name.join("-"))) {
-      implementedList.push(name.join("-"));
-    } else {
-      notImplementedList.push(name.join("-"));
+    if (!(!path.includes("jest") && path.includes("ts-jest"))) {
+      list.push(name.join("-"));
+      if (implemented(name.join("-"))) {
+        implementedList.push(name.join("-"));
+      } else {
+        notImplementedList.push(name.join("-"));
+      }
     }
   });
 
@@ -90,15 +99,13 @@ async function matrix() {
   const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
-    const path = `${rootDir}/utils/docs/nightwatch/all.md`;
-    const pathImplemented = `${rootDir}/utils/docs/nightwatch/implemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/docs/nightwatch/not-implemented.md`;
-    await write(path, table(content, { align: "l" }), "utf8");
-    await write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
-    await write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
+    const path = `${rootDir}/utils/docs/${fwk}/all.md`;
+    const pathImplemented = `${rootDir}/utils/docs/${fwk}/implemented.md`;
+    const pathNotImplemented = `${rootDir}/utils/docs/${fwk}/not-implemented.md`;
+    write(path, table(content, { align: "l" }), "utf8");
+    write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
+    write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
-
-matrix();

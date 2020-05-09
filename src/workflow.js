@@ -9,7 +9,7 @@ async function setCron(name) {
   try {
     value = await getMetaValue(name, "cron");
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
   return value || getRandomCron();
 }
@@ -83,7 +83,15 @@ async function workflow(repo) {
     }
 
     // TODO run nightwatch headless with one config
-    if (keys.includes("test:ci")) {
+    if (parts.includes("testcafe")) {
+      let test;
+      if (parts.includes("typescript")) {
+        test = { name: "test", uses: "DevExpress/testcafe-action@latest", with: { args: "chrome spec/*.spec.ts" } };
+      } else {
+        test = { name: "test", uses: "DevExpress/testcafe-action@latest", with: { args: "chrome spec/*.spec.js" } };
+      }
+      nodejs.jobs.build.steps.push(test);
+    } else if (keys.includes("test:ci")) {
       const test = { name: "test", run: "npm run test:ci" };
       nodejs.jobs.build.steps.push(test);
     } else if (keys.includes("test")) {
@@ -116,9 +124,9 @@ async function workflow(repo) {
 
     const yamlStr = safeDump(nodejs);
     logger.info(`Generates: ${yml}`);
-    await write(yml, yamlStr, "utf8");
+    write(yml, yamlStr, "utf8");
   } catch (error) {
-    logger.error(`Workflow: ${rootDir}/${name}/package.json ${error}`);
+    logger.error(`${__filename}: Workflow: ${rootDir}/${name}/package.json ${error}`);
   }
 }
 

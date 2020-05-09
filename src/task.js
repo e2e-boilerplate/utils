@@ -9,9 +9,6 @@ import makeEslintrc from "./style/eslintrc";
 import makeTsconfig from "./style/tsconfig";
 import makeTslint from "./style/tslint";
 import makeDeps from "./deps/deps";
-import runsResult from "./runs";
-import buildResults from "./build";
-import traffic from "./docs/traffic";
 import cron from "./cron";
 import jestConfig from "./config/jest";
 import mochaConfig from "./config/mocha";
@@ -81,7 +78,7 @@ async function setFunding(repo) {
 async function generateReadme(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await readme(repo);
+  readme(repo);
 }
 
 async function executeArbitraryCommand(repo) {
@@ -123,25 +120,7 @@ async function tslint(repo) {
 async function dependencies(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await makeDeps(repo);
-}
-
-async function runs(repo) {
-  const { name } = repo;
-  await prepareRepo(name);
-  await runsResult(repo);
-}
-
-async function runsStatus(repo) {
-  const { name } = repo;
-  await prepareRepo(name);
-  await buildResults(repo);
-}
-
-async function repoTraffic(repo) {
-  const { name } = repo;
-  await prepareRepo(name);
-  await traffic(repo);
+  makeDeps(repo);
 }
 
 async function genCron(repo) {
@@ -153,19 +132,19 @@ async function genCron(repo) {
 async function genJestConfig(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await jestConfig(name);
+  jestConfig(name);
 }
 
 async function genMochaConfig(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await mochaConfig(name);
+  mochaConfig(name);
 }
 
 async function genProtractorConfig(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await protractorConfig(name);
+  protractorConfig(name);
 }
 
 async function genWebdriverioConfig(repo) {
@@ -189,9 +168,6 @@ export {
   updateMetadata,
   executeArbitraryCommand,
   lint,
-  runs,
-  runsStatus,
-  repoTraffic,
   setFunding,
   tsconfig,
   tslint,

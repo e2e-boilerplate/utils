@@ -19,7 +19,7 @@ function version(first, second, name) {
   return second;
 }
 
-async function makeDeps(repo) {
+export default function makeDeps(repo) {
   const { name } = repo;
   const parts = name.split("-");
   const dependencies = {};
@@ -433,11 +433,23 @@ async function makeDeps(repo) {
       "lint-staged"
     );
 
+    if (parts.includes("testcafe")) {
+      dependencies.testcafe = version(pkgJson.devDependencies.testcafe, deps.testcafe, "testcafe");
+    }
+
+    if (parts.includes("testcafe") && !parts.includes("typescript")) {
+      devDependencies["eslint-plugin-testcafe"] = version(
+        pkgJson.devDependencies["eslint-plugin-testcafe"],
+        deps["eslint-plugin-testcafe"],
+        "eslint-plugin-testcafe"
+      );
+    }
+
     logger.info(`dependencies: ${name}`);
     logger.info(`dependencies ${JSON.stringify(dependencies, null, 2)}`);
     logger.info(`devDependencies ${JSON.stringify(devDependencies, null, 2)}`);
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 
   return {
@@ -445,5 +457,3 @@ async function makeDeps(repo) {
     devDependencies,
   };
 }
-
-export default makeDeps;

@@ -1,7 +1,7 @@
 import { logger, miscRepos, rootDir } from "../constants";
 import { write } from "../exec";
 
-async function makeEslintrc(repo) {
+function makeEslintrc(repo) {
   const { name } = repo;
   const parts = name.split("-");
   const data = {
@@ -54,17 +54,24 @@ async function makeEslintrc(repo) {
         };
       }
 
-      if (!parts.includes("cypress") && !parts.includes("webdriverio")) {
+      if (parts.includes("testcafe")) {
+        data.extends.push("plugin:testcafe/recommended");
+        data.plugins.push("testcafe");
+        data.rules = {};
+        data.rules["no-unused-expressions"] = 0;
+      }
+
+      if (!parts.includes("cypress") && !parts.includes("webdriverio") && !parts.includes("testcafe")) {
         delete data.plugins;
       }
 
       const eslintrc = JSON.stringify(data, null, 2);
       const path = `${rootDir}/${name}/.eslintrc.json`;
-      await write(path, eslintrc, "utf8");
+      write(path, eslintrc, "utf8");
       logger.info(`eslintrc ${name}`);
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 }
 
