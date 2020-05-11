@@ -14,6 +14,7 @@ import jestConfig from "./config/jest";
 import mochaConfig from "./config/mocha";
 import protractorConfig from "./config/protractor";
 import wdioConfig from "./config/webdriverio";
+import referrers from "./referrers";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -153,6 +154,12 @@ async function genWebdriverioConfig(repo) {
   await wdioConfig(name);
 }
 
+async function getReferrers(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await referrers(name);
+}
+
 export {
   audit,
   dependencies,
@@ -162,6 +169,7 @@ export {
   npmInstall,
   generateWorkflow,
   generateReadme,
+  getReferrers,
   gitPull,
   gitCommit,
   gitPush,

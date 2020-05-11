@@ -1,9 +1,9 @@
 import { readdirSync, writeFileSync } from "fs";
-import { logger, reposDir, miscRepos, rootDir } from "./constants";
+import { logger, reposDir, miscRepos } from "./constants";
 
 function reposArray() {
   const list = [];
-  const path = `${rootDir}/utils/repos/repos.json`;
+  const path = `./src/docs/repos.json`;
 
   try {
     const files = readdirSync(reposDir);
@@ -18,7 +18,7 @@ function reposArray() {
       });
     }
   } catch (error) {
-    logger.error(error);
+    logger.error(`${__filename}: ${error}`);
   }
 
   const data = JSON.stringify(list, null, 2);

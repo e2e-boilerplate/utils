@@ -60,7 +60,7 @@
     "config:webdriverio": "node -r esm exec/runner.js --task webdriverio --username e2e-boilerplate --module webdriverio",
     "dependencies": "node -r esm runner.js --task dependencies --username e2e-boilerplate",
     "gen:cron": "node -r esm runner.js --task cron --username e2e-boilerplate",
-    "repos:meta:get": "node -r esm exec/repos_meta.js --pages 2 --username e2e-boilerplate",
+    "repos:meta:get": "node -r esm exec/repos_meta.js --pages 3 --username e2e-boilerplate",
     "repos:list:get": "node -r esm exec/repos_list.js --pages 2 --username e2e-boilerplate",
     "gist:create": "node -r esm exec/gist_create.js --username e2e-boilerplate --token token",
     "gist:get": "node -r esm exec/gist_get.js --username xgirma",
@@ -83,7 +83,9 @@
     "set:workflow": "node -r esm runner.js --task workflow --username e2e-boilerplate -module wd",
     "style:eslintrc": "node -r esm runner.js --task eslintrc --username e2e-boilerplate",
     "style:tslint": "node -r esm runner.js --task tslint --username e2e-boilerplate",
-    "tsconfig": "node -r esm runner.js --task tsconfig --username e2e-boilerplate"
+    "tsconfig": "node -r esm runner.js --task tsconfig --username e2e-boilerplate",
+    "referrers": "node -r esm exec/runner.js --task referrers --username e2e-boilerplate",
+    "stat": "node -r esm exec/stats.js --task referrers --username e2e-boilerplate"
   },
   "version": "1.0.1"
 }
