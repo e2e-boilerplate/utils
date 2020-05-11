@@ -62,7 +62,9 @@ function traffic() {
     row.push(getCount(data));
     row.push(getUniques(data));
     row.push(getReferrers(data));
-    row.push(file);
+    const lastIndex = file.lastIndexOf(".");
+    const name = file.substring(0, lastIndex);
+    row.push(name);
 
     stat.push(row);
   });
@@ -71,7 +73,7 @@ function traffic() {
   content.unshift(["count", "unique", "referrers", "repository"]);
 
   try {
-    write("src/docs/trafic.md", table(content, { align: "l" }), "utf8");
+    write("docs/trafic.md", table(content, { align: "l" }), "utf8");
   } catch (error) {
     logger.error(`${__filename}: Referrers doc: ${error}`);
   }
