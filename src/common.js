@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import * as rimraf from "rimraf";
 import { existsSync, mkdirSync, readFileSync } from "fs";
 import { write } from "./exec";
@@ -304,7 +305,25 @@ function removeDuplicates(array) {
   return filtered;
 }
 
+const bubbleSort = (inputArr) => {
+  const len = inputArr.length;
+  let swapped;
+  do {
+    swapped = false;
+    for (let i = 0; i < len - 1; i += 1) {
+      if (inputArr[i][0] < inputArr[i + 1][0]) {
+        const tmp = inputArr[i];
+        inputArr[i] = inputArr[i + 1];
+        inputArr[i + 1] = tmp;
+        swapped = true;
+      }
+    }
+  } while (swapped);
+  return inputArr;
+};
+
 export {
+  bubbleSort,
   clear,
   clearReposList,
   createPath,
