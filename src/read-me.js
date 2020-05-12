@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { getFrameworkName, getTech } from "./common";
+import { getFrameworkName, getTech, linkTech } from "./common";
 import { logger, rootDir, username, miscRepos } from "./constants";
 import { write } from "./exec";
 
@@ -32,7 +32,7 @@ function getScriptsCombo(repo) {
 export default function readme(repo) {
   const { name } = repo;
   const frameworkName = getFrameworkName(name);
-  const tech = getTech(name);
+  const tech = linkTech(getTech(name));
   const commands = getScriptsCombo(repo);
   const path = `${rootDir}/${name}/README.md`;
   const badge = `${actionsStatus(repo)}`;

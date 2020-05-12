@@ -111,6 +111,9 @@ function getTech(name) {
           case "typescript":
             format.push("TypeScript");
             break;
+          case "tsc":
+            format.push("tsc");
+            break;
           default:
             format.push(capitalize(tech));
         }
@@ -322,6 +325,61 @@ const bubbleSort = (inputArr) => {
   return inputArr;
 };
 
+function linkTech(tech) {
+  let formatted;
+  try {
+    const chai = tech.replace("Chai", "[Chai](https://www.chaijs.com)");
+    const cucumber = chai.replace("Cucumber", "[Cucumber](https://github.com/cucumber/cucumber-js)");
+    const browserify = cucumber.replace("Browserify", "[Browserify](http://browserify.org)");
+    const webpac = browserify.replace("Webpack", "[Webpack](https://webpack.js.org)");
+    const babel = webpac.replace("Babel", "[Babel](https://babeljs.io)");
+    const typescript = babel.replace("TypeScript", "[TypeScript](https://www.typescriptlang.org)");
+    const jasmine = typescript.replace("Jasmine", "[Jasmine](https://jasmine.github.io)");
+    const jest = jasmine.replace("Jest", "[Jest](https://jestjs.io)");
+    const mocha = jest.replace("Mocha", "[Mocha](https://mochajs.org)");
+    const esm = mocha.replace("esm", "[esm](https://www.npmjs.com/package/esmjs)");
+    const tsJest = esm.replace("ts-jest", "[ts-jest](https://github.com/kulshekhar/ts-jest)");
+    const tsNode = tsJest.replace("ts-node", "[ts-jest](https://github.com/TypeStrong/ts-node)");
+    const ava = tsNode.replace("AVA", "[AVA](https://github.com/avajs/ava)");
+    const tape = ava.replace("Tape", "[Tape](https://github.com/substack/tape)");
+    const commonjs = tape.replace("Commonjs", "[Commonjs](https://requirejs.org/docs/commonjs.html)");
+    const esModules = commonjs.replace(
+      "ES Modules",
+      "[ES Modules](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/)"
+    );
+    const wm = esModules.replace(
+      "Webdriver-Manager",
+      "[Webdriver-Manager](https://github.com/angular/webdriver-manager#readme)"
+    );
+
+    if (wm.includes("Chai")) {
+      let matcher;
+      if (wm.includes("Assert")) {
+        matcher = wm.replace("Assert", "[Commonjs](https://www.chaijs.com/api/assert/)");
+      }
+      if (wm.includes("Expect")) {
+        matcher = wm.replace("Expect", "[Commonjs](https://www.chaijs.com/api/bdd/)");
+      }
+      if (wm.includes("Should")) {
+        matcher = wm.replace("Should", "[Commonjs](https://www.chaijs.com/api/bdd/)");
+      }
+      formatted = matcher;
+    } else if (wm.includes("Assert")) {
+      let matcher;
+      if (wm.includes("Assert")) {
+        matcher = wm.replace("Assert", "[Commonjs](https://nodejs.org/api/assert.html)");
+      }
+      formatted = matcher;
+    } else {
+      formatted = wm;
+    }
+  } catch (error) {
+    logger.error(`${__filename}: ${error}`);
+  }
+
+  return formatted;
+}
+
 export {
   bubbleSort,
   clear,
@@ -335,4 +393,5 @@ export {
   sortObject,
   removeDuplicates,
   getMetaValue,
+  linkTech,
 };

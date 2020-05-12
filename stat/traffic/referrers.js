@@ -1,5 +1,6 @@
 import table from "markdown-table";
 import { readdirSync, readFileSync } from "fs";
+import { actionsStatusHome } from "../../src/docs/matrix/common";
 import { logger } from "../../src/constants";
 import { write } from "../../src/exec";
 import { bubbleSort } from "../../src/common";
@@ -47,7 +48,7 @@ function referrers() {
     row.push(getReferrers(data));
     const lastIndex = file.lastIndexOf(".");
     const name = file.substring(0, lastIndex);
-    row.push(name);
+    row.push(actionsStatusHome(name));
 
     stat.push(row);
   });
