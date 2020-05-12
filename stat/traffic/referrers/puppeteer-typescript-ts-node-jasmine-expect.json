@@ -1,4 +1,5 @@
 [
   { "referrer": "medium.com", "count": 8, "uniques": 1 },
-  { "referrer": "Google", "count": 1, "uniques": 1 }
+  { "referrer": "Google", "count": 2, "uniques": 2 },
+  { "referrer": "github.com", "count": 2, "uniques": 1 }
 ]
