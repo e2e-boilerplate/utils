@@ -89,9 +89,9 @@ export default function nightwatch() {
   const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
-    const path = `${rootDir}/utils/docs/nightwatch/all.md`;
-    const pathImplemented = `${rootDir}/utils/docs/nightwatch/implemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/docs/nightwatch/not-implemented.md`;
+    const path = `${rootDir}/docs/matrix/nightwatch/all.md`;
+    const pathImplemented = `${rootDir}/docs/matrix/nightwatch/implemented.md`;
+    const pathNotImplemented = `${rootDir}/docs/matrix/nightwatch/not-implemented.md`;
     write(path, table(content, { align: "l" }), "utf8");
     write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");

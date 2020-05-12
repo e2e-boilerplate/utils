@@ -6,45 +6,50 @@ frameworks.push("selenium-webdriver");
 
 export default function implementedList() {
   const content = {};
-  const path = `${rootDir}/utils/docs/implemented.md`;
+  const path = `${rootDir}/docs/README.md`;
+  // keeping this for few months until the new path is taking over
+  // TODO delete in future
+  const old_path = `${rootDir}/utils/docs/implemented.md`;
 
   frameworks.sort().forEach((framework) => {
-    content[framework] = readFileSync(`${rootDir}/utils/docs/${framework}/implemented.md`, "utf8");
+    content[framework] = readFileSync(`${rootDir}/docs/matrix/${framework}/implemented.md`, "utf8");
   });
 
-  const data = `
-  # Implemented
+  const data = `# JavaScript end-to-end Test Automation Boilerplate
   
-  ## Cypress
-  ${content.cypress}
+The complete list of implemented JavaScript end-to-end test automation boilerplate.
   
-  ## Nightwatch
-  ${content.nightwatch}
+## Cypress
+${content.cypress}
   
-  ## Playwright
-  ${content.playwright}
+## Nightwatch
+${content.nightwatch}
   
-  ## Protractor
-  ${content.protractor}
+## Playwright
+${content.playwright}
   
-  ## Puppeteer
-  ${content.puppeteer}
+## Protractor
+${content.protractor}
   
-  ## Selenium Webdriver
-  ${content["selenium-webdriver"]}
+## Puppeteer
+${content.puppeteer}
   
-  ## TestCafé
-  ${content.testcafe}
+## Selenium Webdriver
+${content["selenium-webdriver"]}
   
-  ## WD
-  ${content.wd}
+## TestCafé
+${content.testcafe}
   
-  ## WebdriverIO
-  ${content.webdriverio}
-  `;
+## WD
+${content.wd}
+  
+## WebdriverIO
+${content.webdriverio}
+`;
 
   try {
     write(path, data, "utf8");
+    write(old_path, data, "utf8");
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }

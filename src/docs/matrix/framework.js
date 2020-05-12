@@ -99,9 +99,9 @@ export default function commonMatrix(fwk) {
   const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
-    const path = `${rootDir}/utils/docs/${fwk}/all.md`;
-    const pathImplemented = `${rootDir}/utils/docs/${fwk}/implemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/docs/${fwk}/not-implemented.md`;
+    const path = `${rootDir}/docs/matrix/${fwk}/all.md`;
+    const pathImplemented = `${rootDir}/docs/matrix/${fwk}/implemented.md`;
+    const pathNotImplemented = `${rootDir}/docs/matrix/${fwk}/not-implemented.md`;
     write(path, table(content, { align: "l" }), "utf8");
     write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");

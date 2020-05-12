@@ -69,7 +69,7 @@
     "git:commit": "node -r esm runner.js --task commit --username e2e-boilerplate --message updates",
     "git:pull": "node -r esm runner.js --task pull --username e2e-boilerplate",
     "git:push": "node -r esm runner.js --task push --username e2e-boilerplate",
-    "matrix": "node -r esm exec/matrix.js --username e2e-boilerplate",
+    "matrix:all": "node -r esm exec/matrix.js --username e2e-boilerplate",
     "matrix:implemented": "node -r esm exec/matrix_implementend.js --username e2e-boilerplate",
     "npm:audi": "node -r esm runner.js --task audit --username e2e-boilerplate",
     "npm:install:deps": "node -r esm runner.js --task install --username e2e-boilerplate",

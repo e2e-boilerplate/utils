@@ -103,9 +103,9 @@ export default function wd() {
   const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
-    const path = `${rootDir}/utils/docs/wd/all.md`;
-    const pathImplemented = `${rootDir}/utils/docs/wd/implemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/docs/wd/not-implemented.md`;
+    const path = `${rootDir}/docs/matrix/wd/all.md`;
+    const pathImplemented = `${rootDir}/docs/matrix/wd/implemented.md`;
+    const pathNotImplemented = `${rootDir}/docs/matrix/wd/not-implemented.md`;
     write(path, table(content, { align: "l" }), "utf8");
     write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");

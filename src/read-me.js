@@ -31,6 +31,10 @@ function getScriptsCombo(repo) {
 
 export default function readme(repo) {
   const { name } = repo;
+  // no README.md update for docs repo
+  if (name === "docs") {
+    return;
+  }
   const frameworkName = getFrameworkName(name);
   const tech = linkTech(getTech(name));
   const commands = getScriptsCombo(repo);

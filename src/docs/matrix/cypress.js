@@ -96,9 +96,9 @@ export default function cypress() {
   const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
 
   try {
-    const path = `${rootDir}/utils/docs/cypress/all.md`;
-    const pathImplemented = `${rootDir}/utils/docs/cypress/implemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/docs/cypress/not-implemented.md`;
+    const path = `${rootDir}/docs/matrix/cypress/all.md`;
+    const pathImplemented = `${rootDir}/docs/matrix/cypress/implemented.md`;
+    const pathNotImplemented = `${rootDir}/docs/matrix/cypress/not-implemented.md`;
     write(path, table(content, { align: "l" }), "utf8");
     write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");

@@ -91,9 +91,9 @@ export default function testcafe() {
   const contentImplemented = implementedOnly(removeDuplicates(implementedList));
   const notContentImplemented = notImplementedOnly(removeDuplicates(notImplementedList));
   try {
-    const path = `${rootDir}/utils/docs/testcafe/all.md`;
-    const pathImplemented = `${rootDir}/utils/docs/testcafe/implemented.md`;
-    const pathNotImplemented = `${rootDir}/utils/docs/testcafe/not-implemented.md`;
+    const path = `${rootDir}/docs/matrix/testcafe/all.md`;
+    const pathImplemented = `${rootDir}/docs/matrix/testcafe/implemented.md`;
+    const pathNotImplemented = `${rootDir}/docs/matrix/testcafe/not-implemented.md`;
     write(path, table(content, { align: "l" }), "utf8");
     write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
     write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
