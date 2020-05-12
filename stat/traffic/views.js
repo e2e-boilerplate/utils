@@ -1,7 +1,7 @@
-import trafficStat from "./stat";
+import writeTrafficDoc from "./common";
 
-function views() {
-  return trafficStat("views");
+function writeViewsDoc() {
+  return writeTrafficDoc("views");
 }
 
-export default views;
+export default writeViewsDoc;

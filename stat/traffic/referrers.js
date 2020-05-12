@@ -1,12 +1,12 @@
 import table from "markdown-table";
 import { readdirSync, readFileSync } from "fs";
 import { actionsStatusHome } from "../../src/docs/matrix/common";
-import { logger } from "../../src/constants";
+import { logger, rootDir } from "../../src/constants";
 import { write } from "../../src/exec";
 import { bubbleSort } from "../../src/common";
 
 function getData(file) {
-  const data = readFileSync(`./stat/traffic/referrers/${file}`);
+  const data = readFileSync(`${rootDir}/docs/traffic/data/referrers/${file}`);
   return JSON.parse(data);
 }
 
@@ -26,6 +26,10 @@ function getUniques(temp) {
   return count;
 }
 
+/**
+ * generate a markdown with referrers data
+ * require the data first to gathered
+ */
 function getReferrers(stat) {
   const refs = [];
   stat.sort();
@@ -35,8 +39,8 @@ function getReferrers(stat) {
   return refs.join(", ");
 }
 
-function referrers() {
-  const files = readdirSync(`./stat/traffic/referrers/`);
+function writteReferrersDoc() {
+  const files = readdirSync(`${rootDir}/docs/traffic/data/referrers/`);
   const stat = [];
 
   files.forEach((file) => {
@@ -57,10 +61,10 @@ function referrers() {
   content.unshift(["count", "unique", "referrers", "repository"]);
 
   try {
-    write("docs/referrers.md", table(content, { align: "l" }), "utf8");
+    write(`${rootDir}/docs/traffic/referrers.md`, table(content, { align: "l" }), "utf8");
   } catch (error) {
     logger.error(`${__filename}: Referrers doc: ${error}`);
   }
 }
 
-export default referrers;
+export default writteReferrersDoc;

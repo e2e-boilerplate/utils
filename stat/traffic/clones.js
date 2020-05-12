@@ -1,7 +1,7 @@
-import trafficStat from "./stat";
+import writeTrafficDoc from "./common";
 
-function clones() {
-  return trafficStat("clones");
+function writeClonesDoc() {
+  return writeTrafficDoc("clones");
 }
 
-export default clones;
+export default writeClonesDoc;
