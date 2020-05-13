@@ -1,7 +1,7 @@
 import compareVersions from "compare-versions";
 import { readFileSync } from "fs";
 import * as deps from "./dependencies.json";
-import { logger, rootDir } from "../constants";
+import { logger, rootDir } from "../common/constants";
 
 /**
  * compare version

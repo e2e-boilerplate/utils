@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { rootDir, logger } from "../constants";
+import { rootDir, logger } from "../common/constants";
 import { write } from "../exec";
 
 export default function protractorConfig(name) {

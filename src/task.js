@@ -1,6 +1,6 @@
 import { execute, getRepository } from "./exec";
 import { hasRepository } from "./validators";
-import { username, rootDir, message, command } from "./constants";
+import { username, rootDir, message, command } from "./common/constants";
 import updateMeta from "./metadata";
 import workflow from "./workflow";
 import funding from "./funding";

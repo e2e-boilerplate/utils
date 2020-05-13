@@ -1,6 +1,6 @@
 import { request } from "https";
 import { writeFileSync } from "fs";
-import { logger, options, username, rootDir } from "../../constants";
+import { logger, options, username, rootDir } from "../../common/constants";
 
 /**
  * https://developer.github.com/v3/repos/traffic/#list-referrers

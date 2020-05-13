@@ -3,7 +3,7 @@ import combs from "./combs";
 import { getFilteredRepos, updateGist } from "./common";
 import { removeDuplicates } from "../../common";
 import { implementedOnlyHome } from "../matrix/common";
-import { logger } from "../../constants";
+import { logger } from "../../common/constants";
 
 function update() {
   try {

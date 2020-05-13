@@ -1,5 +1,5 @@
 import { readdirSync } from "fs";
-import { logger, reposDir, username } from "../../constants";
+import { logger, reposDir, username } from "../../common/constants";
 
 export const chaiAssertionTypes = ["expect", "should", "assert"];
 export const assertionType = ["assert", "expect", "chai", "none"];

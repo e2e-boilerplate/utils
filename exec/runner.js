@@ -27,8 +27,8 @@ import {
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "../src/validators";
 import { getRepositoriesList, setRootDir } from "../src/exec";
-import { task, reposDir, logger, module } from "../src/constants";
-import { clearReposList, getName } from "../src/common";
+import { task, reposDir, logger, module } from "../src/common/constants";
+import { getName } from "../src/common";
 
 async function taskPicker(repo) {
   switch (task) {
@@ -120,7 +120,6 @@ async function runner() {
 
     const hasMatchingReposList = await hasMatchingRepositoriesList();
     if (!hasMatchingReposList) {
-      await clearReposList();
       await getRepositoriesList();
     }
 

@@ -1,6 +1,6 @@
 import { safeDump } from "js-yaml";
-import { logger, rootDir } from "./constants";
-import { clear, createPath, hasPath } from "./common";
+import { logger, rootDir } from "./common/constants";
+import { createPath, hasPath } from "./common";
 import { write } from "./exec";
 
 async function funding(repo) {
@@ -9,9 +9,6 @@ async function funding(repo) {
 
   try {
     const yml = `${rootDir}/${name}/.github/FUNDING.yml`;
-    if (await hasPath(yml)) {
-      await clear(yml);
-    }
 
     const dir = `${rootDir}/${name}/.github/`;
     if (!(await hasPath(dir))) {

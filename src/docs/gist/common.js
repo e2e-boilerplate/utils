@@ -1,6 +1,6 @@
 import { readdirSync } from "fs";
 import { request } from "https";
-import { logger, options, reposDir } from "../../constants";
+import { logger, options, reposDir } from "../../common/constants";
 import { write } from "../../exec";
 
 function getGistId(fileName) {

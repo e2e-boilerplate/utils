@@ -1,7 +1,8 @@
 import { readFileSync } from "fs";
-import { logger, rootDir } from "./constants";
+import { logger, rootDir } from "./common/constants";
 import { write } from "./exec";
-import { getRandomCron, sortObject, getMetaValue } from "./common";
+import getRandomCron from "./common/cron";
+import { sortObject, getMetaValue } from "./common";
 
 function writeMeta(data, path) {
   const update = JSON.stringify(sortObject(data), null, 2);

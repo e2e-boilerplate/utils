@@ -1,4 +1,4 @@
-import { logger, miscRepos, rootDir } from "../constants";
+import { logger, miscRepos, rootDir } from "../common/constants";
 import { write } from "../exec";
 
 function makeEslintrc(repo) {

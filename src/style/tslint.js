@@ -1,4 +1,4 @@
-import { logger, rootDir } from "../constants";
+import { logger, rootDir } from "../common/constants";
 import { write } from "../exec";
 
 function makeTslint(repo) {

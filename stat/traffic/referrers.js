@@ -1,7 +1,7 @@
 import table from "markdown-table";
 import { readdirSync, readFileSync } from "fs";
 import { actionsStatusHome } from "../../src/docs/matrix/common";
-import { logger, rootDir } from "../../src/constants";
+import { logger, rootDir } from "../../src/common/constants";
 import { write } from "../../src/exec";
 import { bubbleSort } from "../../src/common";
 
@@ -39,7 +39,7 @@ function getReferrers(stat) {
   return refs.join(", ");
 }
 
-function writteReferrersDoc() {
+function writeReferrersDoc() {
   const files = readdirSync(`${rootDir}/docs/traffic/data/referrers/`);
   const stat = [];
 
@@ -67,4 +67,4 @@ function writteReferrersDoc() {
   }
 }
 
-export default writteReferrersDoc;
+export default writeReferrersDoc;

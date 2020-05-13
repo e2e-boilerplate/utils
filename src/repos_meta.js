@@ -1,7 +1,7 @@
 import { writeFileSync } from "fs";
 import { request } from "https";
 import { isNumeric } from "./validators";
-import { username, pages, logger, options } from "./constants";
+import { username, pages, logger, options } from "./common/constants";
 
 function getReposMeta() {
   try {

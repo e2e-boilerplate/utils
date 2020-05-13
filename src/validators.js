@@ -1,5 +1,5 @@
 import { existsSync, readdirSync } from "fs";
-import { username, rootDir, reposDir, logger } from "./constants";
+import { username, rootDir, reposDir, logger } from "./common/constants";
 
 async function hasRootDirectory() {
   let hasDir = false;

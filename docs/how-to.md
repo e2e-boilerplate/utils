@@ -15,7 +15,6 @@ Get repositories name list. If you have more repositories increase the `--pages`
         npm run get:repos
         npm run get:repos -- --pages 3 --username=your_github_org_or_username
 
-
 ## Clone
 
 Clone repositories using the repositories list generated ^^.
@@ -23,14 +22,12 @@ Clone repositories using the repositories list generated ^^.
         npm run git:clone
         npm run git:clone --username=your_github_org_or_username
 
-
 ## Install Node dependencies
 
 Install package dependencies for all repositories. This may take time depending on the number of repositories and/or dependencies you have.
 
         npm run install:deps
         npm run install:deps -- --username=your_github_org_or_username
-
 
 ## Pull
 
@@ -42,27 +39,26 @@ Pull the latest changes for all repositories.
 ## Add
 
 Add changes for all repositories.
-  
- npm run git:add
+
+npm run git:add
 
 ## Commit
 
 Commit changes for all repositories.
-  
- npm run git:commit -- --message=your_commit_message
+
+npm run git:commit -- --message=your_commit_message
 
 ## Push
 
 Push changes for all repositories.
-  
- npm run git:push  
 
+npm run git:push
 
 ## Run command on a specific module
 
 Push changes for cypress repositories only.
-  
- npm run git:push --module=cypress
+
+npm run git:push --module=cypress
 
 ## Update package.json metadata
 
@@ -82,3 +78,11 @@ Working with gist should be done in the following order
         npm run gist:list
         npm run gist:create
         npm run gist:update
+
+
+# Traffic
+
+Collect 14 days github traffic data and generates documentation in the `docs` repo.
+
+    npm run traffic:meta -- --token token
+    npm run traffic:doc

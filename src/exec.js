@@ -1,7 +1,7 @@
 import * as util from "util";
 import { mkdirSync, writeFileSync } from "fs";
 import getReposMeta from "./repos_meta";
-import { username, rootDir, logger } from "./constants";
+import { username, rootDir, logger } from "./common/constants";
 
 const exec = util.promisify(require("child_process").exec);
 

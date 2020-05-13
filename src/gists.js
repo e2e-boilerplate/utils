@@ -1,6 +1,6 @@
 import { writeFileSync } from "fs";
 import { request } from "https";
-import { username, logger, options, pages } from "./constants";
+import { username, logger, options, pages } from "./common/constants";
 import { isNumeric } from "./validators";
 
 function getGistsList() {

@@ -1,9 +1,9 @@
 import { readdirSync, writeFileSync } from "fs";
-import { logger, reposDir, miscRepos } from "./constants";
+import { logger, reposDir, miscRepos, rootDir } from "./common/constants";
 
 function reposArray() {
   const list = [];
-  const path = `./src/docs/repos.json`;
+  const path = `${rootDir}/docs/repos.json`;
 
   try {
     const files = readdirSync(reposDir);

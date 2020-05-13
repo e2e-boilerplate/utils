@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { logger, rootDir, author, keywords, miscRepos, username } from "./constants";
+import { logger, rootDir, author, keywords, miscRepos, username } from "./common/constants";
 import { getFrameworkName, getTech, sortObject } from "./common";
 import { write } from "./exec";
 import makeDeps from "./deps/deps";

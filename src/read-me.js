@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import { getFrameworkName, getTech, linkTech } from "./common";
-import { logger, rootDir, username, miscRepos } from "./constants";
+import { logger, rootDir, username, miscRepos } from "./common/constants";
 import { write } from "./exec";
 
 const mit =

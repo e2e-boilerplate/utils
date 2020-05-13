@@ -1,6 +1,6 @@
 import { request } from "https";
 import { writeFileSync } from "fs";
-import { rootDir, logger, options, username } from "../../constants";
+import { rootDir, logger, options, username } from "../../common/constants";
 
 /**
  * Implements: https://developer.github.com/v3/repos/traffic/#clones

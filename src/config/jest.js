@@ -1,4 +1,4 @@
-import { rootDir, logger } from "../constants";
+import { rootDir, logger } from "../common/constants";
 import { write } from "../exec";
 
 function config(name) {
