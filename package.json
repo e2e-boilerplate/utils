@@ -82,8 +82,8 @@
     "matrix:all": "node -r esm exec/matrix.js --username e2e-boilerplate",
     "matrix:implemented": "node -r esm exec/matrix_implementend.js --username e2e-boilerplate",
     "repos:list:get": "node -r esm exec/repos_list.js --pages 2 --username e2e-boilerplate",
-    "traffic:doc": "node -r esm exec/traffic.js --task referrers --username e2e-boilerplate",
-    "traffic:meta": "node -r esm exec/runner.js --task traffic --username e2e-boilerplate --token 0000",
+    "traffic:doc": "node -r esm exec/traffic.js --task trafic",
+    "traffic:meta": "node -r esm exec/runner.js --task traffic --username e2e-boilerplate --token 99878f339e4b75fd5fb220a74c9d997364f9dd93",
     "gen:cron": "node -r esm runner.js --task cron",
     "any:execute": "node -r esm exec/runner.js --task command --username e2e-boilerplate"
   },

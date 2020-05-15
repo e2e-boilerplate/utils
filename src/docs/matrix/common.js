@@ -59,10 +59,6 @@ export function implemented(name) {
   return isImplemented;
 }
 
-export function actionsStatus(name) {
-  return `[![GitHub Actions status &#124; ${username}/${name}](https://github.com/${username}/${name}/workflows/${name}/badge.svg)](https://github.com/${username}/${name}/actions?workflow=${name})`;
-}
-
 export function actionsStatusHome(name) {
   return `[![${name}](https://github.com/${username}/${name}/workflows/${name}/badge.svg)](https://github.com/${username}/${name})`;
 }
@@ -73,7 +69,7 @@ export function all(list) {
 
   list.reverse().forEach((l, index) => {
     if (implemented(l)) {
-      content.push([`${index + 1}`, `${actionsStatus(l)}`, `Implemented`]);
+      content.push([`${index + 1}`, `${actionsStatusHome(l)}`, `Implemented`]);
     } else {
       content.push([`${index + 1}`, l, "Not Implemented"]);
     }
@@ -88,7 +84,7 @@ export function implementedOnly(list) {
 
   list.sort().forEach((i, index) => {
     if (implemented(i)) {
-      contentImplemented.push([`${index + 1}`, `${actionsStatus(i)}`]);
+      contentImplemented.push([`${index + 1}`, `${actionsStatusHome(i)}`]);
     }
   });
   return contentImplemented;
