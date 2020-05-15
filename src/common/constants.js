@@ -5,15 +5,23 @@ const logger = require("pino")({
   prettyPrint: { colorize: true },
 });
 
-const { task, username = "e2e-boilerplate", pages, message, command, keywords, author, module, token } = minimist(
-  process.argv.slice(2)
-);
+const {
+  author = "Girma Nigusse <xgirma@gmail.com>",
+  command,
+  keywords,
+  message,
+  module,
+  pages,
+  task,
+  token,
+  username = "e2e-boilerplate",
+} = minimist(process.argv.slice(2));
 const user = userInfo().username;
 const rootDir = `/Users/${user}/Documents/${username}`;
 const reposDir = "./repos";
-const miscRepos = ["sandbox", "utils", "resources", "e2e-boilerplate", "docs"];
-const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "webdriverio", "wd", "testcafe"];
-const workflow = ["npm:install", "install:linux", "lint", "build", "update:webdriver", "start:webdriver", "test"];
+const miscRepos = ["docs", "e2e-boilerplate", "resources", "sandbox", "utils"];
+const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "testcafe", "wd", "webdriverio"];
+const workflow = ["build", "install:linux", "lint", "npm:install", "start:webdriver", "test", "update:webdriver"];
 const options = {
   host: "api.github.com",
   method: "GET",
@@ -28,20 +36,20 @@ if (token) {
 }
 
 export {
+  author,
+  command,
   frameworks,
-  rootDir,
-  user,
-  username,
-  task,
-  pages,
-  reposDir,
+  keywords,
   logger,
   message,
   miscRepos,
-  command,
-  keywords,
-  author,
   module,
   options,
+  pages,
+  reposDir,
+  rootDir,
+  task,
+  user,
+  username,
   workflow,
 };

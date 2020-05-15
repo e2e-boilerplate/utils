@@ -79,10 +79,17 @@ Working with gist should be done in the following order
         npm run gist:create
         npm run gist:update
 
-
 # Traffic
 
 Collect 14 days github traffic data and generates documentation in the `docs` repo.
 
     npm run traffic:meta -- --token token
     npm run traffic:doc
+
+# Update dependencies and package.json
+
+Get the latest code. Update `dependencies/dependencies.json` with upgraded/downgraded module version. Then update the entire `package.json`.
+
+    npm run git:pull
+    npm run dependencies:update
+    npm run package:json:write

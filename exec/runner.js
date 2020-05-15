@@ -23,6 +23,7 @@ import {
   genProtractorConfig,
   genWebdriverioConfig,
   getTraffic,
+  getDependency,
 } from "../src/task";
 
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "../src/validators";
@@ -100,6 +101,9 @@ async function taskPicker(repo) {
       break;
     case "traffic":
       await getTraffic(repo);
+      break;
+    case "dependency":
+      await getDependency(repo);
       break;
     default:
       logger.warn(`Invalid task: ${task}`);

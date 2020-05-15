@@ -1,20 +1,21 @@
-import { execute, getRepository } from "./exec";
-import { hasRepository } from "./validators";
-import { username, rootDir, message, command } from "./common/constants";
-import updateMeta from "./metadata";
-import workflow from "./workflow";
+import buildPackageJson from "./buildPackageJson";
+import cron from "./cron";
 import funding from "./funding";
-import readme from "./read-me";
+import generateDependency from "./dependencies/generate_dependency";
+import jestConfig from "./config/jest";
 import makeEslintrc from "./style/eslintrc";
 import makeTsconfig from "./style/tsconfig";
 import makeTslint from "./style/tslint";
-import makeDeps from "./deps/deps";
-import cron from "./cron";
-import jestConfig from "./config/jest";
 import mochaConfig from "./config/mocha";
 import protractorConfig from "./config/protractor";
-import wdioConfig from "./config/webdriverio";
+import readme from "./read-me";
 import traffic from "./traffic";
+import updateDependency from "./dependencies/update_dependency";
+import wdioConfig from "./config/webdriverio";
+import workflow from "./workflow";
+import { execute, getRepository } from "./exec";
+import { hasRepository } from "./validators";
+import { username, rootDir, message, command } from "./common/constants";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;
@@ -61,7 +62,7 @@ async function gitPush(repo) {
 async function updateMetadata(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  await updateMeta(repo);
+  await buildPackageJson(name);
 }
 
 async function generateWorkflow(repo) {
@@ -121,7 +122,7 @@ async function tslint(repo) {
 async function dependencies(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  makeDeps(repo);
+  updateDependency(name);
 }
 
 async function genCron(repo) {
@@ -160,28 +161,35 @@ async function getTraffic(repo) {
   await traffic(name);
 }
 
+async function getDependency(repo) {
+  const { name } = repo;
+  await prepareRepo(name);
+  await generateDependency(name);
+}
+
 export {
   audit,
   dependencies,
   eslintrc,
-  gitAdd,
-  gitClone,
-  npmInstall,
-  generateWorkflow,
-  generateReadme,
-  getTraffic,
-  gitPull,
-  gitCommit,
-  gitPush,
-  updateMetadata,
   executeArbitraryCommand,
-  lint,
-  setFunding,
-  tsconfig,
-  tslint,
   genCron,
   genJestConfig,
   genMochaConfig,
   genProtractorConfig,
   genWebdriverioConfig,
+  generateReadme,
+  generateWorkflow,
+  getDependency,
+  getTraffic,
+  gitAdd,
+  gitClone,
+  gitCommit,
+  gitPull,
+  gitPush,
+  lint,
+  npmInstall,
+  setFunding,
+  tsconfig,
+  tslint,
+  updateMetadata,
 };
