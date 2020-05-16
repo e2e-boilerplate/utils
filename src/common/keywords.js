@@ -3,7 +3,7 @@ import { keywords } from "./constants";
 /**
  * Given repo name, returns keywords
  * @param name
- * @returns {T[]}
+ * @returns {keywords[]}
  */
 export default function buildKeywords(name) {
   const parts = name.split("-");

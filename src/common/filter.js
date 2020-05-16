@@ -4,7 +4,7 @@ import { frameworks, logger, miscRepos, rootDir } from "./constants";
 import { capitalize, sortObject } from "./formatting";
 import { createPath, hasPath } from "./file";
 
-// given repo name extracts the techs used
+// given repo name extracts techs used
 function getTech(name) {
   let techs = [];
   const format = [];
