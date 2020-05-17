@@ -1,5 +1,5 @@
+import { writeFileSync } from "fs";
 import { logger, rootDir } from "../common/constants";
-import { write } from "../exec";
 
 function makeTslint(repo) {
   const { name } = repo;
@@ -18,8 +18,8 @@ function makeTslint(repo) {
       }
       const tslint = JSON.stringify(data, null, 2);
       const path = `${rootDir}/${name}/tslint.json`;
-      write(path, tslint, "utf8");
-      logger.info(`tslint ${name}`);
+      writeFileSync(path, tslint, "utf8");
+      logger.info(`Write ${path}`);
     }
   } catch (error) {
     logger.error(`${__filename}: ${error}`);

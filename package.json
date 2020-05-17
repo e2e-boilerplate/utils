@@ -84,7 +84,7 @@
     "repos:list:get": "node -r esm exec/repos_list.js --pages 2",
     "traffic:meta:get": "node -r esm exec/runner.js --task traffic --token ...",
     "traffic:doc:write": "node -r esm exec/traffic.js --task trafic",
-    "gen:cron": "node -r esm runner.js --task cron",
+    "gen:cron": "node -r esm exec/runner.js --task cron",
     "execute:any:command": "node -r esm exec/runner.js --task command"
   },
   "version": "1.0.1"

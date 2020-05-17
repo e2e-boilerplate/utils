@@ -1,18 +1,15 @@
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { getFrameworkName, getTech, linkTech } from "./common";
 import { logger, rootDir, username, miscRepos } from "./common/constants";
-import { write } from "./exec";
 
 const mit =
   "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
 
-function actionsStatus(repo) {
-  const { name } = repo;
+function actionsStatus(name) {
   return `[![GitHub Actions status | ${username}/${name}](https://github.com/${username}/${name}/workflows/${name}/badge.svg)](https://github.com/${username}/${name}/actions?workflow=${name})`;
 }
 
-function getScriptsCombo(repo) {
-  const { name } = repo;
+function getScriptsCombo(name) {
   const commands = {};
 
   try {
@@ -29,39 +26,35 @@ function getScriptsCombo(repo) {
   return commands;
 }
 
-export default function readme(repo) {
-  const { name } = repo;
-  // no README.md update for docs repo
-  if (name === "docs" && name === "utils") {
-    return;
-  }
-  const frameworkName = getFrameworkName(name);
-  const tech = linkTech(getTech(name));
-  const commands = getScriptsCombo(repo);
-  const path = `${rootDir}/${name}/README.md`;
-  const badge = `${actionsStatus(repo)}`;
-  const title = miscRepos.includes(name) ? `# ${frameworkName}` : `# ${frameworkName} Boilerplate`;
-  const description = miscRepos.includes(name)
-    ? `${name}.`
-    : `${frameworkName} end-to-end test automation boilerplate, ${tech}`;
-  const subTitle = "## Getting Started";
-  const clone = `git clone git@github.com:${username}/${name}.git`;
-  const cd = `cd ${name}`;
-  const install = `npm install`;
-  const build = "npm run build";
-  const updateWebDriver = "npm run update:webdriver";
-  const test = "npm run test";
-  const buyMeCoffee =
-    "[![Buy Me A Coffee](https://img.shields.io/badge/buy-me%20coffee-orange)](https://www.buymeacoffee.com/xgirma)";
-  const more =
-    "For more boilerplate click [here](https://github.com/e2e-boilerplate/utils/blob/master/docs/implemented.md)";
+export default function readme(name) {
+  if (!miscRepos.includes(name)) {
+    const frameworkName = getFrameworkName(name);
+    const tech = linkTech(getTech(name));
+    const commands = getScriptsCombo(name);
+    const path = `${rootDir}/${name}/README.md`;
+    const badge = `${actionsStatus(name)}`;
+    const title = miscRepos.includes(name) ? `# ${frameworkName}` : `# ${frameworkName} Boilerplate`;
+    const description = miscRepos.includes(name)
+      ? `${name}.`
+      : `${frameworkName} end-to-end test automation boilerplate, ${tech}`;
+    const subTitle = "## Getting Started";
+    const clone = `git clone git@github.com:${username}/${name}.git`;
+    const cd = `cd ${name}`;
+    const install = `npm install`;
+    const build = "npm run build";
+    const updateWebDriver = "npm run update:webdriver";
+    const test = "npm run test";
+    const buyMeCoffee =
+      "[![Buy Me A Coffee](https://img.shields.io/badge/buy-me%20coffee-orange)](https://www.buymeacoffee.com/xgirma)";
+    const more =
+      "For more boilerplate click [here](https://github.com/e2e-boilerplate/utils/blob/master/docs/implemented.md)";
 
-  const { hasBuildProperty, hasUpdateWebDriverProperty, hasTestProperty } = commands;
+    const { hasBuildProperty, hasUpdateWebDriverProperty, hasTestProperty } = commands;
 
-  let data;
+    let data;
 
-  if (hasBuildProperty && hasUpdateWebDriverProperty && hasTestProperty) {
-    data = `${badge} ${mit} ${buyMeCoffee}
+    if (hasBuildProperty && hasUpdateWebDriverProperty && hasTestProperty) {
+      data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -73,8 +66,8 @@ export default function readme(repo) {
     \n6. ${test}
     
     \n${more}`;
-  } else if (hasUpdateWebDriverProperty && hasTestProperty) {
-    data = `${badge} ${mit} ${buyMeCoffee}
+    } else if (hasUpdateWebDriverProperty && hasTestProperty) {
+      data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -85,8 +78,8 @@ export default function readme(repo) {
     \n5. ${test}
         
     \n${more}`;
-  } else if (hasBuildProperty && hasTestProperty) {
-    data = `${badge} ${mit} ${buyMeCoffee}
+    } else if (hasBuildProperty && hasTestProperty) {
+      data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -97,8 +90,8 @@ export default function readme(repo) {
     \n5. ${test}
         
     \n${more}`;
-  } else if (hasTestProperty) {
-    data = `${badge} ${mit} ${buyMeCoffee}
+    } else if (hasTestProperty) {
+      data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -108,8 +101,8 @@ export default function readme(repo) {
     \t4. ${test}
         
     \n${more}`;
-  } else {
-    data = `${badge} ${mit} ${buyMeCoffee}
+    } else {
+      data = `${badge} ${mit} ${buyMeCoffee}
     \n${title}
     \n${description}
     \n${subTitle}
@@ -118,11 +111,13 @@ export default function readme(repo) {
     \n3. ${install}
         
     \n${more}`;
-  }
+    }
 
-  try {
-    write(path, data, "utf8");
-  } catch (error) {
-    logger.error(`${__filename}: ${error}`);
+    try {
+      writeFileSync(path, data, "utf8");
+      logger.info(`\n Write ${path}`);
+    } catch (error) {
+      logger.error(`${__filename}: ${name} ${error}`);
+    }
   }
 }

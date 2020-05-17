@@ -1,6 +1,6 @@
 /*eslint-disable */
+import { writeFileSync } from "fs";
 import { rootDir, logger } from "../common/constants";
-import { write } from "../exec";
 
 export default function wdioConfig(name) {
   const runner = `runner: "local"`;
@@ -104,7 +104,7 @@ exports.config = config;
 `;
       /* eslint-enable */
       const configPath = `${rootDir}/${name}/wdio.conf.js`;
-      write(configPath, data, "utf8");
+      writeFileSync(configPath, data, "utf8");
       logger.info(`.wdio.conf.js ${name}`);
     }
   } catch (error) {

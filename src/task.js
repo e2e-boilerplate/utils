@@ -80,7 +80,7 @@ async function setFunding(repo) {
 async function generateReadme(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  readme(repo);
+  readme(name);
 }
 
 async function executeArbitraryCommand(repo) {

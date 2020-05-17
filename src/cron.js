@@ -1,12 +1,11 @@
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { logger, rootDir } from "./common/constants";
-import { write } from "./exec";
 import getRandomCron from "./common/cron";
 import { sortObject, getMetaValue } from "./common";
 
 function writeMeta(data, path) {
   const update = JSON.stringify(sortObject(data), null, 2);
-  write(path, update, "utf8");
+  writeFileSync(path, update, "utf8");
 }
 
 async function cron(name) {
@@ -24,7 +23,7 @@ async function cron(name) {
       }
 
       await writeMeta(metaJson, path);
-      logger.info(`writing meta for ${name}`);
+      logger.info(`writing meta for ${path}`);
     }
   } catch (error) {
     logger.error(`${__filename}: cron: ${error}`);

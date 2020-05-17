@@ -1,6 +1,6 @@
 /* eslint-disable */
+import { writeFileSync } from "fs";
 import { rootDir, logger } from "../common/constants";
-import { write } from "../exec";
 
 export default function protractorConfig(name) {
   const directConnect = `const directConnect = true;`;
@@ -104,7 +104,7 @@ ${end}`;
         parts.includes("typescript") && parts.includes("tsc")
           ? `${rootDir}/${name}/protractor.conf.ts`
           : `${rootDir}/${name}/protractor.conf.js`;
-      write(configPath, data, "utf8");
+      writeFileSync(configPath, data, "utf8");
       logger.info(`protractor.conf.js ${name}`);
     }
   } catch (error) {

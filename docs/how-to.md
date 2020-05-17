@@ -22,6 +22,7 @@ Install package dependencies for all repositories. This may take time depending 
 
     npm run install:deps
     npm run install:deps -- --username=your_github_org_or_username
+    npm run install:deps --module=cypress
 
 ## Pull
 

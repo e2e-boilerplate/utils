@@ -1,5 +1,5 @@
+import { writeFileSync } from "fs";
 import { logger, miscRepos, rootDir } from "../common/constants";
-import { write } from "../exec";
 
 function makeEslintrc(repo) {
   const { name } = repo;
@@ -67,8 +67,8 @@ function makeEslintrc(repo) {
 
       const eslintrc = JSON.stringify(data, null, 2);
       const path = `${rootDir}/${name}/.eslintrc.json`;
-      write(path, eslintrc, "utf8");
-      logger.info(`eslintrc ${name}`);
+      writeFileSync(path, eslintrc, "utf8");
+      logger.info(`Write ${path}`);
     }
   } catch (error) {
     logger.error(`${__filename}: ${error}`);

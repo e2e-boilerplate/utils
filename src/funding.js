@@ -1,7 +1,7 @@
 import { safeDump } from "js-yaml";
+import { writeFileSync } from "fs";
 import { logger, rootDir } from "./common/constants";
 import { createPath, hasPath } from "./common";
-import { write } from "./exec";
 
 async function funding(repo) {
   const { name } = repo;
@@ -17,7 +17,7 @@ async function funding(repo) {
 
     const yamlStr = safeDump(buyMeCoffee);
     logger.info(`Generates: ${name} ${yml}`);
-    write(yml, yamlStr, "utf8");
+    writeFileSync(yml, yamlStr, "utf8");
   } catch (error) {
     logger.error(`${__filename}: Workflow: ${rootDir}/${name}/.github/FUNDING.yml ${error}`);
   }

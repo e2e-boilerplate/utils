@@ -1,5 +1,5 @@
+import { writeFileSync } from "fs";
 import { logger, rootDir } from "../common/constants";
-import { write } from "../exec";
 
 function makeTsconfig(repo) {
   const { name } = repo;
@@ -91,8 +91,8 @@ function makeTsconfig(repo) {
 
       const eslintrc = JSON.stringify(data, null, 2);
       const path = `${rootDir}/${name}/tsconfig.json`;
-      write(path, eslintrc, "utf8");
-      logger.info(`eslintrc ${name}`);
+      writeFileSync(path, eslintrc, "utf8");
+      logger.info(`Write ${path}`);
     }
   } catch (error) {
     logger.error(`${__filename}: ${error}`);

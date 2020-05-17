@@ -1,6 +1,5 @@
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { logger, rootDir, frameworks } from "../../common/constants";
-import { write } from "../../exec";
 
 frameworks.push("selenium-webdriver");
 
@@ -48,8 +47,9 @@ ${content.webdriverio}
 `;
 
   try {
-    write(path, data, "utf8");
-    write(oldPath, data, "utf8");
+    writeFileSync(path, data, "utf8");
+    writeFileSync(oldPath, data, "utf8");
+    logger.info(`\nWrite: ${path} \nWrite: ${oldPath}`);
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }

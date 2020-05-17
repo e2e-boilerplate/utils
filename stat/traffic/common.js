@@ -1,9 +1,8 @@
+import table from "markdown-table";
+import { readdirSync, readFileSync, writeFileSync } from "fs";
 import { actionsStatusHome } from "../../src/docs/matrix/common";
 import { bubbleSort } from "../../src/common";
 import { logger, rootDir } from "../../src/common/constants";
-import { readdirSync, readFileSync } from "fs";
-import { write } from "../../src/exec";
-import table from "markdown-table";
 
 function getData(file, type) {
   const data = readFileSync(`${rootDir}/docs/traffic/data/${type}/${file}`);
@@ -34,7 +33,9 @@ function writeTrafficDoc(type) {
   content.unshift([`${type} count`, `unique ${type}`, "repository"]);
 
   try {
-    write(`${rootDir}/docs/traffic/${type}.md`, table(content, { align: "l" }), "utf8");
+    const path = `${rootDir}/docs/traffic/${type}.md`;
+    writeFileSync(path, table(content, { align: "l" }), "utf8");
+    logger.info(`Write ${path}`);
   } catch (error) {
     logger.error(`${__filename}: Clones doc: ${error}`);
   }

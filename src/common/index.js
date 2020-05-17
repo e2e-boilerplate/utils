@@ -1,6 +1,6 @@
 import buildKeywords from "./keywords";
 import getRandomCron from "./cron";
-import { clear, createPath, hasPath } from "./file";
+import { clear, createPath, hasPath, setRootDir } from "./file";
 import { getFrameworkName, getMetaValue, getName, getTech } from "./filter";
 import { bubbleSort, capitalize, linkTech, removeDuplicates, sortObject } from "./formatting";
 
@@ -18,5 +18,6 @@ export {
   hasPath,
   linkTech,
   removeDuplicates,
+  setRootDir,
   sortObject,
 };

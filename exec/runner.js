@@ -26,10 +26,10 @@ import {
   updateMetadata,
 } from "../src/task";
 
-import { getName } from "../src/common";
-import { getRepositoriesList, setRootDir } from "../src/exec";
+import { getName, setRootDir } from "../src/common";
 import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "../src/validators";
 import { task, reposDir, logger, module } from "../src/common/constants";
+import getRepos from "../src/data/repo/get_repos";
 
 async function taskPicker(repo) {
   switch (task) {
@@ -119,12 +119,12 @@ async function runner() {
 
     const hasReposList = await hasRepositoriesList();
     if (!hasReposList) {
-      await getRepositoriesList();
+      await getRepos();
     }
 
     const hasMatchingReposList = await hasMatchingRepositoriesList();
     if (!hasMatchingReposList) {
-      await getRepositoriesList();
+      await getRepos();
     }
 
     const files = readdirSync(reposDir);

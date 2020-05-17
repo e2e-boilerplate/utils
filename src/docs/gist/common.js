@@ -1,7 +1,6 @@
-import { readdirSync } from "fs";
+import { readdirSync, writeFileSync } from "fs";
 import { request } from "https";
 import { logger, options, reposDir } from "../../common/constants";
-import { write } from "../../exec";
 import updateGist from "../../data/gist/patch_gist";
 
 // returns filtered repositories
@@ -52,7 +51,8 @@ async function buildGistList() {
     const path = "./gists/list.json";
     const data = JSON.stringify([...new Set(list)].sort(), null, 2);
 
-    write(path, data, "utf8");
+    writeFileSync(path, data, "utf8");
+    logger.info(`Write ${path}`);
   } catch (error) {
     logger.error(`${__filename}, Build Gist list error`);
   }

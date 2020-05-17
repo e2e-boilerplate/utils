@@ -1,5 +1,5 @@
+import { writeFileSync } from "fs";
 import { rootDir, logger } from "../common/constants";
-import { write } from "../exec";
 
 export default function mochaConfig(name) {
   /*eslint-disable */
@@ -15,8 +15,8 @@ export default function mochaConfig(name) {
     const parts = name.split("-");
     if (parts.includes("mocha") && !parts.includes("protractor") && !parts.includes("webdriverio")) {
       const configPath = `${rootDir}/${name}/.mocharc.js`;
-      write(configPath, data, "utf8");
-      logger.info(`.mocharc.js ${name}`);
+      writeFileSync(configPath, data, "utf8");
+      logger.info(`.mocharc.js ${configPath}`);
     }
   } catch (error) {
     logger.error(`${__filename}: .mocharc.js ${error}`);

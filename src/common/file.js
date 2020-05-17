@@ -1,6 +1,6 @@
 import * as rimraf from "rimraf";
 import { existsSync, mkdirSync } from "fs";
-import { logger } from "./constants";
+import { logger, rootDir } from "./constants";
 
 // given path clears file or folder
 async function clear(path) {
@@ -36,4 +36,13 @@ async function createPath(path) {
   }
 }
 
-export { clear, hasPath, createPath };
+async function setRootDir() {
+  try {
+    await mkdirSync(rootDir);
+    logger.info("Writing root directory.");
+  } catch (error) {
+    logger.error(`${__filename}: ${error}`);
+  }
+}
+
+export { clear, hasPath, createPath, setRootDir };

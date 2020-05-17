@@ -1,9 +1,8 @@
+import table from "markdown-table";
+import { readdirSync, readFileSync, writeFileSync } from "fs";
 import { actionsStatusHome } from "../../src/docs/matrix/common";
 import { bubbleSort } from "../../src/common";
 import { logger, rootDir } from "../../src/common/constants";
-import { readdirSync, readFileSync } from "fs";
-import { write } from "../../src/exec";
-import table from "markdown-table";
 
 function getData(file) {
   const data = readFileSync(`${rootDir}/docs/traffic/data/referrers/${file}`);
@@ -61,7 +60,8 @@ function writeReferrersDoc() {
   content.unshift(["count", "unique", "referrers", "repository"]);
 
   try {
-    write(`${rootDir}/docs/traffic/referrers.md`, table(content, { align: "l" }), "utf8");
+    const path = `${rootDir}/docs/traffic/referrers.md`;
+    writeFileSync(path, table(content, { align: "l" }), "utf8");
   } catch (error) {
     logger.error(`${__filename}: Referrers doc: ${error}`);
   }

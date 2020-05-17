@@ -1,6 +1,6 @@
 import table from "markdown-table";
+import { writeFileSync } from "fs";
 import { logger, rootDir } from "../../common/constants";
-import { write } from "../../exec";
 import {
   assertionType,
   chaiAssertionTypes,
@@ -94,9 +94,10 @@ export default function testcafe() {
     const path = `${rootDir}/docs/matrix/testcafe/all.md`;
     const pathImplemented = `${rootDir}/docs/matrix/testcafe/implemented.md`;
     const pathNotImplemented = `${rootDir}/docs/matrix/testcafe/not-implemented.md`;
-    write(path, table(content, { align: "l" }), "utf8");
-    write(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
-    write(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
+    writeFileSync(path, table(content, { align: "l" }), "utf8");
+    writeFileSync(pathImplemented, table(contentImplemented, { align: "l" }), "utf8");
+    writeFileSync(pathNotImplemented, table(notContentImplemented, { align: "l" }), "utf8");
+    logger.info(`\nWrite: ${path} \nWrite: ${pathImplemented} \nWrite: ${pathNotImplemented}`);
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }

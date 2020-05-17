@@ -1,5 +1,4 @@
-import { readFileSync } from "fs";
-import { write } from "../exec";
+import { readFileSync, writeFileSync } from "fs";
 import { frameworks, logger, miscRepos, rootDir } from "./constants";
 import { capitalize, sortObject } from "./formatting";
 import { createPath, hasPath } from "./file";
@@ -138,7 +137,7 @@ function getFrameworkName(name) {
 
 function writeMeta(data, path) {
   const update = JSON.stringify(sortObject(data), null, 2);
-  write(path, update, "utf8");
+  writeFileSync(path, update, "utf8");
 }
 
 async function getMetaValue(name, key) {
@@ -151,6 +150,7 @@ async function getMetaValue(name, key) {
       await createPath(metaPath);
       const obj = {};
       await writeMeta(obj, path);
+      logger.info(`writing ${path}`);
     } else {
       const metaData = readFileSync(`${metaPath}/meta.json`);
       const metaJson = JSON.parse(metaData);

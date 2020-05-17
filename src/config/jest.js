@@ -1,5 +1,5 @@
+import { writeFileSync } from "fs";
 import { rootDir, logger } from "../common/constants";
-import { write } from "../exec";
 
 function config(name) {
   const parts = name.split("-");
@@ -41,13 +41,13 @@ export default function jestConfig(name) {
     if (parts.includes("jest") && !parts.includes("cypress")) {
       const configPath = `${rootDir}/${name}/jest.config.js`;
       const configData = config(name);
-      write(configPath, configData, "utf8");
-      logger.info(`jest.config.js ${name}`);
+      writeFileSync(configPath, configData, "utf8");
+      logger.info(`jest.config.js ${configPath}`);
 
       const setupPath = `${rootDir}/${name}/jest.setup.js`;
       const setupData = setup(name);
-      write(setupPath, setupData, "utf8");
-      logger.info(`jest.setup.js ${name}`);
+      writeFileSync(setupPath, setupData, "utf8");
+      logger.info(`jest.setup.js ${configPath}`);
     }
   } catch (error) {
     logger.error(`${__filename}: jest ${error}`);
