@@ -4,32 +4,32 @@ import {
   dependencies,
   eslintrc,
   executeArbitraryCommand,
-  generateWorkflow,
-  generateReadme,
-  gitAdd,
-  gitClone,
-  gitCommit,
-  gitPush,
-  gitPull,
-  npmInstall,
-  updateMetadata,
-  lint,
-  setFunding,
-  tsconfig,
-  tslint,
   genCron,
+  generateReadme,
+  generateWorkflow,
   genJestConfig,
   genMochaConfig,
   genProtractorConfig,
   genWebdriverioConfig,
-  getTraffic,
   getDependency,
+  getTraffic,
+  gitAdd,
+  gitClone,
+  gitCommit,
+  gitPull,
+  gitPush,
+  lint,
+  npmInstall,
+  setFunding,
+  tsconfig,
+  tslint,
+  updateMetadata,
 } from "../src/task";
 
-import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "../src/validators";
-import { getRepositoriesList, setRootDir } from "../src/exec";
-import { task, reposDir, logger, module } from "../src/common/constants";
 import { getName } from "../src/common";
+import { getRepositoriesList, setRootDir } from "../src/exec";
+import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "../src/validators";
+import { task, reposDir, logger, module } from "../src/common/constants";
 
 async function taskPicker(repo) {
   switch (task) {

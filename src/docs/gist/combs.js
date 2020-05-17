@@ -80,6 +80,14 @@ const combs = [
   "selenium-webdriver-expect",
   "selenium-webdriver-should",
 
+  "testcafe-commonjs",
+  "testcafe-es-modules",
+  "testcafe-typescript",
+  "testcafe-chai",
+  "testcafe-assert",
+  "testcafe-expect",
+  "testcafe-should",
+
   "wd-commonjs",
   "wd-es-modules",
   "wd-typescript",

@@ -1,9 +1,9 @@
-import table from "markdown-table";
-import { readdirSync, readFileSync } from "fs";
 import { actionsStatusHome } from "../../src/docs/matrix/common";
-import { logger, rootDir } from "../../src/common/constants";
 import { bubbleSort } from "../../src/common";
+import { logger, rootDir } from "../../src/common/constants";
+import { readdirSync, readFileSync } from "fs";
 import { write } from "../../src/exec";
+import table from "markdown-table";
 
 function getData(file, type) {
   const data = readFileSync(`${rootDir}/docs/traffic/data/${type}/${file}`);

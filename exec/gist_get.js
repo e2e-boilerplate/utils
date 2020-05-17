@@ -1,3 +1,3 @@
-import getGistsList from "../src/gists";
+import getGists from "../src/data/gist/get_gists";
 
-getGistsList();
+getGists();

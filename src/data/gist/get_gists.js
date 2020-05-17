@@ -1,9 +1,13 @@
 import { writeFileSync } from "fs";
 import { request } from "https";
-import { username, logger, options, pages } from "./common/constants";
-import { isNumeric } from "./validators";
+import { isNumeric } from "../../validators";
+import { username, logger, options, pages } from "../../common/constants";
 
-function getGistsList() {
+/**
+ * Implements: https://developer.github.com/v3/gists/#list-gists-for-a-user
+ * GET /users/:username/gists
+ */
+function getGists() {
   try {
     const count = isNumeric(pages) ? pages : 2;
 
@@ -46,4 +50,4 @@ function getGistsList() {
   }
 }
 
-export default getGistsList;
+export default getGists;

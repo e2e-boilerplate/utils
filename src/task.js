@@ -1,3 +1,6 @@
+import { execute, getRepository } from "./exec";
+import { hasRepository } from "./validators";
+import { username, rootDir, message, command } from "./common/constants";
 import buildPackageJson from "./buildPackageJson";
 import cron from "./cron";
 import funding from "./funding";
@@ -13,9 +16,6 @@ import traffic from "./traffic";
 import updateDependency from "./dependencies/update_dependency";
 import wdioConfig from "./config/webdriverio";
 import workflow from "./workflow";
-import { execute, getRepository } from "./exec";
-import { hasRepository } from "./validators";
-import { username, rootDir, message, command } from "./common/constants";
 
 async function gitClone(repo) {
   const cmd = `git clone git@github.com:${username}/${repo.name}.git`;

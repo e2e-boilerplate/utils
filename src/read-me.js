@@ -32,7 +32,7 @@ function getScriptsCombo(repo) {
 export default function readme(repo) {
   const { name } = repo;
   // no README.md update for docs repo
-  if (name === "docs") {
+  if (name === "docs" && name === "utils") {
     return;
   }
   const frameworkName = getFrameworkName(name);

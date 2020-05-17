@@ -1,9 +1,9 @@
-import { safeDump } from "js-yaml";
-import { readFileSync } from "fs";
-import { logger, rootDir } from "./common/constants";
 import { clear, createPath, getFrameworkName, hasPath, getMetaValue } from "./common";
-import getRandomCron from "./common/cron";
+import { logger, rootDir } from "./common/constants";
+import { readFileSync } from "fs";
+import { safeDump } from "js-yaml";
 import { write } from "./exec";
+import getRandomCron from "./common/cron";
 
 async function setCron(name) {
   let value;

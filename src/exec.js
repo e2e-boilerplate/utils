@@ -1,6 +1,6 @@
 import * as util from "util";
 import { mkdirSync, writeFileSync } from "fs";
-import getReposMeta from "./repos_meta";
+import getRepos from "./data/repo/get_repos";
 import { username, rootDir, logger } from "./common/constants";
 
 const exec = util.promisify(require("child_process").exec);
@@ -22,7 +22,7 @@ async function execute(cmd, cwd) {
 
 async function getRepositoriesList() {
   try {
-    await getReposMeta();
+    await getRepos();
   } catch (error) {
     logger.error(`${__filename}: ${error}`);
   }

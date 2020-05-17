@@ -3,6 +3,8 @@ import generateDependency from "./dependencies/generate_dependency";
 import { author, logger, miscRepos, rootDir, username } from "./common/constants";
 import { buildKeywords, getFrameworkName, getTech, sortObject } from "./common";
 
+const keywords = ["e2e", "e2e tests", "boilerplate", "integration test", "test automation", "javascript"];
+
 const lintStagedTypescript = {
   "*.{js,ts,json,md}": ["prettier --write"], // eslint-disable-line
 };
@@ -41,6 +43,7 @@ export default function buildPackageJson(name) {
       const parts = name.split("-");
 
       pkgJson.keywords = buildKeywords(name);
+      pkgJson.keywords.push(...keywords);
       pkgJson.description = buildDescription(name);
       pkgJson.name = name;
       pkgJson.homepage = `https://github.com/${username}/${name}#readme`;

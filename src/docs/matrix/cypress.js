@@ -4,12 +4,12 @@ import { write } from "../../exec";
 
 import {
   all,
+  chaiAssertionTypes,
   getPaths,
   implemented,
   implementedOnly,
-  notImplementedOnly,
-  chaiAssertionTypes,
   javascriptType,
+  notImplementedOnly,
 } from "./common";
 import { removeDuplicates } from "../../common";
 

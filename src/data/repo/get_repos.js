@@ -1,9 +1,13 @@
 import { writeFileSync } from "fs";
 import { request } from "https";
-import { isNumeric } from "./validators";
-import { username, pages, logger, options } from "./common/constants";
+import { isNumeric } from "../../validators";
+import { username, pages, logger, options } from "../../common/constants";
 
-function getReposMeta() {
+/**
+ * Implements: https://developer.github.com/v3/repos/#list-repositories-for-the-authenticated-user
+ * GET /users/:username/repos
+ */
+function getRepos() {
   try {
     const count = isNumeric(pages) ? pages : 2;
 
@@ -44,4 +48,4 @@ function getReposMeta() {
   }
 }
 
-export default getReposMeta;
+export default getRepos;

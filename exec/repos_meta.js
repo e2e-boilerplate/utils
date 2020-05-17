@@ -1,3 +1,3 @@
-import getReposMeta from "../src/repos_meta";
+import getRepos from "../src/data/repo/get_repos";
 
-getReposMeta();
+getRepos();
