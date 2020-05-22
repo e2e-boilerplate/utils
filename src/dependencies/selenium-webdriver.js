@@ -3,7 +3,8 @@ import * as deps from "./dependencies.json";
 export default function seleniumWebdriver(name) {
   const parts = name.split("-");
   const dependencies = {
-    chromedriver: deps.chromedriver,
+    // chromedriver: deps.chromedriver,
+    chromedriver: "81.0.0",
   };
   const devDependencies = {};
 

@@ -6,11 +6,11 @@ import { buildKeywords, getFrameworkName, getTech, sortObject } from "./common";
 const keywords = ["e2e", "e2e tests", "boilerplate", "integration test", "test automation", "javascript"];
 
 const lintStagedTypescript = {
-  "*.{js,ts,json,md}": ["prettier --write"], // eslint-disable-line
+  "*.{js,ts,json,md}": ["tslint --fix", "prettier --write"], // eslint-disable-line
 };
 
 const lintStaged = {
-  "*.{js,json,md}": ["prettier --write"], // eslint-disable-line
+  "*.{js,json,md}": ["eslint --fix", "prettier --write"], // eslint-disable-line
 };
 
 const husky = {

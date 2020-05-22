@@ -54,7 +54,7 @@ function makeTsconfig(repo) {
 
         delete data.compilerOptions.outDir;
 
-        if (parts.includes("typescript") && parts.includes("jest")) {
+        if (parts.includes("jest")) {
           data.compilerOptions.types[0] = "jest";
           data.compilerOptions.types[1] = "cypress";
           data.compilerOptions.skipLibCheck = true;
@@ -62,6 +62,8 @@ function makeTsconfig(repo) {
             chai: ["./noop.d.ts"], // eslint-disable-line
           };
           data.compilerOptions.baseUrl = "../node_modules";
+        } else if (parts.includes("chai") && parts.includes("cucumber")) {
+          data.compilerOptions.types = ["cypress"];
         } else {
           data.compilerOptions.types[0] = "cypress";
         }

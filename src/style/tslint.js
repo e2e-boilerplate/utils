@@ -9,6 +9,9 @@ function makeTslint(repo) {
     rules: {
       prettier: true,
     },
+    linterOptions: {
+      exclude: ["*.json", "**/*.json"],
+    },
   };
 
   try {
