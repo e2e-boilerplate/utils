@@ -82,7 +82,7 @@
     "matrix:all": "node -r esm exec/matrix.js",
     "matrix:implemented": "node -r esm exec/matrix_implementend.js",
     "repos:list:get": "node -r esm exec/repos_list.js --pages 2",
-    "traffic:meta:get": "node -r esm exec/runner.js --task traffic --token fa3a6af8c68ec4a1b05fcb96720ced564a948495",
+    "traffic:meta:get": "node -r esm exec/runner.js --task traffic --token ...",
     "traffic:doc:write": "node -r esm exec/traffic.js --task trafic",
     "gen:cron": "node -r esm exec/runner.js --task cron",
     "execute:any:command": "node -r esm exec/runner.js --task command"

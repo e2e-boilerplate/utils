@@ -62,6 +62,7 @@ function writeReferrersDoc() {
   try {
     const path = `${rootDir}/docs/traffic/referrers.md`;
     writeFileSync(path, table(content, { align: "l" }), "utf8");
+    logger.info(`Write ${path}`);
   } catch (error) {
     logger.error(`${__filename}: Referrers doc: ${error}`);
   }
