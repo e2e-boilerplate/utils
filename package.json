@@ -48,6 +48,7 @@
       "prettier --write"
     ]
   },
+  "main": "index.js",
   "name": "utils",
   "repository": {
     "type": "git",
