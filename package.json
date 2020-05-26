@@ -71,6 +71,7 @@
     "create:config:protractor": "node -r esm exec/runner.js --task protractor --module protractor",
     "create:config:webdriverio": "node -r esm exec/runner.js --task webdriverio --module webdriverio",
     "create:config:tsconfig": "node -r esm exec/runner.js --task tsconfig",
+    "copy:data": "node -r esm exec/copy_data.js",
     "gist:get:meta": "node -r esm exec/gist_get.js --username xgirma",
     "gist:create:list": "node -r esm exec/gist_list.js",
     "gist:create:new": "node -r esm exec/gist_create.js --token ...",
@@ -82,7 +83,7 @@
     "matrix:all": "node -r esm exec/matrix.js",
     "matrix:implemented": "node -r esm exec/matrix_implementend.js",
     "repos:list:get": "node -r esm exec/repos_list.js --pages 2",
-    "traffic:meta:get": "node -r esm exec/runner.js --task traffic --token 30c7a4fcb2be7e8fffc1e1fe1a6ff202953f16a1",
+    "traffic:meta:get": "node -r esm exec/runner.js --task traffic --token 32d884b5495eca2615c30311e08fd979ee559865",
     "traffic:doc:write": "node -r esm exec/traffic.js --task trafic",
     "gen:cron": "node -r esm exec/runner.js --task cron",
     "execute:any:command": "node -r esm exec/runner.js --task command"
