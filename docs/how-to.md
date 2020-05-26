@@ -116,3 +116,9 @@ You can generate `README.MD`, GitHub actions `workflow.yaml`, styling, and confi
 ### Warning
 
 Using this on a GitHub username or org-name that has large (number of) repositories and dependencies could maxout your disk space or crash your IDE :)
+
+### API
+
+Make sure to execute `npm run copy:data` to get the latest data into your API.
+
+    https://e2e-boilerplate.github.io/utils/v1/dependencies.json
