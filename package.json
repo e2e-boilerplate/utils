@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "compare-versions": "3.6.0",
+    "gh-pages": "^2.2.0",
     "js-yaml": "3.14.0",
     "markdown-table": "2.0.0",
     "minimist": "1.2.5",
@@ -72,6 +73,7 @@
     "create:config:webdriverio": "node -r esm exec/runner.js --task webdriverio --module webdriverio",
     "create:config:tsconfig": "node -r esm exec/runner.js --task tsconfig",
     "copy:data": "node -r esm exec/copy_data.js",
+    "deploy:api": "node .",
     "gist:get:meta": "node -r esm exec/gist_get.js --username xgirma",
     "gist:create:list": "node -r esm exec/gist_list.js",
     "gist:create:new": "node -r esm exec/gist_create.js --token ...",
