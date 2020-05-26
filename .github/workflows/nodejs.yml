@@ -26,5 +26,3 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: api
-      - name: deploy
-        run: npm run deploy:api
