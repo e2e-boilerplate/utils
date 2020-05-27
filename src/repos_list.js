@@ -23,6 +23,7 @@ function reposArray() {
 
   const data = JSON.stringify(list, null, 2);
   writeFileSync(path, data, "utf8");
+  writeFileSync("./api/v1/repositories.json", data, "utf8");
 }
 
 export default reposArray;
