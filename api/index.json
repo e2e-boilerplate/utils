@@ -1,7 +1,8 @@
 {
   "get": [
     {
-      "dependencies": "https://e2e-boilerplate.github.io/utils/v1/dependencies.json"
+      "dependencies": "https://e2e-boilerplate.github.io/utils/v1/dependencies.json",
+      "repositories": "https://e2e-boilerplate.github.io/utils/v1/repositories.json"
     }
   ]
 }
