@@ -10,7 +10,7 @@ const lintStagedTypescript = {
 };
 
 const lintStaged = {
-  "*.{js,json,md}": ["eslint --fix", "prettier --write"], // eslint-disable-line
+  "*.{js}": ["eslint --fix", "prettier --write"], // eslint-disable-line
 };
 
 const husky = {
@@ -31,9 +31,9 @@ function buildDescription(name) {
 
 /**
  * Given repository name builds the content of its package.json file
- * @param repo
+ * @param name
  */
-export default function buildPackageJson(name) {
+async function buildPackageJson(name) {
   try {
     if (!miscRepos.includes(name)) {
       const data = readFileSync(`${rootDir}/${name}/package.json`);
@@ -81,9 +81,11 @@ export default function buildPackageJson(name) {
 
       const update = JSON.stringify(sortObject(pkgJson), null, 2);
       writeFileSync(path, update, "utf8");
-      logger.info(`\nGenerates package.json for \n${name}`);
+      logger.info(`\nGenerates package.json for \n${path}`);
     }
   } catch (error) {
     logger.error(`\n${name} \n${error} \n${__filename}`);
   }
 }
+
+export default buildPackageJson;

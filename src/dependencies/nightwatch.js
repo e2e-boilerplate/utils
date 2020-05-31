@@ -5,6 +5,7 @@ export default function nightwatch(name) {
   const parts = name.split("-");
   const dependencies = {
     nightwatch: deps.nightwatch,
+    chromedriver: deps.chromedriver,
   };
   const devDependencies = {};
 

@@ -70,8 +70,7 @@ export default function common(name) {
     parts.includes("selenium", "webdriver") ||
     parts.includes("webdriverio")
   ) {
-    // dependencies.chromedriver = deps.chromedriver;
-    dependencies.chromedriver = "81.0.0";
+    dependencies.chromedriver = deps.chromedriver;
   }
 
   if (parts.includes("webdriver", "manager")) {
