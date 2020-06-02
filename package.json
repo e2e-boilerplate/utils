@@ -10,7 +10,7 @@
     "markdown-table": "2.0.0",
     "minimist": "1.2.5",
     "moment": "2.26.0",
-    "pino": "6.3.1",
+    "pino": "6.3.2",
     "pino-pretty": "4.0.0",
     "rimraf": "3.0.2"
   },
