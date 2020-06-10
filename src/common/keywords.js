@@ -1,4 +1,5 @@
 import { keywords } from "./constants";
+import { getName } from "./filter";
 
 /**
  * Given repo name, returns keywords
@@ -7,6 +8,14 @@ import { keywords } from "./constants";
  */
 export default function buildKeywords(name) {
   const parts = name.split("-");
+
+  const techName = getName(name);
+
+  parts.push(`${techName} example`);
+
+  parts.push(`${techName} boilerplate`);
+
+  parts.push(`${techName} automation`);
 
   let jestCount = 0;
 
