@@ -56,7 +56,7 @@ export default function updateDependency(name) {
       const content = JSON.stringify(sortObject(deps), null, 2);
       writeFileSync(`src/dependencies/dependencies.json`, content);
       writeFileSync(`api/v1/dependencies.json`, content);
-
+      writeFileSync(`${rootDir}/api/api/v1/dependencies/index.json`, content);
       logger.info(`\nUpdate dependencies.json version using \n${name}`);
     }
   } catch (error) {
