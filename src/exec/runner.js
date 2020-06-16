@@ -24,12 +24,12 @@ import {
   tsconfig,
   tslint,
   updateMetadata,
-} from "../src/task";
+} from "../task";
 
-import { getName, setRootDir } from "../src/common";
-import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "../src/validators";
-import { task, reposDir, logger, module } from "../src/common/constants";
-import getRepos from "../src/data/repo/get_repos";
+import { getName, setRootDir } from "../common";
+import { hasMatchingRepositoriesList, hasRepositoriesList, hasRootDirectory } from "../validators";
+import { task, reposDir, logger, module } from "../common/constants";
+import getRepos from "../data/repo/get_repos";
 
 async function taskPicker(repo) {
   switch (task) {
@@ -130,7 +130,7 @@ async function runner() {
     const files = readdirSync(reposDir);
 
     for (let i = 1; i < files.length; i += 1) {
-      const repos = require(`../repos/repo-${i}.json`);
+      const repos = require(`../../repos/repo-${i}.json`);
       repos.forEach((repo) => {
         const name = getName(repo.name);
 
