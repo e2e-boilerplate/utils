@@ -1,6 +1,6 @@
-import writeReferrersDoc from "../../stat/traffic/referrers";
-import writeClonesDoc from "../../stat/traffic/clones";
-import writeViewsDoc from "../../stat/traffic/views";
+import writeReferrersDoc from "../../stat/referrers";
+import writeClonesDoc from "../../stat/clones";
+import writeViewsDoc from "../../stat/views";
 
 writeClonesDoc();
 writeReferrersDoc();
