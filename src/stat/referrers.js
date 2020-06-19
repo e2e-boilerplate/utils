@@ -1,8 +1,8 @@
 import table from "markdown-table";
 import { readdirSync, readFileSync, writeFileSync } from "fs";
-import { actionsStatusHome } from "../src/docs/matrix/common";
-import { bubbleSort } from "../src/common";
-import { logger, rootDir } from "../src/common/constants";
+import { actionsStatusHome } from "../docs/matrix/common";
+import { bubbleSort } from "../common";
+import { logger, rootDir } from "../common/constants";
 
 function getData(file) {
   const data = readFileSync(`${rootDir}/docs/traffic/data/referrers/${file}`);
