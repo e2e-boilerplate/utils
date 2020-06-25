@@ -86,9 +86,17 @@ async function workflow(repo) {
     if (parts.includes("testcafe")) {
       let test;
       if (parts.includes("typescript")) {
-        test = { name: "test", uses: "DevExpress/testcafe-action@latest", with: { args: "chrome spec/*.spec.ts" } };
+        test = {
+          name: "test",
+          uses: "DevExpress/testcafe-action@latest",
+          with: { args: "chrome:headless -e spec/*.spec.ts" },
+        };
       } else {
-        test = { name: "test", uses: "DevExpress/testcafe-action@latest", with: { args: "chrome spec/*.spec.js" } };
+        test = {
+          name: "test",
+          uses: "DevExpress/testcafe-action@latest",
+          with: { args: "chrome:headless -e spec/*.spec.js" },
+        };
       }
       nodejs.jobs.build.steps.push(test);
     } else if (keys.includes("test:ci")) {
