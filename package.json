@@ -65,7 +65,7 @@
     "git:push": "node -r esm src/exec/runner.js --task push",
     "create:readme": "node -r esm src/exec/runner.js --task readme",
     "create:funding": "node -r esm src/exec/runner.js --task funding",
-    "create:workflow": "node -r esm src/exec/runner.js --task workflow -module wd",
+    "create:workflow": "node -r esm src/exec/runner.js --task workflow -module testcafe",
     "create:style:eslintrc": "node -r esm src/exec/runner.js --task eslintrc",
     "create:style:tslint": "node -r esm src/exec/runner.js --task tslint",
     "create:config:jest": "node -r esm src/exec/runner.js --task jest",
