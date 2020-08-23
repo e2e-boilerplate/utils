@@ -19,7 +19,7 @@ const {
 const user = userInfo().username;
 const rootDir = `/Users/${user}/Documents/${username}`;
 const reposDir = "./repos";
-const miscRepos = ["docs", "e2e-boilerplate", "picker", "resources", "sandbox", "utils", "api", "swagger"];
+const miscRepos = ["docs", "e2e-boilerplate", "picker", "resources", "sandbox", "utils", "api", "swagger", "stats"];
 const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "testcafe", "wd", "webdriverio"];
 const workflow = ["build", "install:linux", "lint", "npm:install", "start:webdriver", "test", "update:webdriver"];
 const options = {
