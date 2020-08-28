@@ -11,7 +11,7 @@
     "minimist": "1.2.5",
     "moment": "2.27.0",
     "pino": "6.5.1",
-    "pino-pretty": "4.1.0",
+    "pino-pretty": "4.2.0",
     "rimraf": "3.0.2"
   },
   "description": "Utils end-to-end test automation boilerplate. ",
