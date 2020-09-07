@@ -36,7 +36,7 @@ export default function readme(name) {
     const title = miscRepos.includes(name) ? `# ${frameworkName}` : `# ${frameworkName} Boilerplate`;
     const description = miscRepos.includes(name)
       ? `${name}.`
-      : `${frameworkName} end-to-end test automation boilerplate, ${tech}`;
+      : `${frameworkName} end-to-end test automation boilerplate, ${tech}. Clone or fork this repository.`;
     const subTitle = "## Getting Started";
     const clone = `git clone git@github.com:${username}/${name}.git`;
     const cd = `cd ${name}`;
