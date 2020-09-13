@@ -9,7 +9,7 @@
     "js-yaml": "3.14.0",
     "markdown-table": "2.0.0",
     "minimist": "1.2.5",
-    "moment": "2.27.0",
+    "moment": "2.28.0",
     "pino": "6.6.0",
     "pino-pretty": "4.2.1",
     "rimraf": "3.0.2"
