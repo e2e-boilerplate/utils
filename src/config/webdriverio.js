@@ -17,13 +17,20 @@ export default function wdioConfig(name) {
     defaultTimeoutInterval: 60000,
   }`;
   const noJasmineNodeOp = `jasmineNodeOpts: {}`;
-  const mochaOp = `mochaOpts: {
+  let mochaOp = `mochaOpts: {
     timeout: 60000,
   }`;
   const noMochaOp = `mochaOpts: {}`;
 
   try {
     const parts = name.split("-");
+
+    if(parts.includes("mocha") && parts.includes("babel")) {
+      mochaOp = `mochaOpts: {
+    timeout: 60000,
+    require: ["@babel/register"],
+  }`
+    }
 
     if (parts.includes("webdriverio")) {
       let specs = parts.includes("cucumber")
@@ -42,22 +49,11 @@ export default function wdioConfig(name) {
       const jasmineNodeOpts = parts.includes("jasmine") ? jasmineNodeOp : noJasmineNodeOp;
       const cucumberOpts = parts.includes("cucumber") ? cucumberOp : noCucumberOp;
 
-      let before = parts.includes("babel")
-        ? `// eslint-disable-next-line no-unused-vars
-  before: (capabilities, specs) => {
-    // eslint-disable-next-line import/no-extraneous-dependencies, global-require
-    require("@babel/register");
-  }`
-        : parts.includes("ts") && parts.includes("node")
-        ? `// eslint-disable-next-line no-unused-vars
-  before: (capabilities, specs) => {
-    // eslint-disable-next-line global-require
-    require("ts-node").register({ files: true });
-  }`
-        : `// eslint-disable-next-line no-unused-vars
-  before: (capabilities, specs) => {}`;
+      let pre = parts.includes("ts") && parts.includes("node")
+        ? `require("ts-node").register({ files: true });` : ``;
 
-      const data = `const headed = {
+      const data = `${pre}
+const headed = {
   ${runner},
   ${path},
   ${specs},
@@ -73,7 +69,6 @@ export default function wdioConfig(name) {
   ${mochaOpts},
   ${jasmineNodeOpts},
   ${cucumberOpts},
-  ${before},
 };
 
 const headless = {
@@ -95,7 +90,6 @@ const headless = {
   ${mochaOpts},
   ${jasmineNodeOpts},
   ${cucumberOpts},
-  ${before},
 };
 
 const config = process.env.GITHUB_ACTIONS ? headless : headed;

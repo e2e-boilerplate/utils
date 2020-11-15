@@ -67,7 +67,7 @@ async function workflow(repo) {
     nodejs.jobs.build.steps.push(build);
 
     if (keys.includes("update:webdriver")) {
-      const update = { name: "update:webdriver", run: "npm run update:webdriver " };
+      const update = { name: "update:webdriver", run: "npm run update:webdriver" };
       nodejs.jobs.build.steps.push(update);
 
       const wait = { name: "sleep:7s", uses: "jakejarvis/wait-action@master", with: { time: "10s" } };
