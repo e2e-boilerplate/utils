@@ -67,7 +67,10 @@ async function workflow(repo) {
     nodejs.jobs.build.steps.push(build);
 
     if (keys.includes("update:webdriver")) {
-      const update = { name: "update:webdriver", run: "npm run update:webdriver" };
+      // keep this line to update chrome web driver version when a new version of chrome is released and github actions still uses older version
+      // https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
+      const update = { name: "update:webdriver", run: "npm run update:webdriver -- --versions.chrome=86.0.4240.22" };
+      // const update = { name: "update:webdriver", run: "npm run update:webdriver" };
       nodejs.jobs.build.steps.push(update);
 
       const wait = { name: "sleep:7s", uses: "jakejarvis/wait-action@master", with: { time: "10s" } };
@@ -75,7 +78,10 @@ async function workflow(repo) {
     }
 
     if (keys.includes("start:webdriver")) {
-      const start = { name: "start:webdriver", run: "npm run start:webdriver &" };
+      // keep this line to update chrome web driver version when a new version of chrome is released and github actions still uses older version
+      // https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
+      const start = { name: "start:webdriver", run: "npm run start:webdriver -- --versions.chrome=86.0.4240.22 &" };
+      // const start = { name: "start:webdriver", run: "npm run start:webdriver &" };
       nodejs.jobs.build.steps.push(start);
 
       const wait = { name: "sleep:7s", uses: "jakejarvis/wait-action@master", with: { time: "10s" } };
