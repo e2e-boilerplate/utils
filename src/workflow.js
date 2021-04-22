@@ -49,7 +49,7 @@ async function workflow(repo) {
       const aptGet = {
         name: "install:linux:dep",
         run:
-          "sudo apt-get update\nsudo apt-get install libwoff1 libopus0 libwebp6 libwebpdemux2 libenchant1c2a libgudev-1.0-0 libsecret-1-0 libhyphen0 libgdk-pixbuf2.0-0 libegl1 libgles2 libevent-2.1-6 libnotify4 libxslt1.1\nsudo apt-get install xvfb\n",
+          "sudo apt-get update\nsudo apt-get install libwoff1 libopus0 libwebp6 libwebpdemux2 libenchant1c2a libgudev-1.0-0 libsecret-1-0 libhyphen0 libgdk-pixbuf2.0-0 libegl1 libgles2 libevent-dev libnotify4 libxslt1.1\nsudo apt-get install xvfb\n",
       };
       nodejs.jobs.build.steps.push(aptGet);
     }
