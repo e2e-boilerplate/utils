@@ -4,6 +4,9 @@ import { clear, createPath, getFrameworkName, hasPath, getMetaValue } from "./co
 import { logger, rootDir } from "./common/constants";
 import getRandomCron from "./common/cron";
 
+const deps = JSON.parse(readFileSync("src/dependencies/dependencies.json", "utf8"));
+const chromeVersion = deps["chrome-version"];
+
 async function setCron(name) {
   let value;
   try {
@@ -69,7 +72,10 @@ async function workflow(repo) {
     if (keys.includes("update:webdriver")) {
       // keep this line to update chrome web driver version when a new version of chrome is released and github actions still uses older version
       // https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
-      const update = { name: "update:webdriver", run: "npm run update:webdriver -- --versions.chrome=86.0.4240.22" };
+      const update = {
+        name: "update:webdriver",
+        run: `npm run update:webdriver -- --versions.chrome=${chromeVersion}`,
+      };
       // const update = { name: "update:webdriver", run: "npm run update:webdriver" };
       nodejs.jobs.build.steps.push(update);
 
@@ -80,7 +86,7 @@ async function workflow(repo) {
     if (keys.includes("start:webdriver")) {
       // keep this line to update chrome web driver version when a new version of chrome is released and github actions still uses older version
       // https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
-      const start = { name: "start:webdriver", run: "npm run start:webdriver -- --versions.chrome=86.0.4240.22 &" };
+      const start = { name: "start:webdriver", run: `npm run start:webdriver -- --versions.chrome=${chromeVersion} &` };
       // const start = { name: "start:webdriver", run: "npm run start:webdriver &" };
       nodejs.jobs.build.steps.push(start);
 
