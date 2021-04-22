@@ -59,7 +59,7 @@
     "repos:meta:get": "node -r esm src/exec/repos_meta.js --pages 3",
     "git:clone": "node -r esm src/exec/runner.js --task clone",
     "git:pull": "node -r esm src/exec/runner.js --task pull",
-    "dependencies:chromedriver": "node -r esm src/dependencies/update_chromedriver.js",
+    "gitlab:only:chrome:version": "node -r esm src/dependencies/update_chrome_version.js",
     "dependencies:update": "node -r esm src/exec/runner.js --task dependencies",
     "package:json:write": "node -r esm src/exec/runner.js --task metadata",
     "git:add": "node -r esm src/exec/runner.js --task add",
