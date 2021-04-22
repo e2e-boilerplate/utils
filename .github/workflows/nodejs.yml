@@ -23,8 +23,6 @@ jobs:
           pwd
           npm run dependencies:update
       - name: commit
-        run: |
-          git config --global user.name ${{ secrets.USER_NAME }}
-          git config --global user.email ${{ secrets.USER_EMAIL }}
-          git commit -am "auto update"
-          git push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Auto update
