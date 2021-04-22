@@ -16,7 +16,7 @@ async function getGithubChromeDriverVersion() {
       throw error;
     }
     // eslint-disable-next-line prefer-destructuring
-    deps["chrome-version"] = stdout.split(" ")[1];
+    deps["github-chrome-version"] = stdout.split(" ")[1];
     const content = JSON.stringify(sortObject(deps), null, 2);
     writeFileSync(`src/dependencies/dependencies.json`, content);
     writeFileSync(`api/v1/dependencies.json`, content);
