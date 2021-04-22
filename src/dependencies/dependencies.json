@@ -30,7 +30,7 @@
   "babel-jest": "26.6.3",
   "chai": "4.2.0",
   "chai-as-promised": "7.1.1",
-  "chromedriver": "87.0.2",
+  "chromedriver": "90.0.4430.24",
   "cucumber": "6.0.5",
   "cypress": "5.6.0",
   "cypress-cucumber-preprocessor": "2.5.5",
