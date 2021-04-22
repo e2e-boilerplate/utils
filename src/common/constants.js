@@ -1,6 +1,6 @@
 import { userInfo } from "os";
 import minimist from "minimist";
-import * as isCI from "'is-ci";
+import isCI from "is-ci";
 
 const logger = require("pino")({
   prettyPrint: { colorize: true },
