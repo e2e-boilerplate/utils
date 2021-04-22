@@ -1,8 +1,11 @@
 /* eslint-disable no-restricted-syntax */
 import { readFileSync, writeFileSync } from "fs";
+import * as util from "util";
 import compareVersions from "compare-versions";
 import { logger, miscRepos, rootDir } from "../common/constants";
 import { sortObject } from "../common";
+
+const exec = util.promisify(require("child_process").exec);
 
 /**
  * compare version
@@ -21,14 +24,33 @@ function version(first, second, name) {
   return undefined;
 }
 
+async function getGithubChromeDriverVersion() {
+  let driverVersion;
+  try {
+    const { error, stdout, stderr } = await exec("chromedriver --version", { rootDir });
+    if (error) {
+      logger.info(stderr);
+      throw error;
+    }
+    // eslint-disable-next-line prefer-destructuring
+    driverVersion = stdout.split(" ")[1];
+    logger.info(stdout);
+  } catch (error) {
+    logger.error(`${__filename}: ${error}`);
+  }
+
+  return driverVersion;
+}
+
 /**
  * Given the dependencies and devDependencies of each repository
  * Write updated version to dependencies.json
  * @param name: repository name
  */
-export default function updateDependency(name) {
+async function updateDependency(name) {
   try {
     const deps = JSON.parse(readFileSync("src/dependencies/dependencies.json", "utf8"));
+    deps.chromedriver = await getGithubChromeDriverVersion();
 
     if (!miscRepos.includes(name)) {
       const data = readFileSync(`${rootDir}/${name}/package.json`);
@@ -63,3 +85,5 @@ export default function updateDependency(name) {
     logger.error(`\nGenerate dependency, \n${error}: \n${__filename}`);
   }
 }
+
+export default updateDependency;
