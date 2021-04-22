@@ -21,6 +21,8 @@ jobs:
       - name: clone
         run: |
           pwd
+          npm run repos:meta:get
+          npm run git:clone
           npm run dependencies:update
       - name: commit
         uses: stefanzweifel/git-auto-commit-action@v4
