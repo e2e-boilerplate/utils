@@ -5,7 +5,7 @@ import { logger, rootDir } from "./common/constants";
 import getRandomCron from "./common/cron";
 
 const deps = JSON.parse(readFileSync("src/dependencies/dependencies.json", "utf8"));
-const chromeVersion = deps["chrome-version"];
+const chromeVersion = deps["github-chrome-version"];
 
 async function setCron(name) {
   let value;
