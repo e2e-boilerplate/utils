@@ -19,12 +19,10 @@ jobs:
       - name: lint
         run: npm run lint --if-present
       - name: clone
-        run: |
-          pwd
-          npm run repos:meta:get
-          npm run git:clone
-          npm run dependencies:update
-      - name: commit
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Auto update
+        run: npm run dependencies:chromedriver
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push

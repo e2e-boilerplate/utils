@@ -1,6 +1,5 @@
 import { userInfo } from "os";
 import minimist from "minimist";
-import isCI from "is-ci";
 
 const logger = require("pino")({
   prettyPrint: { colorize: true },
@@ -18,7 +17,7 @@ const {
   username = "e2e-boilerplate",
 } = minimist(process.argv.slice(2));
 const user = userInfo().username;
-const rootDir = isCI ? `/home/runner/work/${username}/` : `/Users/${user}/Documents/${username}`;
+const rootDir = `/Users/${user}/Documents/${username}`;
 const reposDir = "./repos";
 const miscRepos = ["docs", "e2e-boilerplate", "picker", "resources", "sandbox", "utils", "api", "swagger", "stats"];
 const frameworks = ["cypress", "nightwatch", "playwright", "protractor", "puppeteer", "testcafe", "wd", "webdriverio"];

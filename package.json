@@ -6,7 +6,6 @@
   "dependencies": {
     "compare-versions": "3.6.0",
     "gh-pages": "3.1.0",
-    "is-ci": "3.0.0",
     "js-yaml": "3.14.1",
     "markdown-table": "2.0.0",
     "minimist": "1.2.5",
@@ -60,6 +59,7 @@
     "repos:meta:get": "node -r esm src/exec/repos_meta.js --pages 3",
     "git:clone": "node -r esm src/exec/runner.js --task clone",
     "git:pull": "node -r esm src/exec/runner.js --task pull",
+    "dependencies:chromedriver": "node -r esm src/dependencies/update_chromedriver.js",
     "dependencies:update": "node -r esm src/exec/runner.js --task dependencies",
     "package:json:write": "node -r esm src/exec/runner.js --task metadata",
     "git:add": "node -r esm src/exec/runner.js --task add",
