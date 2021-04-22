@@ -19,7 +19,7 @@ jobs:
       - name: lint
         run: npm run lint --if-present
       - name: chromedriver
-        run: npm run dependencies:chromedriver
+        run: npm run get:chrome:version
       - name: commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
