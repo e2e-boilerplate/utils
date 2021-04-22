@@ -122,7 +122,7 @@ async function tslint(repo) {
 async function dependencies(repo) {
   const { name } = repo;
   await prepareRepo(name);
-  updateDependency(name);
+  await updateDependency(name);
 }
 
 async function genCron(repo) {
