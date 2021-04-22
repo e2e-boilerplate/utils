@@ -27,4 +27,8 @@ async function getGithubChromeDriverVersion() {
   }
 }
 
-export default getGithubChromeDriverVersion;
+(async () => {
+  await getGithubChromeDriverVersion();
+})().catch((error) => {
+  console.error(`Unable to update chrome driver`, error);
+});
