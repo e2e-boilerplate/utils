@@ -16,7 +16,7 @@
   },
   "description": "Utils end-to-end test automation boilerplate. ",
   "devDependencies": {
-    "eslint": "7.28.0",
+    "eslint": "7.29.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-cypress": "2.11.3",
