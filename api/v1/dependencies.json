@@ -46,7 +46,7 @@
   "eslint-plugin-wdio": "7.4.2",
   "esm": "3.2.25",
   "expect": "26.6.2",
-  "github-chrome-version": "93.0.4577.15",
+  "github-chrome-version": "93.0.4577.63",
   "husky": "6.0.0",
   "is-ci": "3.0.0",
   "jasmine": "3.7.0",
