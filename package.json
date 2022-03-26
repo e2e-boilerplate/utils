@@ -8,7 +8,7 @@
     "gh-pages": "3.2.3",
     "js-yaml": "3.14.1",
     "markdown-table": "2.0.0",
-    "minimist": "1.2.5",
+    "minimist": "1.2.6",
     "moment": "2.29.1",
     "pino": "6.13.3",
     "pino-pretty": "4.8.0",
